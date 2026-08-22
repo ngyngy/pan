@@ -30,18 +30,23 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Left: Brand Logo & Title */}
         <div 
           onClick={onResetToHome}
-          className="flex items-center gap-3 cursor-pointer select-none group shrink-0"
+          className="flex items-center gap-2.5 sm:gap-3.5 cursor-pointer select-none group shrink-0"
           id="brand-logo-button"
         >
-          <div className="w-9 h-9 rounded-xl bg-neutral-900 dark:bg-white flex items-center justify-center text-white dark:text-neutral-900 font-bold text-xs tracking-wider shadow-sm group-hover:scale-105 transition-transform">
-            <span className="text-orange-500 font-extrabold mr-0.5">N</span>GY
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-950 dark:from-white dark:to-neutral-200 flex items-center justify-center text-white dark:text-neutral-900 font-black text-xs sm:text-sm tracking-wider shadow-md group-hover:scale-105 transition-transform">
+            <span className="text-amber-500 font-black mr-0.5">N</span>GY
           </div>
-          <div className="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-2">
-            <h1 className="font-bold text-lg sm:text-xl tracking-tight text-neutral-900 dark:text-neutral-100 font-sans">
-              网盘资源聚合
-            </h1>
-            <span className="text-[11px] font-mono text-neutral-400 dark:text-neutral-500 font-medium tracking-tight">
-              pan.ngy123.com
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2 flex-wrap">
+              <h1 className="font-extrabold text-base sm:text-lg tracking-tight text-neutral-900 dark:text-neutral-100 font-sans">
+                网盘资源聚合
+              </h1>
+              <span className="inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-mono font-extrabold bg-emerald-500/15 dark:bg-emerald-500/25 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 shadow-2xs hover:bg-emerald-500/25 transition-colors">
+                www.ngy123.com
+              </span>
+            </div>
+            <span className="text-[10px] sm:text-[11px] text-neutral-400 dark:text-neutral-500 font-medium tracking-tight hidden sm:inline">
+              官方正版门户 · 夸克/百度/UC/迅雷资源极速搜
             </span>
           </div>
         </div>
