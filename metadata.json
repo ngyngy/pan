@@ -1,6 +1,6 @@
 {
   "name": "网盘资源聚合",
-  "description": "pan.ngy123.com 网盘资源聚合 - 极简高效的夸克网盘、百度网盘、UC网盘、迅雷网盘及磁力资源综合聚合站，整合天涯神贴、中小学学习资料、4K影视短剧、高晓松合集、区块链文献等全网优质资源，支持极速秒搜与多盘筛选。",
+  "description": "www.wangpan8.com 网盘吧 - 极简高效的夸克网盘、百度网盘、UC网盘、迅雷网盘及磁力资源综合聚合站，整合天涯神贴、中小学学习资料、4K影视短剧、高晓松合集、区块链文献等全网优质资源，支持极速秒搜与多盘筛选。",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

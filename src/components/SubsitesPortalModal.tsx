@@ -47,10 +47,10 @@ export const SubsitesPortalModal: React.FC<SubsitesPortalModalProps> = ({
             </div>
             <div>
               <h3 className="text-base font-bold text-neutral-900 dark:text-neutral-100">
-                NGY 官方分站矩阵直达
+                网盘吧 官方分站矩阵直达
               </h3>
               <p className="text-xs text-neutral-400">
-                所有分站数据已全部聚合在此主站，您也可以直接访问分站独立站点
+                所有分站数据已全部聚合在 www.wangpan8.com，您也可以直接访问分站独立站点
               </p>
             </div>
           </div>

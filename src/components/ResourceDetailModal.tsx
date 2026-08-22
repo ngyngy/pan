@@ -44,7 +44,7 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
   };
 
   const handleCopyFullShare = () => {
-    const text = `【资源名称】：${resource.title}\n【网盘类型】：${resource.driveName}\n【分享链接】：${resource.driveUrl}${resource.extractCode ? `\n【提取码】：${resource.extractCode}` : ''}\n【来源分站】：${resource.subsiteName} (${resource.subsiteUrl})\n【聚合门户】：网盘资源聚合 (pan.ngy123.com)`;
+    const text = `【资源名称】：${resource.title}\n【网盘类型】：${resource.driveName}\n【分享链接】：${resource.driveUrl}${resource.extractCode ? `\n【提取码】：${resource.extractCode}` : ''}\n【来源分站】：${resource.subsiteName} (${resource.subsiteUrl})\n【聚合门户】：网盘吧 (www.wangpan8.com)`;
     navigator.clipboard.writeText(text);
     setCopiedAll(true);
     setTimeout(() => setCopiedAll(false), 2000);

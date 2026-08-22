@@ -202,7 +202,7 @@ export default function App() {
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-4 sm:pb-6 space-y-4 sm:space-y-5">
         {/* 1. Prominent Top Search Box (顶部显眼搜索框，支持关键词实时检索与网盘筛选) */}
         <TopSearchBar
           searchQuery={filters.searchQuery}
@@ -238,7 +238,7 @@ export default function App() {
         </div>
 
         {/* 4. Bottom Showcase Section: 精选优质网盘资源 / 最新收录上线 / 经典大合集精选 */}
-        <div className="pt-8 border-t border-neutral-200/80 dark:border-neutral-800 space-y-4">
+        <div className="pt-5 border-t border-neutral-200/80 dark:border-neutral-800 space-y-3">
           <div className="flex items-center justify-between px-1">
             <div>
               <h2 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
@@ -264,6 +264,9 @@ export default function App() {
         onOpenFeedback={() => {
           setTargetFeedbackResource(null);
           setShowFeedbackModal(true);
+        }}
+        onSearchKeyword={(kw) => {
+          handleFilterChange({ searchQuery: kw, activeMainFolder: null, activeSubFolder: null });
         }}
       />
 

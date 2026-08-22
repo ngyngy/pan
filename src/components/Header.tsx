@@ -1,11 +1,13 @@
 import React from 'react';
 import { 
   Flame, 
+  ExternalLink, 
   Users, 
   Moon, 
-  Sun, 
-  Globe
+  Sun,
+  Layers
 } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface HeaderProps {
   darkMode: boolean;
@@ -25,28 +27,30 @@ export const Header: React.FC<HeaderProps> = ({
   onResetToHome
 }) => {
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        {/* Left: Brand Logo & Title */}
+    <header className="sticky top-0 z-40 w-full bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 transition-colors shadow-2xs">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 min-h-[4rem] sm:min-h-[4.5rem] py-2 flex items-center justify-between gap-2 sm:gap-4">
+        {/* Left: Brand Logo & Domain Info */}
         <div 
           onClick={onResetToHome}
-          className="flex items-center gap-2.5 sm:gap-3.5 cursor-pointer select-none group shrink-0"
+          className="flex items-center gap-2.5 sm:gap-4 cursor-pointer select-none group min-w-0"
           id="brand-logo-button"
         >
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-950 dark:from-white dark:to-neutral-200 flex items-center justify-center text-white dark:text-neutral-900 font-black text-xs sm:text-sm tracking-wider shadow-md group-hover:scale-105 transition-transform">
-            <span className="text-amber-500 font-black mr-0.5">N</span>GY
-          </div>
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2 flex-wrap">
-              <h1 className="font-extrabold text-base sm:text-lg tracking-tight text-neutral-900 dark:text-neutral-100 font-sans">
-                网盘资源聚合
-              </h1>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-mono font-extrabold bg-emerald-500/15 dark:bg-emerald-500/25 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 shadow-2xs hover:bg-emerald-500/25 transition-colors">
-                www.ngy123.com
+          <Logo size="md" />
+          
+          <div className="flex flex-col justify-center min-w-0">
+            {/* Top row: Brand name + Domain */}
+            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+              <span className="font-black text-lg sm:text-2xl tracking-tight text-neutral-900 dark:text-neutral-50 font-sans shrink-0">
+                网盘吧
+              </span>
+              <span className="font-mono text-xs sm:text-base font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/70 px-2 sm:px-2.5 py-0.5 rounded-lg border border-blue-200/80 dark:border-blue-800/80 group-hover:bg-blue-100/80 dark:group-hover:bg-blue-900/50 transition-colors">
+                www.wangpan8.com
               </span>
             </div>
-            <span className="text-[10px] sm:text-[11px] text-neutral-400 dark:text-neutral-500 font-medium tracking-tight hidden sm:inline">
-              官方正版门户 · 夸克/百度/UC/迅雷资源极速搜
+
+            {/* Bottom row: Slogan under the domain & brand */}
+            <span className="text-[11px] sm:text-sm text-neutral-600 dark:text-neutral-300 font-medium tracking-tight mt-0.5 truncate max-w-[200px] xs:max-w-[260px] sm:max-w-none">
+              1000T网盘资源聚合，尽在网盘吧！
             </span>
           </div>
         </div>
@@ -57,85 +61,54 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="nav-hot-rank-btn"
             onClick={onOpenHotRank}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors cursor-pointer"
+            className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 min-h-[38px] sm:min-h-[40px] text-xs sm:text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
             title="查看热门资源排行榜"
           >
-            <Flame className="w-4 h-4 text-orange-500" />
-            <span>热门榜</span>
+            <Flame className="w-4 h-4 text-orange-500 shrink-0" />
+            <span className="hidden xs:inline">热门榜</span>
           </button>
 
-          {/* 6大分站直达 */}
+          {/* 分站矩阵 */}
           <button
             id="nav-subsites-btn"
             onClick={onOpenSubsitesPortal}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors cursor-pointer"
-            title="直达分站 (天涯/学习/影视/高晓松/比特币/UC)"
+            className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 min-h-[38px] sm:min-h-[40px] text-xs sm:text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
+            title="查看所有分类分站与导航"
           >
-            <Globe className="w-4 h-4 text-sky-500" />
-            <span className="hidden md:inline">分站直达</span>
+            <Layers className="w-4 h-4 text-blue-500 shrink-0" />
+            <span className="hidden sm:inline">分站</span>
           </button>
 
-          {/* 加入QQ群 1036591276 (资源共享总群) */}
+          {/* QQ群交流 */}
           <button
-            id="nav-qqgroup-btn"
+            id="nav-qq-group-btn"
             onClick={onOpenQQGroup}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold text-sky-700 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/60 hover:bg-sky-100 dark:hover:bg-sky-900/60 border border-sky-200 dark:border-sky-800 rounded-xl transition-all shadow-xs cursor-pointer"
-            title="点击查看并复制官方QQ交流群号: 1036591276 (资源共享总群)"
+            className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 min-h-[38px] sm:min-h-[40px] text-xs sm:text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
+            title="加入官方QQ群交流"
           >
-            <Users className="w-4 h-4 text-sky-500 shrink-0" />
-            <span className="hidden lg:inline">加入QQ群 1036591276</span>
-            <span className="lg:hidden">QQ群</span>
+            <Users className="w-4 h-4 text-emerald-500 shrink-0" />
+            <span className="hidden md:inline">QQ群</span>
           </button>
 
-          <div className="h-4 w-[1px] bg-neutral-200 dark:bg-neutral-800 mx-0.5 sm:mx-1"></div>
+          {/* 友情链接 / 官网直达 */}
+          <a
+            id="nav-official-link"
+            href="https://www.wangpan8.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50 rounded-lg transition-colors"
+          >
+            <span>wangpan8.com</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
 
-          {/* 南宫远社交账号直达: 推特 & 微博 */}
-          <div className="flex items-center gap-1 sm:gap-1.5">
-            {/* 推特 (X) */}
-            <a
-              id="nav-twitter-link"
-              href="https://x.com/nangongyuan/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="南宫远 Twitter / X 官方账号 (@nangongyuan)"
-              aria-label="南宫远 Twitter"
-              className="flex items-center gap-1 px-2 sm:px-2.5 py-1.5 text-xs sm:text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:text-black dark:hover:text-white bg-neutral-100/80 dark:bg-neutral-800/80 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-lg transition-all border border-neutral-200/80 dark:border-neutral-700/80 group"
-            >
-              {/* X / Twitter Logo */}
-              <svg className="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-              <span className="hidden md:inline font-medium">推特</span>
-              <span className="md:hidden font-medium">X</span>
-            </a>
-
-            {/* 微博 (Weibo) */}
-            <a
-              id="nav-weibo-link"
-              href="https://weibo.com/u/7594643421"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="南宫远 官方新浪微博"
-              aria-label="南宫远 微博"
-              className="flex items-center gap-1 px-2 sm:px-2.5 py-1.5 text-xs sm:text-sm font-medium text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 bg-red-50/80 dark:bg-red-950/40 hover:bg-red-100 dark:hover:bg-red-900/60 rounded-lg transition-all border border-red-200/60 dark:border-red-800/60 group"
-            >
-              {/* Weibo Eye / Logo */}
-              <svg className="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M10.09 19.34c-4.4 0-7.96-2.5-7.96-5.59 0-1.74 1.15-3.3 2.97-4.32.48-.27.84-.04.7.46-.16.58-.2 1.07-.12 1.48.16.8 1.07 1.34 2.2 1.34 1.35 0 2.45-.77 2.45-1.72 0-.64-.5-1.2-1.27-1.48-.68-.25-.92-.68-.6-1.22.42-.7 1.25-1.07 2.15-1.07 3.96 0 7.18 2.5 7.18 5.59 0 3.65-3.44 6.53-7.71 6.53zm8.93-9.52c-.36-.08-.53-.33-.44-.68.17-.66.1-1.37-.2-1.95-.45-.88-1.33-1.41-2.34-1.41-.38 0-.57-.22-.49-.57.08-.34.34-.51.72-.51 1.45 0 2.7 1.77 3.32 2.01.42.82.52 1.83.27 2.77-.09.34-.48.42-.84.34zm2.84-.71c-.32-.1-.45-.33-.36-.63.4-1.31.25-2.73-.39-3.9-1-1.84-2.82-3-4.9-3-.4 0-.6-.2-.5-.56.09-.34.35-.5.74-.5 2.54 0 4.74 1.42 5.95 3.65.78 1.41.97 3.12.5 4.67-.1.33-.72.37-1.04.27z" />
-              </svg>
-              <span className="hidden md:inline font-medium">微博</span>
-              <span className="md:hidden font-medium">微</span>
-            </a>
-          </div>
-
-          <div className="h-4 w-[1px] bg-neutral-200 dark:bg-neutral-800 mx-0.5 sm:mx-1"></div>
-
-          {/* Dark mode switcher */}
+          {/* 浅色/深色模式切换 */}
           <button
             id="theme-toggle-btn"
             onClick={onToggleDarkMode}
-            aria-label="切换明暗主题"
-            className="p-2 rounded-full text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
+            className="p-2 min-h-[38px] min-w-[38px] flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
+            title={darkMode ? "切换至浅色模式" : "切换至深色模式"}
+            aria-label="切换主题"
           >
             {darkMode ? (
               <Sun className="w-4 h-4 text-amber-400" />

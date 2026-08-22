@@ -88,8 +88,8 @@ export const TopShowcase: React.FC<TopShowcaseProps> = ({
   }, [resources]);
 
   return (
-    <section className="w-full mb-8 pt-2">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+    <section className="w-full pt-1">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
         {/* Column 1: 精选优质网盘资源 */}
         <div className="flex flex-col bg-white dark:bg-neutral-900 rounded-2xl p-4 sm:p-5 border border-amber-200/60 dark:border-amber-900/40 shadow-xs hover:shadow-sm transition-all">
           <div className="flex items-center justify-between pb-3.5 border-b border-amber-100 dark:border-neutral-800 mb-3.5">

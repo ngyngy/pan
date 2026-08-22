@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 320" fill="none">
+  <defs>
+    <!-- Vibrant Blue Gradient from Cyan to Deep Royal Blue -->
+    <linearGradient id="cloud8ExactGrad" x1="60" y1="60" x2="480" y2="260" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00A8FF" />
+      <stop offset="35%" stop-color="#0080FF" />
+      <stop offset="70%" stop-color="#005BFF" />
+      <stop offset="100%" stop-color="#0044EA" />
+    </linearGradient>
+  </defs>
+
+  <!-- High-precision vector curve reproducing the uploaded Cloud-8 logo -->
+  <g stroke="url(#cloud8ExactGrad)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Top Dome of Cloud -->
+    <path d="M 215 155 C 190 90 215 32 275 32 C 335 32 355 85 342 145" />
+
+    <!-- Right Cloud Bulb -->
+    <path d="M 340 135 C 395 135 432 168 432 215 C 432 262 388 295 338 295 C 295 295 272 268 282 225" />
+
+    <!-- Left Bulb & Sweep into lower 8 loop -->
+    <path d="M 225 150 C 172 150 138 178 138 222 C 138 266 175 295 225 295 C 268 295 295 258 312 222" />
+
+    <!-- Interlocking 8 Central Figure Loop -->
+    <path d="M 230 230 C 255 175 248 115 280 115 C 310 115 318 150 290 210 C 262 265 240 300 282 300 C 322 300 338 260 315 218" />
+  </g>
+</svg>
