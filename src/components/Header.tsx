@@ -1,34 +1,27 @@
 import React from 'react';
 import { 
-  Tv, 
   Flame, 
-  HelpCircle, 
-  ShieldAlert, 
+  Users, 
   Moon, 
   Sun, 
-  Globe, 
-  Layers
+  Globe
 } from 'lucide-react';
 
 interface HeaderProps {
   darkMode: boolean;
   onToggleDarkMode: () => void;
-  onOpenTVBox: () => void;
   onOpenHotRank: () => void;
   onOpenSubsitesPortal: () => void;
-  onOpenRequestResource: () => void;
-  onOpenFeedback: () => void;
+  onOpenQQGroup: () => void;
   onResetToHome: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   darkMode,
   onToggleDarkMode,
-  onOpenTVBox,
   onOpenHotRank,
   onOpenSubsitesPortal,
-  onOpenRequestResource,
-  onOpenFeedback,
+  onOpenQQGroup,
   onResetToHome
 }) => {
   return (
@@ -37,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Left: Brand Logo & Title */}
         <div 
           onClick={onResetToHome}
-          className="flex items-center gap-3 cursor-pointer select-none group"
+          className="flex items-center gap-3 cursor-pointer select-none group shrink-0"
           id="brand-logo-button"
         >
           <div className="w-9 h-9 rounded-xl bg-neutral-900 dark:bg-white flex items-center justify-center text-white dark:text-neutral-900 font-bold text-xs tracking-wider shadow-sm group-hover:scale-105 transition-transform">
@@ -53,24 +46,13 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Right: Quick actions matching screenshot navigation */}
-        <nav className="flex items-center gap-1 sm:gap-2">
-          {/* TVBox */}
-          <button
-            id="nav-tvbox-btn"
-            onClick={onOpenTVBox}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors"
-            title="TVBox接口配置与教程"
-          >
-            <Tv className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
-            <span className="hidden xs:inline">TVBox</span>
-          </button>
-
+        {/* Right: Quick actions */}
+        <nav className="flex items-center gap-1 sm:gap-2 shrink-0">
           {/* 热门榜 */}
           <button
             id="nav-hot-rank-btn"
             onClick={onOpenHotRank}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors cursor-pointer"
             title="查看热门资源排行榜"
           >
             <Flame className="w-4 h-4 text-orange-500" />
@@ -81,34 +63,23 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="nav-subsites-btn"
             onClick={onOpenSubsitesPortal}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors cursor-pointer"
             title="直达分站 (天涯/学习/影视/高晓松/比特币/UC)"
           >
             <Globe className="w-4 h-4 text-sky-500" />
             <span className="hidden md:inline">分站直达</span>
           </button>
 
-          {/* 求资源 */}
+          {/* 加入QQ群 1036591276 (资源共享总群) */}
           <button
-            id="nav-request-resource-btn"
-            onClick={onOpenRequestResource}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors"
-            title="未找到想要的资源？点此提交求资源"
+            id="nav-qqgroup-btn"
+            onClick={onOpenQQGroup}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold text-sky-700 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/60 hover:bg-sky-100 dark:hover:bg-sky-900/60 border border-sky-200 dark:border-sky-800 rounded-xl transition-all shadow-xs cursor-pointer"
+            title="点击查看并复制官方QQ交流群号: 1036591276 (资源共享总群)"
           >
-            <HelpCircle className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
-            <span>求资源</span>
-          </button>
-
-          {/* 投诉 / 失效反馈 */}
-          <button
-            id="nav-feedback-btn"
-            onClick={onOpenFeedback}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors"
-            title="链接失效或侵权投诉反馈"
-          >
-            <ShieldAlert className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
-            <span className="hidden sm:inline">投诉/反馈</span>
-            <span className="sm:hidden">反馈</span>
+            <Users className="w-4 h-4 text-sky-500 shrink-0" />
+            <span className="hidden lg:inline">加入QQ群 1036591276</span>
+            <span className="lg:hidden">QQ群</span>
           </button>
 
           <div className="h-4 w-[1px] bg-neutral-200 dark:bg-neutral-800 mx-0.5 sm:mx-1"></div>
@@ -129,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({
               <svg className="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
-              <span className="hidden md:inline font-medium">南宫远推特</span>
+              <span className="hidden md:inline font-medium">推特</span>
               <span className="md:hidden font-medium">X</span>
             </a>
 
@@ -147,8 +118,8 @@ export const Header: React.FC<HeaderProps> = ({
               <svg className="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M10.09 19.34c-4.4 0-7.96-2.5-7.96-5.59 0-1.74 1.15-3.3 2.97-4.32.48-.27.84-.04.7.46-.16.58-.2 1.07-.12 1.48.16.8 1.07 1.34 2.2 1.34 1.35 0 2.45-.77 2.45-1.72 0-.64-.5-1.2-1.27-1.48-.68-.25-.92-.68-.6-1.22.42-.7 1.25-1.07 2.15-1.07 3.96 0 7.18 2.5 7.18 5.59 0 3.65-3.44 6.53-7.71 6.53zm8.93-9.52c-.36-.08-.53-.33-.44-.68.17-.66.1-1.37-.2-1.95-.45-.88-1.33-1.41-2.34-1.41-.38 0-.57-.22-.49-.57.08-.34.34-.51.72-.51 1.45 0 2.7 1.77 3.32 2.01.42.82.52 1.83.27 2.77-.09.34-.48.42-.84.34zm2.84-.71c-.32-.1-.45-.33-.36-.63.4-1.31.25-2.73-.39-3.9-1-1.84-2.82-3-4.9-3-.4 0-.6-.2-.5-.56.09-.34.35-.5.74-.5 2.54 0 4.74 1.42 5.95 3.65.78 1.41.97 3.12.5 4.67-.1.33-.72.37-1.04.27z" />
               </svg>
-              <span className="hidden md:inline font-medium">南宫远微博</span>
-              <span className="md:hidden font-medium">微博</span>
+              <span className="hidden md:inline font-medium">微博</span>
+              <span className="md:hidden font-medium">微</span>
             </a>
           </div>
 
@@ -159,7 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
             id="theme-toggle-btn"
             onClick={onToggleDarkMode}
             aria-label="切换明暗主题"
-            className="p-2 rounded-full text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+            className="p-2 rounded-full text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
           >
             {darkMode ? (
               <Sun className="w-4 h-4 text-amber-400" />

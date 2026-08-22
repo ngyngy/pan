@@ -134,7 +134,7 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
             <div className="flex items-center justify-between p-3.5 bg-amber-50 dark:bg-amber-950/40 rounded-xl border border-amber-200 dark:border-amber-900/50">
               <div className="flex items-center gap-2">
                 <KeyRound className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                <span className="font-medium text-amber-900 dark:text-amber-200 text-xs">提取码：</span>
+                <span className="font-medium text-amber-900 dark:text-amber-200 text-xs">提取码 / 神秘代码：</span>
                 <span className="font-mono text-base font-bold text-amber-700 dark:text-amber-300 tracking-wider bg-white/80 dark:bg-black/30 px-2 py-0.5 rounded">
                   {resource.extractCode}
                 </span>
@@ -144,8 +144,25 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
                 className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-medium transition-colors"
               >
                 {copiedCode ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                <span>{copiedCode ? '已复制' : '复制提取码'}</span>
+                <span>{copiedCode ? '已复制' : '复制代码'}</span>
               </button>
+            </div>
+          )}
+
+          {/* Baidu Welfare Books Special Acquisition Tutorial */}
+          {resource.subCategoryId === 'baidu_welfare' && (
+            <div className="p-3.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/80">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-blue-700 dark:text-blue-300 mb-2">
+                <span className="px-1.5 py-0.5 rounded bg-blue-600 text-white text-[10px] font-extrabold">
+                  入库教程
+                </span>
+                <span>如何永久免费获取此正版图书：</span>
+              </div>
+              <ol className="space-y-1.5 text-xs text-neutral-700 dark:text-neutral-300 list-decimal list-inside font-medium">
+                <li>点击上方按钮<strong>复制提取码/神秘代码</strong>【{resource.extractCode || ''}】；</li>
+                <li>打开手机<strong>百度网盘APP</strong>，App会自动弹出兑换提示或在顶部搜索框粘贴代码；</li>
+                <li>点击<strong>【加入书架】</strong>，并在书架中打开该书<strong>连续阅读满5分钟</strong>，该正版图书即永久入库属于您！</li>
+              </ol>
             </div>
           )}
 

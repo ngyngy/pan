@@ -1,19 +1,18 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Header } from './components/Header';
+import { TopSearchBar } from './components/TopSearchBar';
 import { TopShowcase } from './components/TopShowcase';
 import { SubsitesBar } from './components/SubsitesBar';
-import { FilterToolbar } from './components/FilterToolbar';
-import { ResourceTable } from './components/ResourceTable';
+import { FolderDirectoryView } from './components/FolderDirectoryView';
 import { ResourceDetailModal } from './components/ResourceDetailModal';
 import { SubsitesPortalModal } from './components/SubsitesPortalModal';
-import { TVBoxModal } from './components/TVBoxModal';
-import { RequestResourceModal } from './components/RequestResourceModal';
+import { QQGroupModal } from './components/QQGroupModal';
 import { FeedbackModal } from './components/FeedbackModal';
 import { HotRankModal } from './components/HotRankModal';
 import { Footer } from './components/Footer';
 import { ToastContainer, ToastMessage } from './components/Toast';
 import { INITIAL_RESOURCES } from './data/resources';
-import { ResourceItem, FilterState, SubSiteCategory, DriveType } from './types';
+import { ResourceItem, FilterState, SubSiteCategory, DriveType, MainFolderCategoryKey } from './types';
 
 export default function App() {
   // Dark mode state
@@ -38,7 +37,7 @@ export default function App() {
   // Main data list
   const [resources, setResources] = useState<ResourceItem[]>(INITIAL_RESOURCES);
 
-  // Filter state
+  // Filter state with Folder Directory Navigation
   const [filters, setFilters] = useState<FilterState>({
     searchQuery: '',
     selectedDrive: 'all',
@@ -47,14 +46,15 @@ export default function App() {
     qualityFilter: '',
     hasExtractCode: 'all',
     onlyFeatured: false,
-    onlyCollection: false
+    onlyCollection: false,
+    activeMainFolder: null,
+    activeSubFolder: null
   });
 
   // Modal states
   const [selectedResource, setSelectedResource] = useState<ResourceItem | null>(null);
   const [showSubsitesModal, setShowSubsitesModal] = useState<boolean>(false);
-  const [showTVBoxModal, setShowTVBoxModal] = useState<boolean>(false);
-  const [showRequestModal, setShowRequestModal] = useState<boolean>(false);
+  const [showQQGroupModal, setShowQQGroupModal] = useState<boolean>(false);
   const [showFeedbackModal, setShowFeedbackModal] = useState<boolean>(false);
   const [targetFeedbackResource, setTargetFeedbackResource] = useState<ResourceItem | null>(null);
   const [showHotRankModal, setShowHotRankModal] = useState<boolean>(false);
@@ -84,63 +84,23 @@ export default function App() {
     return counts;
   }, [resources]);
 
-  // Filter & Search computation
-  const filteredResources = useMemo(() => {
-    return resources.filter((item) => {
-      // 1. Search Query
-      if (filters.searchQuery.trim()) {
-        const q = filters.searchQuery.toLowerCase().trim();
-        const matchTitle = item.title.toLowerCase().includes(q);
-        const matchTags = item.tags.some((t) => t.toLowerCase().includes(q));
-        const matchDesc = item.description?.toLowerCase().includes(q) || false;
-        const matchDrive = item.driveName.toLowerCase().includes(q);
-        const matchSubsite = item.subsiteName.toLowerCase().includes(q) || item.subsiteUrl.toLowerCase().includes(q);
-        if (!matchTitle && !matchTags && !matchDesc && !matchDrive && !matchSubsite) {
-          return false;
-        }
-      }
-
-      // 2. Drive Type
-      if (filters.selectedDrive !== 'all') {
-        if (item.driveType !== filters.selectedDrive) return false;
-      }
-
-      // 3. Subsite Category
-      if (filters.selectedSubsite !== 'all') {
-        if (item.category !== filters.selectedSubsite && item.subsiteId !== filters.selectedSubsite) {
-          return false;
-        }
-      }
-
-      // 4. Quality
-      if (filters.qualityFilter) {
-        const qUpper = filters.qualityFilter.toUpperCase();
-        const itemQual = (item.quality || '').toUpperCase();
-        const itemTitle = item.title.toUpperCase();
-        if (!itemQual.includes(qUpper) && !itemTitle.includes(qUpper)) {
-          return false;
-        }
-      }
-
-      // 5. Extract Code
-      if (filters.hasExtractCode === 'free' && item.extractCode) return false;
-      if (filters.hasExtractCode === 'with_code' && !item.extractCode) return false;
-
-      // 6. Featured only
-      if (filters.onlyFeatured && !item.isFeatured) return false;
-
-      // 7. Collection only
-      if (filters.onlyCollection && !item.isCollection) return false;
-
-      return true;
-    }).sort((a, b) => {
-      if (filters.sortBy === 'views') return b.views - a.views;
-      if (filters.sortBy === 'size_desc') return b.sizeBytes - a.sizeBytes;
-      if (filters.sortBy === 'size_asc') return a.sizeBytes - b.sizeBytes;
-      // Default: latest by date
-      return new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime();
-    });
-  }, [resources, filters]);
+  // Filtered Count for TopSearchBar
+  const filteredCount = useMemo(() => {
+    let list = resources;
+    if (filters.selectedDrive !== 'all') {
+      list = list.filter((r) => r.driveType === filters.selectedDrive);
+    }
+    if (filters.searchQuery.trim()) {
+      const q = filters.searchQuery.toLowerCase().trim();
+      list = list.filter(
+        (r) =>
+          r.title.toLowerCase().includes(q) ||
+          (r.description && r.description.toLowerCase().includes(q)) ||
+          r.tags.some((t) => t.toLowerCase().includes(q))
+      );
+    }
+    return list.length;
+  }, [resources, filters.selectedDrive, filters.searchQuery]);
 
   // Handlers
   const handleFilterChange = (partial: Partial<FilterState>) => {
@@ -156,9 +116,48 @@ export default function App() {
       qualityFilter: '',
       hasExtractCode: 'all',
       onlyFeatured: false,
-      onlyCollection: false
+      onlyCollection: false,
+      activeMainFolder: null,
+      activeSubFolder: null
     });
-    addToast('info', '已重置全部筛选与搜索条件');
+    addToast('info', '已重置全部筛选');
+  };
+
+  const handleNavigateFolder = (mainKey: MainFolderCategoryKey | null, subId: string | null) => {
+    setFilters((prev) => ({
+      ...prev,
+      activeMainFolder: mainKey,
+      activeSubFolder: subId
+    }));
+  };
+
+  const handleSelectSubsite = (sub: SubSiteCategory) => {
+    let targetMain: MainFolderCategoryKey | null = null;
+    let targetSub: string | null = null;
+
+    if (sub === 'dy') {
+      targetMain = 'video';
+    } else if (sub === 'xuexi') {
+      targetMain = 'education';
+    } else if (sub === 'tianya') {
+      targetMain = 'books';
+    } else if (sub === 'gxs') {
+      targetMain = 'video';
+      targetSub = 'variety_doc';
+    } else if (sub === 'btczy') {
+      targetMain = 'crypto';
+      targetSub = 'btc_books';
+    } else {
+      targetMain = null;
+      targetSub = null;
+    }
+
+    setFilters((prev) => ({
+      ...prev,
+      selectedSubsite: sub,
+      activeMainFolder: targetMain,
+      activeSubFolder: targetSub
+    }));
   };
 
   const handleCopyLink = (resource: ResourceItem, e?: React.MouseEvent) => {
@@ -181,70 +180,82 @@ export default function App() {
 
   const handleTopShowcaseViewMore = (type: 'featured' | 'latest' | 'collection') => {
     if (type === 'featured') {
-      setFilters((prev) => ({ ...prev, onlyFeatured: true, onlyCollection: false, searchQuery: '' }));
+      setFilters((prev) => ({ ...prev, activeMainFolder: null, activeSubFolder: null, onlyFeatured: true, onlyCollection: false, searchQuery: '' }));
     } else if (type === 'latest') {
-      setFilters((prev) => ({ ...prev, sortBy: 'latest', onlyFeatured: false, onlyCollection: false, searchQuery: '' }));
+      setFilters((prev) => ({ ...prev, activeMainFolder: null, activeSubFolder: null, sortBy: 'latest', onlyFeatured: false, onlyCollection: false, searchQuery: '' }));
     } else if (type === 'collection') {
-      setFilters((prev) => ({ ...prev, onlyCollection: true, onlyFeatured: false, searchQuery: '' }));
+      setFilters((prev) => ({ ...prev, activeMainFolder: null, activeSubFolder: null, onlyCollection: true, onlyFeatured: false, searchQuery: '' }));
     }
-    // Scroll to table smoothly
-    document.getElementById('resource-list-section')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('main-folder-directory')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 flex flex-col font-sans transition-colors selection:bg-neutral-900 selection:text-white dark:selection:bg-white dark:selection:text-neutral-900">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 flex flex-col font-sans transition-colors selection:bg-emerald-600 selection:text-white">
       {/* Top Navbar */}
       <Header
         darkMode={darkMode}
         onToggleDarkMode={() => setDarkMode(!darkMode)}
-        onOpenTVBox={() => setShowTVBoxModal(true)}
         onOpenHotRank={() => setShowHotRankModal(true)}
         onOpenSubsitesPortal={() => setShowSubsitesModal(true)}
-        onOpenRequestResource={() => setShowRequestModal(true)}
-        onOpenFeedback={() => {
-          setTargetFeedbackResource(null);
-          setShowFeedbackModal(true);
-        }}
+        onOpenQQGroup={() => setShowQQGroupModal(true)}
         onResetToHome={handleResetFilters}
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12">
-        {/* Top 3-column Showcase Board (精选 / 最新 / 合集) matching user's screenshot */}
-        <TopShowcase
-          resources={resources}
-          onSelectResource={setSelectedResource}
-          onViewMore={handleTopShowcaseViewMore}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12 space-y-6">
+        {/* 1. Prominent Top Search Box (顶部显眼搜索框，支持关键词实时检索与网盘筛选) */}
+        <TopSearchBar
+          searchQuery={filters.searchQuery}
+          onSearchChange={(q) => handleFilterChange({ searchQuery: q })}
+          selectedDrive={filters.selectedDrive}
+          onSelectDrive={(d) => handleFilterChange({ selectedDrive: d })}
+          totalCount={resources.length}
+          filteredCount={filteredCount}
         />
 
-        {/* 6 Sub-Sites Fast Portal Bar (tianya, xuexi, dy, gxs, btczy, uc) */}
+        {/* 2. Top 6 Sub-Sites Fast Portal Bar (紧凑2行3列，大链接) */}
         <SubsitesBar
           selectedSubsite={filters.selectedSubsite}
-          onSelectSubsite={(sub) => handleFilterChange({ selectedSubsite: sub })}
+          onSelectSubsite={handleSelectSubsite}
           resourceCounts={resourceCounts}
         />
 
-        {/* Filter and Instant Search Toolbar */}
-        <div id="resource-list-section">
-          <FilterToolbar
-            filters={filters}
-            onFilterChange={handleFilterChange}
-            onResetFilters={handleResetFilters}
-            totalFilteredCount={filteredResources.length}
-            totalAllCount={resources.length}
+        {/* 3. Core Main Feature: 6 Big Directory Tree with In-Page Expansion (用户指定六大类单列树形展示，直接本页展开) */}
+        <div id="main-folder-directory" className="scroll-mt-4">
+          <FolderDirectoryView
+            resources={resources}
+            onSelectResource={setSelectedResource}
+            onCopyLink={handleCopyLink}
+            copiedId={copiedId}
+            activeMainFolder={filters.activeMainFolder || null}
+            activeSubFolder={filters.activeSubFolder || null}
+            onNavigateFolder={handleNavigateFolder}
+            selectedDrive={filters.selectedDrive}
+            onSelectDrive={(d) => handleFilterChange({ selectedDrive: d })}
+            searchQuery={filters.searchQuery}
+            onSearchChange={(q) => handleFilterChange({ searchQuery: q })}
           />
         </div>
 
-        {/* Resource Table / List (matches kkpans.com clean style) */}
-        <ResourceTable
-          resources={filteredResources}
-          searchQuery={filters.searchQuery}
-          totalFilteredCount={filteredResources.length}
-          totalAllCount={resources.length}
-          onSelectResource={setSelectedResource}
-          onCopyLink={handleCopyLink}
-          copiedId={copiedId}
-        />
+        {/* 4. Bottom Showcase Section: 精选优质网盘资源 / 最新收录上线 / 经典大合集精选 */}
+        <div className="pt-8 border-t border-neutral-200/80 dark:border-neutral-800 space-y-4">
+          <div className="flex items-center justify-between px-1">
+            <div>
+              <h2 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+                <span>🔥 精选合集与最新收录推荐</span>
+              </h2>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
+                实时聚合全网热门高分资源、4K原盘与名家大师课
+              </p>
+            </div>
+          </div>
+
+          <TopShowcase
+            resources={resources}
+            onSelectResource={setSelectedResource}
+            onViewMore={handleTopShowcaseViewMore}
+          />
+        </div>
       </main>
 
       {/* Footer */}
@@ -267,18 +278,13 @@ export default function App() {
       <SubsitesPortalModal
         isOpen={showSubsitesModal}
         onClose={() => setShowSubsitesModal(false)}
-        onFilterBySubsite={(subCategory) => handleFilterChange({ selectedSubsite: subCategory })}
+        onFilterBySubsite={handleSelectSubsite}
       />
 
-      <TVBoxModal
-        isOpen={showTVBoxModal}
-        onClose={() => setShowTVBoxModal(false)}
-      />
-
-      <RequestResourceModal
-        isOpen={showRequestModal}
-        onClose={() => setShowRequestModal(false)}
-        onSubmitSuccess={(msg) => addToast('success', msg)}
+      <QQGroupModal
+        isOpen={showQQGroupModal}
+        onClose={() => setShowQQGroupModal(false)}
+        onCopySuccess={(msg) => addToast('success', msg)}
       />
 
       <FeedbackModal

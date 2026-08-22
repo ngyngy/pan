@@ -2,6 +2,32 @@ export type DriveType = 'all' | 'quark' | 'baidu' | 'uc' | 'aliyun' | 'xunlei' |
 
 export type SubSiteCategory = 'all' | 'tianya' | 'xuexi' | 'dy' | 'gxs' | 'btczy' | 'uc_nav';
 
+// 7 Core Main Folder Categories
+export type MainFolderCategoryKey = 'video' | 'education' | 'software' | 'books' | 'games' | 'music' | 'crypto';
+
+export interface SubFolderCategory {
+  id: string;
+  name: string;
+  code: string;
+  description: string;
+  tags?: string[];
+  iconName?: string;
+}
+
+export interface MainFolderCategory {
+  id: MainFolderCategoryKey;
+  num: string; // '01', '02', '03', '04', '05', '06'
+  name: string;
+  titleName: string;
+  shortDesc: string;
+  badge: string;
+  colorClass: string;
+  textColorClass: string;
+  borderColorClass: string;
+  bgLightClass: string;
+  subFolders: SubFolderCategory[];
+}
+
 export interface SubSiteInfo {
   id: string;
   name: string;
@@ -19,6 +45,11 @@ export interface SubSiteInfo {
 export interface ResourceItem {
   id: string;
   title: string;
+  // 6 Major Folder Category Mapping
+  mainCategoryId?: MainFolderCategoryKey;
+  subCategoryId?: string;
+  subCategoryName?: string;
+  
   subsiteId: 'tianya' | 'xuexi' | 'dy' | 'gxs' | 'btczy' | 'uc';
   subsiteName: string;
   subsiteUrl: string;
@@ -31,11 +62,15 @@ export interface ResourceItem {
   size: string;
   sizeBytes: number;
   quality?: string;
+  rating?: number;
+  year?: string;
   publishDate: string;
   relativeTime: string;
   isFeatured?: boolean;
   isLatest?: boolean;
   isCollection?: boolean;
+  isPinned?: boolean;
+  pinOrder?: number;
   views: number;
   downloads: number;
   tags: string[];
@@ -52,6 +87,9 @@ export interface FilterState {
   hasExtractCode: 'all' | 'free' | 'with_code';
   onlyFeatured: boolean;
   onlyCollection: boolean;
+  // Folder Navigation State
+  activeMainFolder?: MainFolderCategoryKey | null;
+  activeSubFolder?: string | null;
 }
 
 export interface ResourceRequestForm {

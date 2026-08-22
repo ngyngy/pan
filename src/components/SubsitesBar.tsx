@@ -1,7 +1,7 @@
 import React from 'react';
 import { SUB_SITES } from '../data/subsites';
 import { SubSiteCategory } from '../types';
-import { ExternalLink, Sparkles } from 'lucide-react';
+import { ExternalLink, Globe } from 'lucide-react';
 
 interface SubsitesBarProps {
   selectedSubsite: SubSiteCategory;
@@ -15,44 +15,19 @@ export const SubsitesBar: React.FC<SubsitesBarProps> = ({
   resourceCounts
 }) => {
   return (
-    <div className="w-full mb-6">
+    <div className="w-full">
       <div className="flex items-center justify-between gap-2 mb-2 px-1">
-        <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
-          <span>聚合分站导航</span>
-          <span className="text-[10px] px-1.5 py-0.5 rounded bg-neutral-200/60 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 font-normal">
-            6大官方分站
+        <div className="flex items-center gap-1.5 text-xs font-bold text-neutral-600 dark:text-neutral-300">
+          <Globe className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+          <span>官方聚合分站导航</span>
+          <span className="text-[11px] font-normal text-neutral-400 dark:text-neutral-500">
+            （6大分站直达 · 点击可过滤或直达）
           </span>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
-        {/* All / 全部 */}
-        <button
-          onClick={() => onSelectSubsite('all')}
-          className={`flex flex-col text-left p-3 rounded-xl border transition-all ${
-            selectedSubsite === 'all'
-              ? 'bg-neutral-900 text-white border-neutral-900 dark:bg-white dark:text-neutral-900 dark:border-white shadow-sm ring-2 ring-neutral-900/10 dark:ring-white/20'
-              : 'bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 border-neutral-200/80 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700'
-          }`}
-        >
-          <div className="flex items-center justify-between w-full mb-1">
-            <span className="text-xs font-bold tracking-tight">全部分站资源</span>
-            <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono ${
-              selectedSubsite === 'all' 
-                ? 'bg-white/20 text-white dark:bg-neutral-900/10 dark:text-neutral-900' 
-                : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400'
-            }`}>
-              {resourceCounts['all'] || 0}
-            </span>
-          </div>
-          <span className={`text-[11px] truncate ${
-            selectedSubsite === 'all' ? 'text-neutral-300 dark:text-neutral-600' : 'text-neutral-400 dark:text-neutral-500'
-          }`}>
-            全网全量资源汇总
-          </span>
-        </button>
-
-        {/* 6 User Subsites */}
+      {/* 2 Rows Layout: 3 columns per row (6 sub-sites in total) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
         {SUB_SITES.map((site) => {
           const isSelected = selectedSubsite === site.category;
           const count = resourceCounts[site.id] || site.totalResources;
@@ -60,55 +35,40 @@ export const SubsitesBar: React.FC<SubsitesBarProps> = ({
           return (
             <div
               key={site.id}
-              className={`group relative flex flex-col justify-between p-3 rounded-xl border transition-all cursor-pointer ${
-                isSelected
-                  ? 'bg-neutral-900 text-white border-neutral-900 dark:bg-white dark:text-neutral-900 dark:border-white shadow-sm ring-2 ring-neutral-900/10 dark:ring-white/20'
-                  : 'bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 border-neutral-200/80 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700'
-              }`}
               onClick={() => onSelectSubsite(site.category)}
+              className={`group relative flex items-center justify-between p-3 rounded-xl border transition-all cursor-pointer ${
+                isSelected
+                  ? 'bg-emerald-50 dark:bg-emerald-950/50 border-emerald-500 text-emerald-900 dark:text-emerald-100 shadow-sm ring-1 ring-emerald-500'
+                  : 'bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 border-neutral-200/90 dark:border-neutral-800 hover:border-emerald-400 dark:hover:border-emerald-700 hover:shadow-xs'
+              }`}
             >
-              <div>
-                <div className="flex items-center justify-between w-full mb-1">
-                  <span className="text-xs font-bold tracking-tight truncate mr-1">
-                    {site.name}
-                  </span>
-                  <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono shrink-0 ${
-                    isSelected 
-                      ? 'bg-white/20 text-white dark:bg-neutral-900/10 dark:text-neutral-900' 
-                      : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400'
-                  }`}>
-                    {count}
-                  </span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className={`text-[11px] font-mono truncate ${
-                    isSelected ? 'text-neutral-300 dark:text-neutral-600' : 'text-neutral-400 dark:text-neutral-500'
-                  }`}>
-                    {site.subdomain}
-                  </span>
+              {/* Left: Subsite Name & Count */}
+              <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-sm font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors truncate">
+                      {site.name}
+                    </span>
+                    <span className="text-[11px] font-mono text-neutral-400 dark:text-neutral-500">
+                      ({count}项)
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              {/* Direct Open Link on hover/click */}
-              <div className="mt-2 pt-1.5 border-t border-neutral-100/10 dark:border-neutral-800 flex items-center justify-between">
-                <span className={`text-[10px] ${isSelected ? 'text-neutral-300 dark:text-neutral-600' : 'text-neutral-400'}`}>
-                  {site.badge}
-                </span>
-                <a
-                  href={site.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  title={`新窗口打开分站 ${site.subdomain}`}
-                  className={`p-1 rounded transition-colors ${
-                    isSelected 
-                      ? 'hover:bg-white/20 text-white dark:hover:bg-neutral-200 dark:text-neutral-900' 
-                      : 'hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200'
-                  }`}
-                >
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
+              {/* Right: Big, Prominent URL Link Button */}
+              <a
+                href={site.url}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                title={`在新窗口访问官方分站: ${site.url}`}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-xs font-bold shadow-xs transition-all shrink-0 group/btn"
+              >
+                <span className="font-mono tracking-tight">{site.subdomain}</span>
+                <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+              </a>
             </div>
           );
         })}
