@@ -2,8 +2,8 @@ export type DriveType = 'all' | 'quark' | 'baidu' | 'uc' | 'aliyun' | 'xunlei' |
 
 export type SubSiteCategory = 'all' | 'tianya' | 'xuexi' | 'dy' | 'gxs' | 'btczy' | 'uc_nav';
 
-// 7 Core Main Folder Categories
-export type MainFolderCategoryKey = 'video' | 'education' | 'software' | 'books' | 'games' | 'music' | 'crypto';
+// 8 Core Main Folder Categories
+export type MainFolderCategoryKey = 'video' | 'education' | 'software' | 'books' | 'games' | 'music' | 'crypto' | 'wallpaper';
 
 export interface SubFolderCategory {
   id: string;

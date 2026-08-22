@@ -64,6 +64,13 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
         code: '01-6',
         description: '深度社会人文纪实、高晓松晓说奇谈、自然历史人文纪录片',
         tags: ['深度纪实', '晓松奇谈', '自然科学', '人文探索']
+      },
+      {
+        id: 'finance_movies',
+        name: '搞钱人必看的10部神级金融电影',
+        code: '01-7',
+        description: '《华尔街之狼》《大空头》《商海通牒》《颠倒乾坤》《监守自盗》等搞钱必看金融经典电影合集',
+        tags: ['金融电影', '搞钱必看', '神级金融电影', '商业思维', '财富认知', '夸克网盘']
       }
     ]
   },
@@ -172,29 +179,43 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
       },
       {
         id: 'ebooks',
-        name: '电子书 / 有声书 / 珍藏书',
+        name: '经典电子书 / 社科名著',
         code: '04-2',
-        description: '得到2018年度全集、大屁股老鼠《三体》/《球状闪电》有声剧、百度福利正版书',
-        tags: ['得到2018全集', '三体有声剧', '球状闪电', '百度正版图书']
+        description: '埃米尔·涂尔干《自杀论》、津巴多普通心理学第8版、《聪明人的个人成长》等社科通识与经典电子书',
+        tags: ['自杀论', '津巴多心理学', '社科名著', '经典电子书', 'PDF/EPUB', '夸克网盘']
+      },
+      {
+        id: 'audiobooks',
+        name: '有声书 / 广播剧 / 经典演播',
+        code: '04-3',
+        description: '大屁股老鼠《三体》全三部曲有声剧、《球状闪电》有声小说、得到名师年度音频讲座',
+        tags: ['三体有声剧', '球状闪电', '大屁股老鼠', '广播剧', '名师演播', '百度网盘']
+      },
+      {
+        id: 'rare_books',
+        name: '珍藏书 / 绝版古籍 / 史料文献',
+        code: '04-4',
+        description: '绝版典藏文献、古籍善本整理、民俗风情史料研究与珍本文献',
+        tags: ['珍藏书', '绝版文献', '古籍善本', '学术研究', '夸克网盘']
       },
       {
         id: 'novels',
         name: '网络小说 / 武侠名著',
-        code: '04-3',
+        code: '04-5',
         description: '金庸武侠小说全集、古龙全集精校版、贾行家说聊斋/武侠30讲、天涯经典神贴',
         tags: ['金庸全集', '古龙全集', '贾行家说聊斋', '天涯神贴合集']
       },
       {
         id: 'tianya_posts',
         name: '天涯神帖',
-        code: '04-4',
+        code: '04-6',
         description: '天涯论坛经典神帖全集汇编、沙梨熊文集、地缘看世界、战争史实、红楼密码与历史深度解析',
         tags: ['天涯神帖', '沙梨熊', '地缘看世界', '二战秘史', '绝版汇编', '历史深度解析']
       },
       {
         id: 'baidu_welfare',
         name: '百度福利资源',
-        code: '04-5',
+        code: '04-7',
         description: '百度网盘正版图书福利专区，复制代码打开百度网盘加入书架阅读5分钟即可永久入库',
         tags: ['百度福利', '正版图书', '神秘代码', '免费永久入库', '加入书架阅读5分钟']
       }
@@ -228,10 +249,10 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
       },
       {
         id: 'mobile_indie',
-        name: '热门手游与独立精品',
+        name: 'iOS精品游戏 / 热门手游与独立神作',
         code: '05-3',
-        description: 'Steam爆款像素与肉鸽独立游戏合集、手机安卓游戏直装版',
-        tags: ['独立神作', '像素肉鸽', '安卓直装', '高分精品']
+        description: '几百款iOS精选游戏大合集、IPA脱壳直装包、Steam爆款移植与手机单机神作',
+        tags: ['几百款iOS游戏', 'iOS游戏合集', 'IPA安装包', '手机单机', '独立神作', '像素肉鸽', '夸克网盘']
       }
     ]
   },
@@ -302,6 +323,48 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
         code: '07-3',
         description: '比特币资源下载库全集大包、币安广场同步助手自动化脚本与量化工具',
         tags: ['比特币资源库', '量化工具', '币安助手', 'UC网盘', '自动化脚本']
+      }
+    ]
+  },
+  {
+    id: 'wallpaper',
+    num: '08',
+    name: '美女壁纸视频类',
+    titleName: '4K超清壁纸 / 动态壁纸 / 舞台热舞 / 瑜伽形体',
+    shortDesc: '美女壁纸大全10万张、80套动态壁纸、女团舞台热舞与美女瑜伽教练形体教学视频',
+    badge: '视觉盛宴',
+    colorClass: 'pink',
+    textColorClass: 'text-pink-700 dark:text-pink-400',
+    borderColorClass: 'border-pink-200 dark:border-pink-800',
+    bgLightClass: 'bg-pink-50/60 dark:bg-pink-950/30',
+    subFolders: [
+      {
+        id: 'wallpapers',
+        name: '高清壁纸大全 / 静态图库',
+        code: '08-1',
+        description: '美女壁纸大全10万张合集、壁纸资源大合集、4K/8K电脑手机超清壁纸',
+        tags: ['美女壁纸大全', '10万张壁纸', '壁纸资源合集', '4K壁纸', '夸克网盘']
+      },
+      {
+        id: 'live_wallpapers',
+        name: '动态壁纸 / 桌面美化',
+        code: '08-2',
+        description: '美女动态壁纸80张高清精选包、支持Wallpaper Engine与手机动态锁屏',
+        tags: ['动态壁纸', '美女动态壁纸80张', '桌面美化', '高帧率动效', '夸克网盘']
+      },
+      {
+        id: 'visual_videos',
+        name: '舞台热舞 / 视觉视频',
+        code: '08-3',
+        description: '韩国女团高清热舞现场与车展车模精选合集、超清音画视听盛宴',
+        tags: ['韩国女团热舞', '车展车模', '高清现场', '视觉视频', '夸克网盘']
+      },
+      {
+        id: 'fitness_yoga',
+        name: '瑜伽形体 / 健美塑形教程',
+        code: '08-4',
+        description: '美女瑜伽教练全套实操教学视频课程、全身柔韧拉伸与气质塑形',
+        tags: ['美女瑜伽教练', '瑜伽全套课程', '形体塑形', '健美教学', '夸克网盘']
       }
     ]
   }

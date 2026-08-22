@@ -19,7 +19,9 @@ import {
   Music,
   Info,
   Award,
-  Globe
+  Globe,
+  FolderOpen,
+  FolderClosed
 } from 'lucide-react';
 import { ResourceItem, MainFolderCategoryKey, DriveType } from '../types';
 import { MAIN_FOLDERS } from '../data/categories';
@@ -48,41 +50,11 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
   searchQuery,
   onSearchChange
 }) => {
-  // Local state: which main folder is expanded (default to opening 01 & 02)
-  const [expandedMains, setExpandedMains] = useState<Record<string, boolean>>({
-    video: true,
-    education: true,
-    software: true,
-    books: true,
-    games: true,
-    music: true,
-    crypto: true
-  });
+  // Local state: which main folder is expanded (default: all collapsed for faster loading)
+  const [expandedMains, setExpandedMains] = useState<Record<string, boolean>>({});
 
-  // Local state: which subfolder is expanded in-place to show resources
-  const [expandedSubs, setExpandedSubs] = useState<Record<string, boolean>>({
-    'video_movie': true,
-    'video_tv': true,
-    'video_us_drama': true,
-    'video_anime': false,
-    'video_short_drama': false,
-    'video_variety_doc': false,
-    'education_school': true,
-    'education_dedao': true,
-    'education_bilibili_paid': true,
-    'education_ielts': true,
-    'education_kaoyan': true,
-    'software_apps': true,
-    'software_design_tools': true,
-    'books_novels': true,
-    'books_tianya_posts': true,
-    'books_baidu_welfare': true,
-    'games_pc_games': true,
-    'music_lossless': true,
-    'crypto_btc_books': true,
-    'crypto_btc_theory': true,
-    'crypto_btc_tools': true
-  });
+  // Local state: which subfolder is expanded in-place to show resources (default: all collapsed)
+  const [expandedSubs, setExpandedSubs] = useState<Record<string, boolean>>({});
 
   // Map resources by sub-category
   const resourcesBySubFolder = useMemo(() => {
@@ -254,69 +226,41 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
 
   return (
     <div className="w-full space-y-4">
-      {/* 1. Header Toolbar with Filter & Quick Search */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm">
+      {/* 1. Header Toolbar with Expand/Collapse Controls */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm">
         {/* Title */}
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">
-            <Layers className="w-4 h-4" />
+        <div className="flex items-center gap-3">
+          <div className="p-2.5 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 shadow-xs">
+            <Layers className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-base sm:text-lg font-extrabold text-neutral-900 dark:text-neutral-100 tracking-tight flex items-center gap-2">
-              <span>七大分类资源目录树</span>
-              <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 font-normal">
+            <h2 className="text-base sm:text-lg font-extrabold text-neutral-900 dark:text-neutral-100 tracking-tight flex flex-wrap items-center gap-2">
+              <span>八大分类资源目录树</span>
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 font-medium">
                 单列树形展开 · 实时在本页打开
               </span>
             </h2>
           </div>
         </div>
 
-        {/* Right Search & Drive Fast Switch */}
-        <div className="flex items-center gap-2">
-          {/* Quick Drive Selector */}
-          <div className="flex items-center gap-1 bg-neutral-100 dark:bg-neutral-800/90 p-0.5 rounded-xl text-xs">
-            {(['all', 'quark', 'baidu', 'uc'] as const).map((d) => (
-              <button
-                key={d}
-                onClick={() => onSelectDrive(d)}
-                className={`px-2.5 py-1 rounded-lg transition-all font-medium ${
-                  selectedDrive === d
-                    ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white shadow-xs font-bold'
-                    : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200'
-                }`}
-              >
-                {d === 'all' ? '全部网盘' : d === 'quark' ? '夸克' : d === 'baidu' ? '百度' : 'UC'}
-              </button>
-            ))}
-          </div>
-
-          {/* Quick Search */}
-          <div className="relative flex-1 sm:w-56">
-            <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-neutral-400" />
-            <input
-              type="text"
-              placeholder="搜索目录树内资源..."
-              value={searchQuery}
-              onChange={(e) => onSearchChange(e.target.value)}
-              className="w-full pl-8 pr-3 py-1.5 text-xs rounded-xl bg-neutral-100 dark:bg-neutral-800/80 border border-transparent focus:border-emerald-500 focus:bg-white dark:focus:bg-neutral-900 text-neutral-900 dark:text-neutral-100 outline-none transition-all placeholder:text-neutral-400"
-            />
-          </div>
-
-          {/* Expand/Collapse All Buttons */}
-          <div className="hidden sm:flex items-center gap-1.5 text-xs ml-1 border-l pl-2 border-neutral-200 dark:border-neutral-800">
-            <button
-              onClick={() => handleExpandAll(true)}
-              className="px-2 py-1 rounded bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 text-neutral-600 dark:text-neutral-300 font-medium"
-            >
-              全部展开
-            </button>
-            <button
-              onClick={() => handleExpandAll(false)}
-              className="px-2 py-1 rounded bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 text-neutral-600 dark:text-neutral-300 font-medium"
-            >
-              全部收起
-            </button>
-          </div>
+        {/* Prominent Large Expand/Collapse All Buttons */}
+        <div className="flex items-center gap-2.5 sm:gap-3 self-end sm:self-auto">
+          <button
+            onClick={() => handleExpandAll(true)}
+            id="btn-expand-all-tree"
+            className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-sm sm:text-base font-bold shadow-sm hover:shadow-md transition-all cursor-pointer"
+          >
+            <FolderOpen className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-100" />
+            <span>全部展开</span>
+          </button>
+          <button
+            onClick={() => handleExpandAll(false)}
+            id="btn-collapse-all-tree"
+            className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 active:scale-95 text-neutral-800 dark:text-neutral-100 text-sm sm:text-base font-bold border border-neutral-300 dark:border-neutral-700 shadow-xs hover:shadow-sm transition-all cursor-pointer"
+          >
+            <FolderClosed className="w-4 h-4 sm:w-5 sm:h-5 text-neutral-500 dark:text-neutral-400" />
+            <span>全部收起</span>
+          </button>
         </div>
       </div>
 
