@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="wpBgGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00A3FF" />
+      <stop offset="50%" stop-color="#0066FF" />
+      <stop offset="100%" stop-color="#0040E0" />
+    </linearGradient>
+
+    <!-- Cloud Fill Gradient -->
+    <linearGradient id="cloudFillGrad" x1="10" y1="12" x2="54" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E0F2FE" />
+    </linearGradient>
+
+    <!-- 8 Highlight Gradient -->
+    <linearGradient id="eightGrad" x1="24" y1="20" x2="40" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0066FF" />
+      <stop offset="100%" stop-color="#00C3FF" />
+    </linearGradient>
+
+    <!-- Drop Shadow for crisp visibility at 16x16 / 32x32 -->
+    <filter id="tabShadow" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#002570" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Rounded Squircle Badge Background (High contrast on dark & light browser tabs) -->
+  <rect width="64" height="64" rx="14" fill="url(#wpBgGrad)" />
+  <rect x="1" y="1" width="62" height="62" rx="13" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="1.5" />
+
+  <!-- Cloud Base Graphic with Shadow -->
+  <g filter="url(#tabShadow)">
+    <!-- White Cloud Base -->
+    <path 
+      d="M 22 47 H 44 C 49.52 47 54 42.52 54 37 C 54 31.85 50.11 27.61 45.1 27.06 C 44.08 20.25 38.2 15 31 15 C 24.8 15 19.5 19.04 17.65 24.68 C 13.38 25.54 10 29.35 10 34 C 10 39.52 14.48 44 20 44 L 22 44 Z" 
+      fill="url(#cloudFillGrad)" 
+    />
+
+    <!-- Interlocking "8" / Infinity Graphic inside the Cloud -->
+    <!-- Top loop of 8 -->
+    <circle cx="32" cy="27" r="4.2" stroke="url(#eightGrad)" stroke-width="2.6" fill="none" />
+    <!-- Bottom loop of 8 -->
+    <circle cx="32" cy="37" r="5.2" stroke="url(#eightGrad)" stroke-width="2.8" fill="none" />
+  </g>
+
+  <!-- Tiny sparkle accent in top right -->
+  <circle cx="49" cy="15" r="2.2" fill="#FFFFFF" fill-opacity="0.9" />
+</svg>

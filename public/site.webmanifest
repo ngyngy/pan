@@ -1,0 +1,21 @@
+{
+  "name": "网盘吧 - 1000T网盘资源聚合搜索",
+  "short_name": "网盘吧",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo-icon-clean.webp",
+      "sizes": "192x192 512x512",
+      "type": "image/webp"
+    }
+  ],
+  "theme_color": "#0066FF",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}
