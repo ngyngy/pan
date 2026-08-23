@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   ChevronRight, 
   ChevronDown, 
@@ -21,7 +21,13 @@ import {
   Award,
   Globe,
   FolderOpen,
-  FolderClosed
+  FolderClosed,
+  X,
+  Sparkles,
+  ArrowRight,
+  Filter,
+  ListFilter,
+  LayoutGrid
 } from 'lucide-react';
 import { ResourceItem, MainFolderCategoryKey, DriveType } from '../types';
 import { MAIN_FOLDERS } from '../data/categories';
@@ -40,6 +46,28 @@ interface FolderDirectoryViewProps {
   onSearchChange: (query: string) => void;
 }
 
+const DRIVE_OPTIONS: { id: DriveType; label: string; color: string }[] = [
+  { id: 'all', label: '全部网盘', color: 'bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300' },
+  { id: 'quark', label: '夸克网盘', color: 'bg-amber-50 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 border-amber-300' },
+  { id: 'baidu', label: '百度网盘', color: 'bg-blue-50 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 border-blue-300' },
+  { id: 'aliyun', label: '阿里云盘', color: 'bg-orange-50 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 border-orange-300' },
+  { id: 'xunlei', label: '迅雷云盘', color: 'bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 border-sky-300' },
+  { id: 'uc', label: 'UC网盘', color: 'bg-rose-50 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 border-rose-300' },
+];
+
+const SUGGESTED_SEARCHES = [
+  '周星驰',
+  '天涯神贴',
+  '4K电影',
+  '高晓松',
+  '得到App',
+  '短剧',
+  '比特币',
+  '雅思',
+  'B站付费课',
+  '无损音乐'
+];
+
 export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
   resources,
   onSelectResource,
@@ -50,13 +78,45 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
   searchQuery,
   onSearchChange
 }) => {
-  // Local state: which main folder is expanded (default: all collapsed for faster loading)
+  // Local state: which main folder is expanded
   const [expandedMains, setExpandedMains] = useState<Record<string, boolean>>({});
 
-  // Local state: which subfolder is expanded in-place to show resources (default: all collapsed)
+  // Local state: which subfolder is expanded in-place to show resources
   const [expandedSubs, setExpandedSubs] = useState<Record<string, boolean>>({});
 
-  // Map resources by sub-category
+  // View mode when search is active: 'direct' (flat direct results) or 'tree' (tree with auto-expanded matches)
+  const [searchViewMode, setSearchViewMode] = useState<'direct' | 'tree'>('direct');
+
+  const isSearchActive = searchQuery.trim().length > 0;
+
+  // Compute all matching resources flat list for direct search display
+  const flatSearchResults = useMemo(() => {
+    return resources.filter((r) => {
+      // 1. Search Query Filter
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        const matchTitle = r.title.toLowerCase().includes(q);
+        const matchTags = r.tags.some((t) => t.toLowerCase().includes(q));
+        const matchDesc = r.description?.toLowerCase().includes(q) || false;
+        const matchDrive = r.driveName.toLowerCase().includes(q);
+        if (!matchTitle && !matchTags && !matchDesc && !matchDrive) return false;
+      }
+
+      // 2. Drive Filter
+      if (selectedDrive !== 'all' && r.driveType !== selectedDrive) {
+        return false;
+      }
+
+      return true;
+    }).sort((a, b) => {
+      if (a.isPinned && !b.isPinned) return -1;
+      if (!a.isPinned && b.isPinned) return 1;
+      if (a.isPinned && b.isPinned) return (a.pinOrder || 0) - (b.pinOrder || 0);
+      return (b.views || 0) - (a.views || 0);
+    });
+  }, [resources, searchQuery, selectedDrive]);
+
+  // Map resources by sub-category for tree view
   const resourcesBySubFolder = useMemo(() => {
     const map: Record<string, ResourceItem[]> = {};
 
@@ -67,23 +127,7 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
       });
     });
 
-    resources.forEach((r) => {
-      // 1. Search Query Filter
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase().trim();
-        const matchTitle = r.title.toLowerCase().includes(q);
-        const matchTags = r.tags.some((t) => t.toLowerCase().includes(q));
-        const matchDesc = r.description?.toLowerCase().includes(q) || false;
-        const matchDrive = r.driveName.toLowerCase().includes(q);
-        if (!matchTitle && !matchTags && !matchDesc && !matchDrive) return;
-      }
-
-      // 2. Drive Filter
-      if (selectedDrive !== 'all' && r.driveType !== selectedDrive) {
-        return;
-      }
-
-      // Match main & sub
+    flatSearchResults.forEach((r) => {
       let matchedMain = r.mainCategoryId;
       let matchedSub = r.subCategoryId;
 
@@ -131,7 +175,6 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
       if (map[compositeKey]) {
         map[compositeKey].push(r);
       } else {
-        // Fallback into first sub of that main category
         const firstSub = MAIN_FOLDERS.find(m => m.id === matchedMain)?.subFolders[0]?.id;
         if (firstSub && map[`${matchedMain}_${firstSub}`]) {
           map[`${matchedMain}_${firstSub}`].push(r);
@@ -139,20 +182,35 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
       }
     });
 
-    // Ensure isPinned items are always strictly sorted to the top
-    Object.keys(map).forEach((k) => {
-      map[k].sort((a, b) => {
-        if (a.isPinned && !b.isPinned) return -1;
-        if (!a.isPinned && b.isPinned) return 1;
-        if (a.isPinned && b.isPinned) {
-          return (a.pinOrder || 0) - (b.pinOrder || 0);
-        }
-        return 0;
-      });
-    });
-
     return map;
-  }, [resources, searchQuery, selectedDrive]);
+  }, [flatSearchResults]);
+
+  // When search query is entered, auto-expand categories that contain results in tree mode
+  useEffect(() => {
+    if (searchQuery.trim().length > 0) {
+      const autoMains: Record<string, boolean> = {};
+      const autoSubs: Record<string, boolean> = {};
+      
+      MAIN_FOLDERS.forEach((m) => {
+        let hasInMain = false;
+        m.subFolders.forEach((s) => {
+          const key = `${m.id}_${s.id}`;
+          const count = (resourcesBySubFolder[key] || []).length;
+          if (count > 0) {
+            hasInMain = true;
+            autoSubs[key] = true;
+          }
+        });
+        if (hasInMain) {
+          autoMains[m.id] = true;
+        }
+      });
+
+      setExpandedMains(autoMains);
+      setExpandedSubs(autoSubs);
+      setSearchViewMode('direct'); // Default to direct view for search
+    }
+  }, [searchQuery, resourcesBySubFolder]);
 
   // Counts for main categories
   const mainCounts = useMemo(() => {
@@ -215,6 +273,12 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
             迅雷
           </span>
         );
+      case 'aliyun':
+        return (
+          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-orange-50 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 border border-orange-300 dark:border-orange-700/80 shrink-0">
+            阿里
+          </span>
+        );
       default:
         return (
           <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-700/80 shrink-0">
@@ -224,281 +288,535 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
     }
   };
 
+  // Highlight search text helper
+  const renderHighlightedText = (text: string, highlight: string) => {
+    if (!highlight.trim()) return text;
+    const parts = text.split(new RegExp(`(${highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'));
+    return (
+      <>
+        {parts.map((part, i) => 
+          part.toLowerCase() === highlight.toLowerCase() ? (
+            <mark key={i} className="bg-yellow-200 dark:bg-yellow-800/80 text-neutral-900 dark:text-yellow-100 rounded-xs px-0.5 font-bold">
+              {part}
+            </mark>
+          ) : (
+            part
+          )
+        )}
+      </>
+    );
+  };
+
   return (
     <div className="w-full space-y-4">
-      {/* 1. Header Toolbar with Expand/Collapse Controls */}
+      {/* 1. Header Toolbar / Search Results Status Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm">
-        {/* Title */}
+        {/* Title / Search State Indicator */}
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 shadow-xs">
-            <Layers className="w-5 h-5" />
+          <div className={`p-2.5 rounded-xl ${isSearchActive ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300' : 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300'} shadow-xs`}>
+            {isSearchActive ? <Search className="w-5 h-5" /> : <Layers className="w-5 h-5" />}
           </div>
           <div>
             <h2 className="text-base sm:text-lg font-extrabold text-neutral-900 dark:text-neutral-100 tracking-tight flex flex-wrap items-center gap-2">
-              <span>八大分类资源目录树</span>
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 font-medium">
-                单列树形展开 · 实时在本页打开
-              </span>
+              {isSearchActive ? (
+                <>
+                  <span>搜索结果直达</span>
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/80 font-bold">
+                    匹配到 “{searchQuery}” 关键词
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span>八大分类资源目录树</span>
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 font-medium">
+                    单列树形展开 · 实时在本页打开
+                  </span>
+                </>
+              )}
             </h2>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
+              {isSearchActive 
+                ? `共匹配到 ${flatSearchResults.length} 条网盘资源，已为您直接平铺展开展示` 
+                : '1000T海量优质资源聚合，点击文件夹即可直接在本页浏览与转存'}
+            </p>
           </div>
         </div>
 
-        {/* Prominent Large Expand/Collapse All Buttons */}
-        <div className="flex items-center gap-2.5 sm:gap-3 self-end sm:self-auto">
-          <button
-            onClick={() => handleExpandAll(true)}
-            id="btn-expand-all-tree"
-            className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-sm sm:text-base font-bold shadow-sm hover:shadow-md transition-all cursor-pointer"
-          >
-            <FolderOpen className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-100" />
-            <span>全部展开</span>
-          </button>
-          <button
-            onClick={() => handleExpandAll(false)}
-            id="btn-collapse-all-tree"
-            className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 active:scale-95 text-neutral-800 dark:text-neutral-100 text-sm sm:text-base font-bold border border-neutral-300 dark:border-neutral-700 shadow-xs hover:shadow-sm transition-all cursor-pointer"
-          >
-            <FolderClosed className="w-4 h-4 sm:w-5 sm:h-5 text-neutral-500 dark:text-neutral-400" />
-            <span>全部收起</span>
-          </button>
+        {/* Right Controls */}
+        <div className="flex items-center gap-2 sm:gap-3 self-end sm:self-auto flex-wrap">
+          {isSearchActive ? (
+            <>
+              {/* View Switcher during search */}
+              <div className="flex items-center p-1 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+                <button
+                  onClick={() => setSearchViewMode('direct')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    searchViewMode === 'direct'
+                      ? 'bg-white dark:bg-neutral-700 text-blue-600 dark:text-blue-400 shadow-xs'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900'
+                  }`}
+                  title="直接平铺展示所有匹配内容"
+                >
+                  <ListFilter className="w-3.5 h-3.5" />
+                  <span>直接展示 ({flatSearchResults.length})</span>
+                </button>
+                <button
+                  onClick={() => setSearchViewMode('tree')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    searchViewMode === 'tree'
+                      ? 'bg-white dark:bg-neutral-700 text-blue-600 dark:text-blue-400 shadow-xs'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900'
+                  }`}
+                  title="在分类目录树中查看位置"
+                >
+                  <FolderOpen className="w-3.5 h-3.5" />
+                  <span>目录树视图</span>
+                </button>
+              </div>
+
+              {/* Clear Search button */}
+              <button
+                onClick={() => onSearchChange('')}
+                className="inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-xs font-bold text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-700 transition-colors cursor-pointer"
+                title="清空搜索回到全部分类"
+              >
+                <X className="w-3.5 h-3.5" />
+                <span>清除搜索</span>
+              </button>
+            </>
+          ) : (
+            <>
+              {/* Prominent Large Expand/Collapse All Buttons */}
+              <button
+                onClick={() => handleExpandAll(true)}
+                id="btn-expand-all-tree"
+                className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-sm sm:text-base font-bold shadow-sm hover:shadow-md transition-all cursor-pointer"
+              >
+                <FolderOpen className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-100" />
+                <span>全部展开</span>
+              </button>
+              <button
+                onClick={() => handleExpandAll(false)}
+                id="btn-collapse-all-tree"
+                className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 active:scale-95 text-neutral-800 dark:text-neutral-100 text-sm sm:text-base font-bold border border-neutral-300 dark:border-neutral-700 shadow-xs hover:shadow-sm transition-all cursor-pointer"
+              >
+                <FolderClosed className="w-4 h-4 sm:w-5 sm:h-5 text-neutral-500 dark:text-neutral-400" />
+                <span>全部收起</span>
+              </button>
+            </>
+          )}
         </div>
       </div>
 
-      {/* 2. Single Column Tree Directory Structure (Exact match to User's image screenshot) */}
-      <div className="rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm p-4 sm:p-6 space-y-6">
-        {MAIN_FOLDERS.map((main) => {
-          const isMainExpanded = expandedMains[main.id];
-          const totalMainResources = mainCounts[main.id] || 0;
+      {/* 2. DIRECT SEARCH RESULTS VIEW (用户搜索时直接展示所有匹配结果，不用逐层翻找文件夹) */}
+      {isSearchActive && searchViewMode === 'direct' ? (
+        <div className="rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm p-4 sm:p-6 space-y-4">
+          
+          {/* Top summary row */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-neutral-100 dark:border-neutral-800">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-sm font-bold text-neutral-800 dark:text-neutral-200">
+                搜索关键字：<mark className="bg-yellow-200 dark:bg-yellow-900/80 px-2 py-0.5 rounded font-mono font-bold text-blue-700 dark:text-blue-300">{searchQuery}</mark>
+              </span>
+              <span className="text-xs text-neutral-500">
+                (已找到 <strong className="text-blue-600 dark:text-blue-400 font-bold">{flatSearchResults.length}</strong> 条直接可用资源)
+              </span>
+            </div>
 
-          return (
-            <div key={main.id} className="relative select-none">
-              {/* Level 1: Main Category Golden Folder (e.g. 📁 01 影视 / 动漫 / 短剧 / 纪录片) */}
-              <div
-                onClick={() => toggleMain(main.id)}
-                className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl hover:bg-emerald-50/70 dark:hover:bg-neutral-800/80 cursor-pointer transition-colors"
-              >
-                <div className="flex items-center gap-2.5 min-w-0">
-                  {/* Golden Main Folder Icon */}
-                  <svg className="w-8 h-8 shrink-0 transition-transform group-hover:scale-105" viewBox="0 0 48 48" fill="none">
-                    <path d="M4 10C4 7.79086 5.79086 6 8 6H18.5858C19.6466 6 20.664 6.42143 21.4142 7.17157L24.8284 10.5858C25.5786 11.3359 26.596 11.7574 27.6569 11.7574H40C42.2091 11.7574 44 13.5482 44 15.7574V38C44 40.2091 42.2091 42 40 42H8C5.79086 42 4 40.2091 4 38V10Z" fill="#FBBF24" />
-                    <path d="M4 17C4 14.7909 5.79086 13 8 13H40C42.2091 13 44 14.7909 44 17V38C44 40.2091 42.2091 42 40 42H8C5.79086 42 4 40.2091 4 38V17Z" fill="#F59E0B" />
-                    <path d="M6 18C6 16.3431 7.34315 15 9 15H39C40.6569 15 42 16.3431 42 18V37C42 39.2091 40.2091 41 38 41H10C7.79086 41 6 39.2091 6 37V18Z" fill="#FDE047" opacity="0.35" />
-                  </svg>
+            {/* Quick Drive filter pills */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
+              <span className="text-xs text-neutral-400 shrink-0">筛选网盘:</span>
+              {DRIVE_OPTIONS.map((d) => (
+                <button
+                  key={`search-drive-${d.id}`}
+                  onClick={() => onSelectDrive(d.id)}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer shrink-0 ${
+                    selectedDrive === d.id
+                      ? 'bg-blue-600 text-white shadow-xs'
+                      : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                  }`}
+                >
+                  {d.label}
+                </button>
+              ))}
+            </div>
+          </div>
 
-                  <div className="flex items-baseline gap-2 min-w-0">
-                    <span className="text-emerald-600 dark:text-emerald-400 font-extrabold font-mono text-lg sm:text-xl">
-                      {main.num}
-                    </span>
-                    <h3 className="text-base sm:text-xl font-extrabold text-emerald-700 dark:text-emerald-400 group-hover:text-emerald-600 tracking-tight truncate">
-                      {main.name}
-                      <span className="ml-2 text-sm font-bold text-neutral-700 dark:text-neutral-300">
-                        （{main.titleName}）
-                      </span>
-                    </h3>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-xs px-2.5 py-0.5 rounded-full font-mono font-bold bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300">
-                    共 {totalMainResources} 项
-                  </span>
-                  <div className="p-1 rounded-md text-neutral-400 group-hover:text-emerald-600">
-                    {isMainExpanded ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
-                  </div>
-                </div>
+          {/* Results List */}
+          {flatSearchResults.length === 0 ? (
+            <div className="py-12 px-4 text-center space-y-4">
+              <div className="w-16 h-16 rounded-full bg-neutral-100 dark:bg-neutral-800 mx-auto flex items-center justify-center text-neutral-400">
+                <Search className="w-8 h-8" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-base font-bold text-neutral-800 dark:text-neutral-200">
+                  未找到与 “{searchQuery}” 相关的网盘资源
+                </h3>
+                <p className="text-xs text-neutral-500 max-w-md mx-auto">
+                  建议缩短关键词（如输入“周星驰”、“4K”、“美剧”或“得到”）重试，或尝试下方热门推荐热词：
+                </p>
               </div>
 
-              {/* Level 2 & 3: Tree Lines + Sub-Folders + Direct Resources In-Place */}
-              {isMainExpanded && (
-                <div className="relative ml-4 sm:ml-6 pl-4 sm:pl-6 border-l-2 border-neutral-300 dark:border-neutral-700 space-y-4 my-2">
-                  {main.subFolders.map((sub, sIdx) => {
-                    const subKey = `${main.id}_${sub.id}`;
-                    const isSubExpanded = expandedSubs[subKey] ?? false;
-                    const subResources = resourcesBySubFolder[subKey] || [];
-                    const subNum = `${String(sIdx + 1).padStart(2, '0')}`;
+              {/* Suggestions */}
+              <div className="flex flex-wrap items-center justify-center gap-2 pt-2 max-w-lg mx-auto">
+                {SUGGESTED_SEARCHES.map((kw) => (
+                  <button
+                    key={`sug-${kw}`}
+                    onClick={() => onSearchChange(kw)}
+                    className="px-3 py-1 text-xs font-medium rounded-lg bg-neutral-100 hover:bg-blue-50 dark:bg-neutral-800 dark:hover:bg-blue-950/60 text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 border border-neutral-200 dark:border-neutral-700 transition-colors cursor-pointer"
+                  >
+                    #{kw}
+                  </button>
+                ))}
+              </div>
 
-                    return (
-                      <div key={sub.id} className="relative">
-                        {/* Sub-Folder Bar (📁 01. 电影 (在线 / 下载 / 4K) ) */}
-                        <div
-                          onClick={() => toggleSub(subKey)}
-                          className="group/sub flex items-center justify-between p-2 rounded-xl hover:bg-neutral-100/90 dark:hover:bg-neutral-800/70 cursor-pointer transition-colors"
-                        >
-                          <div className="flex items-center gap-2.5 min-w-0">
-                            {/* Golden Sub Folder Icon */}
-                            <svg className="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none">
-                              <path d="M2 5C2 3.89543 2.89543 3 4 3H9.17157C9.70201 3 10.2107 3.21071 10.5858 3.58579L12.4142 5.41421C12.7893 5.78929 13.298 6 13.8284 6H20C21.1046 6 22 6.89543 22 8V19C22 20.1046 21.1046 21 20 21H4C2.89543 21 2 20.1046 2 19V5Z" fill="#FBBF24" />
-                              <path d="M2 9C2 7.89543 2.89543 7 4 7H20C21.1046 7 22 7.89543 22 9V19C22 20.1046 21.1046 21 20 21H4C2.89543 21 2 20.1046 2 19V9Z" fill="#F59E0B" />
-                            </svg>
+              <div className="pt-2">
+                <button
+                  onClick={() => onSearchChange('')}
+                  className="px-4 py-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+                >
+                  清空搜索条件并返回全部分类
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {flatSearchResults.map((item, idx) => {
+                const rankMedal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`;
+                
+                return (
+                  <div
+                    key={`search-res-${item.id}`}
+                    onClick={() => onSelectResource(item)}
+                    className="group relative flex flex-col p-3.5 sm:p-4 rounded-xl bg-neutral-50/90 dark:bg-neutral-800/60 hover:bg-blue-50/60 dark:hover:bg-blue-950/30 border border-neutral-200/80 dark:border-neutral-700/80 hover:border-blue-400 dark:hover:border-blue-600 transition-all cursor-pointer shadow-2xs gap-2.5"
+                  >
+                    {/* Top row: Badges, Title and Fast Actions */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <div className="flex items-center gap-2 min-w-0 flex-1 flex-wrap">
+                        {/* Index / Medal */}
+                        <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-neutral-200/80 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 shrink-0">
+                          {rankMedal}
+                        </span>
 
-                            <span className="text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400 group-hover/sub:text-emerald-500 font-mono">
-                              {subNum}.
-                            </span>
+                        {/* Drive Badge */}
+                        {getDriveBadge(item.driveType, item.driveName)}
 
-                            <span className="text-sm sm:text-base font-bold text-neutral-800 dark:text-neutral-100 group-hover/sub:text-emerald-600 dark:group-hover/sub:text-emerald-400">
-                              {sub.name}
-                            </span>
+                        {/* Title with search highlight */}
+                        <h3 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
+                          {renderHighlightedText(item.title, searchQuery)}
+                        </h3>
 
-                            <span className="text-xs text-neutral-400 dark:text-neutral-500 hidden sm:inline truncate">
-                              - {sub.description}
-                            </span>
-                          </div>
-
-                          <div className="flex items-center gap-2 shrink-0">
-                            <span className="text-xs px-2 py-0.5 rounded-full font-mono font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400">
-                              {subResources.length} 项
-                            </span>
-                            <div className="text-neutral-400 group-hover/sub:text-emerald-600">
-                              {isSubExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Level 3: Real Direct Resource Links under this Sub-folder (Matching Screenshot Style) */}
-                        {isSubExpanded && (
-                          <div className="relative ml-4 sm:ml-6 pl-4 sm:pl-6 border-l-2 border-dashed border-neutral-300 dark:border-neutral-700/80 space-y-2 my-2.5">
-                            {/* Special Tutorial Guide for Baidu Welfare Books */}
-                            {sub.id === 'baidu_welfare' && (
-                              <div className="p-3 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/50 dark:to-indigo-950/40 border border-blue-200 dark:border-blue-800 text-xs text-blue-900 dark:text-blue-200 shadow-xs mb-3">
-                                <div className="font-bold flex items-center gap-1.5 text-blue-700 dark:text-blue-300 mb-1.5">
-                                  <span className="px-1.5 py-0.5 rounded bg-blue-600 text-white text-[11px] font-extrabold">
-                                    领取秘籍
-                                  </span>
-                                  <span>百度网盘正版图书永久免费入库步骤：</span>
-                                </div>
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] mt-1 text-neutral-700 dark:text-neutral-300 font-medium">
-                                  <div className="flex items-start gap-1 bg-white/70 dark:bg-neutral-900/60 p-2 rounded-lg border border-blue-100 dark:border-blue-900">
-                                    <span className="font-bold text-blue-600 dark:text-blue-400 shrink-0">1.</span>
-                                    <span>点击复制对应图书的<strong>神秘代码 / 提取码</strong></span>
-                                  </div>
-                                  <div className="flex items-start gap-1 bg-white/70 dark:bg-neutral-900/60 p-2 rounded-lg border border-blue-100 dark:border-blue-900">
-                                    <span className="font-bold text-blue-600 dark:text-blue-400 shrink-0">2.</span>
-                                    <span>打开手机<strong>百度网盘APP</strong>，自动识别弹窗或搜索加入书架</span>
-                                  </div>
-                                  <div className="flex items-start gap-1 bg-white/70 dark:bg-neutral-900/60 p-2 rounded-lg border border-blue-100 dark:border-blue-900">
-                                    <span className="font-bold text-blue-600 dark:text-blue-400 shrink-0">3.</span>
-                                    <span>在书架中打开并<strong>连续阅读满5分钟</strong>，永久归属于您！</span>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-
-                            {subResources.length === 0 ? (
-                              <div className="p-3 text-xs text-neutral-400 italic">
-                                当前子分类暂无符合筛选的网盘资源
-                              </div>
-                            ) : (
-                              subResources.map((item, rIdx) => {
-                                const rankMedal = rIdx === 0 ? '🥇' : rIdx === 1 ? '🥈' : rIdx === 2 ? '🥉' : '🔹';
-                                return (
-                                  <div
-                                    key={item.id}
-                                    onClick={() => onSelectResource(item)}
-                                    className="group/item flex flex-col sm:flex-row sm:items-center justify-between p-2.5 sm:p-3 rounded-xl bg-neutral-50/80 dark:bg-neutral-800/50 hover:bg-emerald-50/80 dark:hover:bg-emerald-950/40 border border-neutral-200/60 dark:border-neutral-800 hover:border-emerald-400 dark:hover:border-emerald-700 transition-all cursor-pointer gap-2"
-                                  >
-                                    {/* Left: Globe/Earth Icon + Rank Medal + Title + Tags (Exact Match to screenshot) */}
-                                    <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                                      {/* Blue Globe Internet Icon (e like screenshot) */}
-                                      <div className="w-6 h-6 rounded-full bg-sky-100 dark:bg-sky-950/80 border border-sky-300 dark:border-sky-700 flex items-center justify-center text-sky-600 dark:text-sky-400 shrink-0">
-                                        <Globe className="w-3.5 h-3.5" />
-                                      </div>
-
-                                      {/* Rank Medal */}
-                                      <span className="text-sm shrink-0" title={`推荐排序 #${rIdx + 1}`}>
-                                        {rankMedal}
-                                      </span>
-
-                                      {/* Drive Badge */}
-                                      {getDriveBadge(item.driveType, item.driveName)}
-
-                                      {/* Title */}
-                                      <h4 className="text-xs sm:text-sm font-bold text-neutral-900 dark:text-neutral-100 group-hover/item:text-emerald-700 dark:group-hover/item:text-emerald-300 truncate leading-tight">
-                                        {item.title}
-                                      </h4>
-
-                                      {/* Backup link indicator / Extra badges */}
-                                      {item.isPinned && (
-                                        <span className="inline-flex items-center gap-0.5 text-[10px] font-extrabold px-1.5 py-0.2 rounded bg-red-600 text-white shadow-xs shrink-0">
-                                          📌 置顶
-                                        </span>
-                                      )}
-                                      {item.isFeatured && !item.isPinned && (
-                                        <span className="hidden sm:inline-flex text-[10px] font-bold px-1.5 py-0.2 rounded bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-800 shrink-0">
-                                          🔥 推荐
-                                        </span>
-                                      )}
-                                      {item.isCollection && (
-                                        <span className="hidden md:inline-flex text-[10px] font-bold px-1.5 py-0.2 rounded bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800 shrink-0">
-                                          典藏合集
-                                        </span>
-                                      )}
-                                    </div>
-
-                                    {/* Right: Size + Code + Action Buttons */}
-                                    <div className="flex items-center justify-end gap-2 shrink-0 pt-1 sm:pt-0">
-                                      {/* File Size */}
-                                      <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400 shrink-0">
-                                        {item.size}
-                                      </span>
-
-                                      {/* Extract Code if any */}
-                                      {item.extractCode ? (
-                                        <span className="text-[11px] px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-mono font-bold shrink-0">
-                                          码: {item.extractCode}
-                                        </span>
-                                      ) : (
-                                        <span className="text-[10px] text-emerald-600 dark:text-emerald-400 shrink-0">
-                                          免密
-                                        </span>
-                                      )}
-
-                                      {/* Copy Link button */}
-                                      <button
-                                        onClick={(e) => onCopyLink(item, e)}
-                                        title="复制网盘链接与提取码"
-                                        className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg bg-white dark:bg-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-600 transition-colors shadow-2xs"
-                                      >
-                                        {copiedId === item.id ? (
-                                          <>
-                                            <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-                                            <span className="text-emerald-600 dark:text-emerald-400 font-bold">已复制</span>
-                                          </>
-                                        ) : (
-                                          <>
-                                            <Copy className="w-3 h-3" />
-                                            <span>复制</span>
-                                          </>
-                                        )}
-                                      </button>
-
-                                      {/* Direct Jump to Pan */}
-                                      <a
-                                        href={item.driveUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        onClick={(e) => e.stopPropagation()}
-                                        title="直接在新窗口打开网盘页面"
-                                        className="flex items-center gap-1 px-2.5 py-1 text-xs font-bold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs transition-colors shrink-0"
-                                      >
-                                        <span>直达</span>
-                                        <ExternalLink className="w-3 h-3" />
-                                      </a>
-                                    </div>
-                                  </div>
-                                );
-                              })
-                            )}
-                          </div>
+                        {/* Pinned or Featured Tag */}
+                        {item.isPinned && (
+                          <span className="inline-flex items-center text-[10px] font-extrabold px-1.5 py-0.2 rounded bg-red-600 text-white shadow-xs shrink-0">
+                            📌 置顶
+                          </span>
+                        )}
+                        {item.isFeatured && !item.isPinned && (
+                          <span className="inline-flex text-[10px] font-bold px-1.5 py-0.2 rounded bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-800 shrink-0">
+                            🔥 推荐
+                          </span>
+                        )}
+                        {item.isCollection && (
+                          <span className="inline-flex text-[10px] font-bold px-1.5 py-0.2 rounded bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800 shrink-0">
+                            典藏合集
+                          </span>
                         )}
                       </div>
-                    );
-                  })}
-                </div>
-              )}
+
+                      {/* Right Action buttons */}
+                      <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                        {/* Extract Code if any */}
+                        {item.extractCode ? (
+                          <span className="text-xs px-2 py-0.5 rounded-md bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-mono font-bold shrink-0 border border-amber-300/80">
+                            提取码: {item.extractCode}
+                          </span>
+                        ) : (
+                          <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium shrink-0">
+                            免密提取
+                          </span>
+                        )}
+
+                        {/* Copy Link Button */}
+                        <button
+                          onClick={(e) => onCopyLink(item, e)}
+                          title="复制网盘链接与提取码"
+                          className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold rounded-lg bg-white dark:bg-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 text-neutral-800 dark:text-neutral-100 border border-neutral-300 dark:border-neutral-600 transition-colors shadow-2xs cursor-pointer active:scale-95"
+                        >
+                          {copiedId === item.id ? (
+                            <>
+                              <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                              <span className="text-emerald-600 dark:text-emerald-400">已复制</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="w-3.5 h-3.5" />
+                              <span>复制链接</span>
+                            </>
+                          )}
+                        </button>
+
+                        {/* Direct Jump to Pan */}
+                        <a
+                          href={item.driveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          title="直接在新窗口打开网盘页面"
+                          className="flex items-center gap-1 px-3.5 py-1.5 text-xs font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-xs transition-colors shrink-0 active:scale-95"
+                        >
+                          <span>直达网盘</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Bottom row: Description details & category tags */}
+                    {item.description && (
+                      <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+                        {renderHighlightedText(item.description, searchQuery)}
+                      </p>
+                    )}
+
+                    {/* Meta info tags */}
+                    <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-neutral-500 dark:text-neutral-400 border-t border-neutral-100 dark:border-neutral-800/80">
+                      {item.size && (
+                        <span className="font-mono font-medium text-neutral-700 dark:text-neutral-300">
+                          📦 大小: {item.size}
+                        </span>
+                      )}
+                      {item.quality && (
+                        <span className="text-neutral-600 dark:text-neutral-400">
+                          🎬 规格: {item.quality}
+                        </span>
+                      )}
+                      {item.publishDate && (
+                        <span className="text-neutral-400">
+                          ⏱️ 更新: {item.publishDate}
+                        </span>
+                      )}
+                      {item.categoryName && (
+                        <span className="text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 px-2 py-0.2 rounded border border-blue-200/60 dark:border-blue-900/60">
+                          🏷️ {item.categoryName}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
-      </div>
+          )}
+        </div>
+      ) : (
+        /* 3. Single Column Tree Directory Structure (目录树视图) */
+        <div className="rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm p-4 sm:p-6 space-y-6">
+          {MAIN_FOLDERS.map((main) => {
+            const isMainExpanded = expandedMains[main.id];
+            const totalMainResources = mainCounts[main.id] || 0;
+
+            // If in search mode, only render categories that have matching items
+            if (isSearchActive && totalMainResources === 0) {
+              return null;
+            }
+
+            return (
+              <div key={main.id} className="relative select-none">
+                {/* Level 1: Main Category Golden Folder */}
+                <div
+                  onClick={() => toggleMain(main.id)}
+                  className="group flex items-center justify-between p-2.5 sm:p-3 rounded-xl hover:bg-emerald-50/70 dark:hover:bg-neutral-800/80 cursor-pointer transition-colors"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    {/* Golden Main Folder Icon */}
+                    <svg className="w-8 h-8 shrink-0 transition-transform group-hover:scale-105" viewBox="0 0 48 48" fill="none">
+                      <path d="M4 10C4 7.79086 5.79086 6 8 6H18.5858C19.6466 6 20.664 6.42143 21.4142 7.17157L24.8284 10.5858C25.5786 11.3359 26.596 11.7574 27.6569 11.7574H40C42.2091 11.7574 44 13.5482 44 15.7574V38C44 40.2091 42.2091 42 40 42H8C5.79086 42 4 40.2091 4 38V10Z" fill="#FBBF24" />
+                      <path d="M4 17C4 14.7909 5.79086 13 8 13H40C42.2091 13 44 14.7909 44 17V38C44 40.2091 42.2091 42 40 42H8C5.79086 42 4 40.2091 4 38V17Z" fill="#F59E0B" />
+                      <path d="M6 18C6 16.3431 7.34315 15 9 15H39C40.6569 15 42 16.3431 42 18V37C42 39.2091 40.2091 41 38 41H10C7.79086 41 6 39.2091 6 37V18Z" fill="#FDE047" opacity="0.35" />
+                    </svg>
+
+                    <div className="flex items-baseline gap-2 min-w-0">
+                      <span className="text-emerald-600 dark:text-emerald-400 font-extrabold font-mono text-lg sm:text-xl">
+                        {main.num}
+                      </span>
+                      <h3 className="text-base sm:text-xl font-extrabold text-emerald-700 dark:text-emerald-400 group-hover:text-emerald-600 tracking-tight truncate">
+                        {main.name}
+                        <span className="ml-2 text-sm font-bold text-neutral-700 dark:text-neutral-300">
+                          （{main.titleName}）
+                        </span>
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="text-xs px-2.5 py-0.5 rounded-full font-mono font-bold bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300">
+                      共 {totalMainResources} 项
+                    </span>
+                    <div className="p-1 rounded-md text-neutral-400 group-hover:text-emerald-600">
+                      {isMainExpanded ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Level 2 & 3: Tree Lines + Sub-Folders + Direct Resources In-Place */}
+                {isMainExpanded && (
+                  <div className="relative ml-4 sm:ml-6 pl-4 sm:pl-6 border-l-2 border-neutral-300 dark:border-neutral-700 space-y-4 my-2">
+                    {main.subFolders.map((sub, sIdx) => {
+                      const subKey = `${main.id}_${sub.id}`;
+                      const isSubExpanded = expandedSubs[subKey] ?? false;
+                      const subResources = resourcesBySubFolder[subKey] || [];
+                      const subNum = `${String(sIdx + 1).padStart(2, '0')}`;
+
+                      if (isSearchActive && subResources.length === 0) {
+                        return null;
+                      }
+
+                      return (
+                        <div key={sub.id} className="relative">
+                          {/* Sub-Folder Bar */}
+                          <div
+                            onClick={() => toggleSub(subKey)}
+                            className="group/sub flex items-center justify-between p-2 rounded-xl hover:bg-neutral-100/90 dark:hover:bg-neutral-800/70 cursor-pointer transition-colors"
+                          >
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <svg className="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none">
+                                <path d="M2 5C2 3.89543 2.89543 3 4 3H9.17157C9.70201 3 10.2107 3.21071 10.5858 3.58579L12.4142 5.41421C12.7893 5.78929 13.298 6 13.8284 6H20C21.1046 6 22 6.89543 22 8V19C22 20.1046 21.1046 21 20 21H4C2.89543 21 2 20.1046 2 19V5Z" fill="#FBBF24" />
+                                <path d="M2 9C2 7.89543 2.89543 7 4 7H20C21.1046 7 22 7.89543 22 9V19C22 20.1046 21.1046 21 20 21H4C2.89543 21 2 20.1046 2 19V9Z" fill="#F59E0B" />
+                              </svg>
+
+                              <span className="text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400 group-hover/sub:text-emerald-500 font-mono">
+                                {subNum}.
+                              </span>
+
+                              <span className="text-sm sm:text-base font-bold text-neutral-800 dark:text-neutral-100 group-hover/sub:text-emerald-600 dark:group-hover/sub:text-emerald-400">
+                                {sub.name}
+                              </span>
+
+                              <span className="text-xs text-neutral-400 dark:text-neutral-500 hidden sm:inline truncate">
+                                - {sub.description}
+                              </span>
+                            </div>
+
+                            <div className="flex items-center gap-2 shrink-0">
+                              <span className="text-xs px-2 py-0.5 rounded-full font-mono font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400">
+                                {subResources.length} 项
+                              </span>
+                              <div className="text-neutral-400 group-hover/sub:text-emerald-600">
+                                {isSubExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Level 3: Direct Resource Links under this Sub-folder */}
+                          {isSubExpanded && (
+                            <div className="relative ml-4 sm:ml-6 pl-4 sm:pl-6 border-l-2 border-dashed border-neutral-300 dark:border-neutral-700/80 space-y-2 my-2.5">
+                              {subResources.length === 0 ? (
+                                <div className="p-3 text-xs text-neutral-400 italic">
+                                  当前子分类暂无符合筛选的网盘资源
+                                </div>
+                              ) : (
+                                subResources.map((item, rIdx) => {
+                                  const rankMedal = rIdx === 0 ? '🥇' : rIdx === 1 ? '🥈' : rIdx === 2 ? '🥉' : '🔹';
+                                  return (
+                                    <div
+                                      key={item.id}
+                                      onClick={() => onSelectResource(item)}
+                                      className="group/item flex flex-col sm:flex-row sm:items-center justify-between p-2.5 sm:p-3 rounded-xl bg-neutral-50/80 dark:bg-neutral-800/50 hover:bg-emerald-50/80 dark:hover:bg-emerald-950/40 border border-neutral-200/60 dark:border-neutral-800 hover:border-emerald-400 dark:hover:border-emerald-700 transition-all cursor-pointer gap-2"
+                                    >
+                                      {/* Left: Globe + Rank + Title */}
+                                      <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                                        <div className="w-6 h-6 rounded-full bg-sky-100 dark:bg-sky-950/80 border border-sky-300 dark:border-sky-700 flex items-center justify-center text-sky-600 dark:text-sky-400 shrink-0">
+                                          <Globe className="w-3.5 h-3.5" />
+                                        </div>
+
+                                        <span className="text-sm shrink-0" title={`推荐排序 #${rIdx + 1}`}>
+                                          {rankMedal}
+                                        </span>
+
+                                        {getDriveBadge(item.driveType, item.driveName)}
+
+                                        <h4 className="text-xs sm:text-sm font-bold text-neutral-900 dark:text-neutral-100 group-hover/item:text-emerald-700 dark:group-hover/item:text-emerald-300 truncate leading-tight">
+                                          {renderHighlightedText(item.title, searchQuery)}
+                                        </h4>
+
+                                        {item.isPinned && (
+                                          <span className="inline-flex items-center gap-0.5 text-[10px] font-extrabold px-1.5 py-0.2 rounded bg-red-600 text-white shadow-xs shrink-0">
+                                            📌 置顶
+                                          </span>
+                                        )}
+                                        {item.isFeatured && !item.isPinned && (
+                                          <span className="hidden sm:inline-flex text-[10px] font-bold px-1.5 py-0.2 rounded bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-800 shrink-0">
+                                            🔥 推荐
+                                          </span>
+                                        )}
+                                        {item.isCollection && (
+                                          <span className="hidden md:inline-flex text-[10px] font-bold px-1.5 py-0.2 rounded bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800 shrink-0">
+                                            典藏合集
+                                          </span>
+                                        )}
+                                      </div>
+
+                                      {/* Right: Size + Code + Action Buttons */}
+                                      <div className="flex items-center justify-end gap-2 shrink-0 pt-1 sm:pt-0">
+                                        <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400 shrink-0">
+                                          {item.size}
+                                        </span>
+
+                                        {item.extractCode ? (
+                                          <span className="text-[11px] px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-mono font-bold shrink-0">
+                                            码: {item.extractCode}
+                                          </span>
+                                        ) : (
+                                          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 shrink-0">
+                                            免密
+                                          </span>
+                                        )}
+
+                                        <button
+                                          onClick={(e) => onCopyLink(item, e)}
+                                          title="复制网盘链接与提取码"
+                                          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg bg-white dark:bg-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-600 transition-colors shadow-2xs cursor-pointer"
+                                        >
+                                          {copiedId === item.id ? (
+                                            <>
+                                              <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                                              <span className="text-emerald-600 dark:text-emerald-400 font-bold">已复制</span>
+                                            </>
+                                          ) : (
+                                            <>
+                                              <Copy className="w-3 h-3" />
+                                              <span>复制</span>
+                                            </>
+                                          )}
+                                        </button>
+
+                                        <a
+                                          href={item.driveUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          onClick={(e) => e.stopPropagation()}
+                                          title="直接在新窗口打开网盘页面"
+                                          className="flex items-center gap-1 px-2.5 py-1 text-xs font-bold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs transition-colors shrink-0 cursor-pointer"
+                                        >
+                                          <span>直达</span>
+                                          <ExternalLink className="w-3 h-3" />
+                                        </a>
+                                      </div>
+                                    </div>
+                                  );
+                                })
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

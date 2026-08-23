@@ -191,7 +191,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 flex flex-col font-sans transition-colors selection:bg-emerald-600 selection:text-white">
-      {/* Top Navbar */}
+      {/* Top Navbar with Integrated Search Bar */}
       <Header
         darkMode={darkMode}
         onToggleDarkMode={() => setDarkMode(!darkMode)}
@@ -199,21 +199,17 @@ export default function App() {
         onOpenSubsitesPortal={() => setShowSubsitesModal(true)}
         onOpenQQGroup={() => setShowQQGroupModal(true)}
         onResetToHome={handleResetFilters}
+        searchQuery={filters.searchQuery}
+        onSearchChange={(q) => handleFilterChange({ searchQuery: q })}
+        selectedDrive={filters.selectedDrive}
+        onSelectDrive={(d) => handleFilterChange({ selectedDrive: d })}
+        totalCount={resources.length}
+        filteredCount={filteredCount}
       />
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-4 sm:pb-6 space-y-4 sm:space-y-5">
-        {/* 1. Prominent Top Search Box (顶部显眼搜索框，支持关键词实时检索与网盘筛选) */}
-        <TopSearchBar
-          searchQuery={filters.searchQuery}
-          onSearchChange={(q) => handleFilterChange({ searchQuery: q })}
-          selectedDrive={filters.selectedDrive}
-          onSelectDrive={(d) => handleFilterChange({ selectedDrive: d })}
-          totalCount={resources.length}
-          filteredCount={filteredCount}
-        />
-
-        {/* 2. Top 6 Sub-Sites Fast Portal Bar (紧凑2行3列，大链接) */}
+        {/* 1. Top 6 Sub-Sites Fast Portal Bar (紧凑2行3列，大链接) */}
         <SubsitesBar
           selectedSubsite={filters.selectedSubsite}
           onSelectSubsite={handleSelectSubsite}
