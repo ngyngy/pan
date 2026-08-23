@@ -2,8 +2,8 @@ export type DriveType = 'all' | 'quark' | 'baidu' | 'uc' | 'aliyun' | 'xunlei' |
 
 export type SubSiteCategory = 'all' | 'tianya' | 'xuexi' | 'dy' | 'gxs' | 'btczy' | 'uc_nav';
 
-// 8 Core Main Folder Categories
-export type MainFolderCategoryKey = 'video' | 'education' | 'software' | 'books' | 'games' | 'music' | 'crypto' | 'wallpaper';
+// 9 Core Main Folder Categories (including 00 特别福利)
+export type MainFolderCategoryKey = 'welfare' | 'video' | 'education' | 'software' | 'books' | 'games' | 'music' | 'crypto' | 'wallpaper';
 
 export interface SubFolderCategory {
   id: string;
@@ -55,7 +55,7 @@ export interface ResourceItem {
   subsiteUrl: string;
   category: SubSiteCategory;
   categoryName: string;
-  driveType: 'quark' | 'baidu' | 'uc' | 'aliyun' | 'xunlei' | 'magnet' | '115';
+  driveType: 'quark' | 'baidu' | 'uc' | 'aliyun' | 'xunlei' | 'magnet' | '115' | 'official';
   driveName: string;
   driveUrl: string;
   extractCode?: string;
@@ -71,6 +71,7 @@ export interface ResourceItem {
   isCollection?: boolean;
   isPinned?: boolean;
   pinOrder?: number;
+  isWelfare?: boolean;
   views: number;
   downloads: number;
   tags: string[];

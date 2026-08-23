@@ -12,6 +12,19 @@ import { MainFolderCategory } from '../types';
  */
 export const MAIN_FOLDERS: MainFolderCategory[] = [
   {
+    id: 'welfare',
+    num: '00',
+    name: '特别福利',
+    titleName: '限时免费领取 / 独家激活码 / 游戏云电脑 / 会员兑换',
+    shortDesc: '长期更新专属免费福利、云游戏免费时长、平台VIP会员与实用兑换码',
+    badge: '限时必领',
+    colorClass: 'rose',
+    textColorClass: 'text-rose-700 dark:text-rose-400',
+    borderColorClass: 'border-rose-200 dark:border-rose-800',
+    bgLightClass: 'bg-rose-50/60 dark:bg-rose-950/30',
+    subFolders: []
+  },
+  {
     id: 'video',
     num: '01',
     name: '影视娱乐类',

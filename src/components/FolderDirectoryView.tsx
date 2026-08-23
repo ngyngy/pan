@@ -56,6 +56,8 @@ const DRIVE_OPTIONS: { id: DriveType; label: string; color: string }[] = [
 ];
 
 const SUGGESTED_SEARCHES = [
+  '云游戏',
+  '特别福利',
   '周星驰',
   '天涯神贴',
   '4K电影',
@@ -78,11 +80,15 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
   searchQuery,
   onSearchChange
 }) => {
-  // Local state: which main folder is expanded
-  const [expandedMains, setExpandedMains] = useState<Record<string, boolean>>({});
+  // Local state: which main folder is expanded (00 特别福利 默认展开)
+  const [expandedMains, setExpandedMains] = useState<Record<string, boolean>>({
+    welfare: true
+  });
 
-  // Local state: which subfolder is expanded in-place to show resources
-  const [expandedSubs, setExpandedSubs] = useState<Record<string, boolean>>({});
+  // Local state: which subfolder is expanded in-place to show resources (免费获得7小时云游戏 默认展开)
+  const [expandedSubs, setExpandedSubs] = useState<Record<string, boolean>>({
+    welfare_cloud_game_welfare: true
+  });
 
   // View mode when search is active: 'direct' (flat direct results) or 'tree' (tree with auto-expanded matches)
   const [searchViewMode, setSearchViewMode] = useState<'direct' | 'tree'>('direct');
@@ -116,6 +122,41 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
     });
   }, [resources, searchQuery, selectedDrive]);
 
+  // Map resources by main category
+  const resourcesByMainCategory = useMemo(() => {
+    const map: Record<string, ResourceItem[]> = {};
+    MAIN_FOLDERS.forEach((m) => {
+      map[m.id] = [];
+    });
+
+    flatSearchResults.forEach((r) => {
+      let matchedMain = r.mainCategoryId;
+      if (!matchedMain) {
+        if (r.isWelfare || r.tags.some(t => /福利|云游戏|酷卡云|兑换码/.test(t))) {
+          matchedMain = 'welfare';
+        } else if (r.subsiteId === 'dy' || r.tags.some(t => /影视|电视剧|美剧|HBO|Netflix|短剧|电影|4K|动漫|兽夫|广播剧|裙下臣/.test(t))) {
+          matchedMain = 'video';
+        } else if (r.subsiteId === 'xuexi' || r.tags.some(t => /英语|初中|小学|高中|试卷|题库|网课|刷题|学霸|会考/.test(t))) {
+          matchedMain = 'education';
+        } else if (r.subsiteId === 'gxs') {
+          matchedMain = 'video';
+        } else if (r.tags.some(t => /音乐|无损|CD|歌曲/.test(t))) {
+          matchedMain = 'music';
+        } else if (r.subsiteId === 'btczy' || r.tags.some(t => /比特币|区块链|中本聪|ahr999|九神|币安|Bitcoin|Broken Money|精通比特币/i.test(t))) {
+          matchedMain = 'crypto';
+        } else {
+          matchedMain = 'books';
+        }
+      }
+
+      if (map[matchedMain]) {
+        map[matchedMain].push(r);
+      }
+    });
+
+    return map;
+  }, [flatSearchResults]);
+
   // Map resources by sub-category for tree view
   const resourcesBySubFolder = useMemo(() => {
     const map: Record<string, ResourceItem[]> = {};
@@ -132,7 +173,10 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
       let matchedSub = r.subCategoryId;
 
       if (!matchedMain) {
-        if (r.subsiteId === 'dy' || r.tags.some(t => /影视|电视剧|美剧|HBO|Netflix|短剧|电影|4K|动漫|兽夫|广播剧|裙下臣/.test(t))) {
+        if (r.isWelfare || r.tags.some(t => /福利|云游戏|酷卡云|兑换码/.test(t))) {
+          matchedMain = 'welfare';
+          matchedSub = 'cloud_game_welfare';
+        } else if (r.subsiteId === 'dy' || r.tags.some(t => /影视|电视剧|美剧|HBO|Netflix|短剧|电影|4K|动漫|兽夫|广播剧|裙下臣/.test(t))) {
           matchedMain = 'video';
           if (r.tags.some(t => /美剧|HBO|Netflix|绝命毒师|权力的游戏|黄石|老友记|生活大爆炸|怪奇物语|行尸走肉|越狱/.test(t)) || /美剧|HBO|Netflix|Breaking Bad|Game of Thrones|Yellowstone|Friends/.test(r.title)) {
             matchedSub = 'us_drama';
@@ -192,7 +236,7 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
       const autoSubs: Record<string, boolean> = {};
       
       MAIN_FOLDERS.forEach((m) => {
-        let hasInMain = false;
+        let hasInMain = (resourcesByMainCategory[m.id] || []).length > 0;
         m.subFolders.forEach((s) => {
           const key = `${m.id}_${s.id}`;
           const count = (resourcesBySubFolder[key] || []).length;
@@ -210,21 +254,16 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
       setExpandedSubs(autoSubs);
       setSearchViewMode('direct'); // Default to direct view for search
     }
-  }, [searchQuery, resourcesBySubFolder]);
+  }, [searchQuery, resourcesBySubFolder, resourcesByMainCategory]);
 
   // Counts for main categories
   const mainCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     MAIN_FOLDERS.forEach((m) => {
-      let total = 0;
-      m.subFolders.forEach((s) => {
-        const key = `${m.id}_${s.id}`;
-        total += (resourcesBySubFolder[key] || []).length;
-      });
-      counts[m.id] = total;
+      counts[m.id] = (resourcesByMainCategory[m.id] || []).length;
     });
     return counts;
-  }, [resourcesBySubFolder]);
+  }, [resourcesByMainCategory]);
 
   const toggleMain = (mainId: string) => {
     setExpandedMains((prev) => ({ ...prev, [mainId]: !prev[mainId] }));
@@ -277,6 +316,12 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
         return (
           <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-orange-50 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 border border-orange-300 dark:border-orange-700/80 shrink-0">
             阿里
+          </span>
+        );
+      case 'official':
+        return (
+          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-rose-50 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 border border-rose-300 dark:border-rose-700/80 shrink-0">
+            🎁 官方直链
           </span>
         );
       default:
@@ -526,48 +571,83 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
 
                       {/* Right Action buttons */}
                       <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-                        {/* Extract Code if any */}
-                        {item.extractCode ? (
-                          <span className="text-xs px-2 py-0.5 rounded-md bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-mono font-bold shrink-0 border border-amber-300/80">
-                            提取码: {item.extractCode}
-                          </span>
+                        {item.isWelfare || item.mainCategoryId === 'welfare' ? (
+                          <>
+                            <button
+                              onClick={(e) => onCopyLink(item, e)}
+                              title="一键复制福利介绍与兑换说明"
+                              className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold rounded-lg bg-white dark:bg-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 text-neutral-800 dark:text-neutral-100 border border-neutral-300 dark:border-neutral-600 transition-colors shadow-2xs cursor-pointer active:scale-95"
+                            >
+                              {copiedId === item.id ? (
+                                <>
+                                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                                  <span className="text-emerald-600 dark:text-emerald-400">已复制说明</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Copy className="w-3.5 h-3.5" />
+                                  <span>复制说明</span>
+                                </>
+                              )}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onSelectResource(item);
+                              }}
+                              className="flex items-center gap-1 px-3.5 py-1.5 text-xs font-bold rounded-lg bg-rose-600 hover:bg-rose-700 text-white shadow-xs transition-colors shrink-0 active:scale-95 cursor-pointer"
+                            >
+                              <span>查看介绍</span>
+                              <ChevronRight className="w-3.5 h-3.5" />
+                            </button>
+                          </>
                         ) : (
-                          <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium shrink-0">
-                            免密提取
-                          </span>
+                          <>
+                            {/* Extract Code if any */}
+                            {item.extractCode ? (
+                              <span className="text-xs px-2 py-0.5 rounded-md bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-mono font-bold shrink-0 border border-amber-300/80">
+                                提取码: {item.extractCode}
+                              </span>
+                            ) : (
+                              <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium shrink-0">
+                                免密提取
+                              </span>
+                            )}
+
+                            {/* Copy Link Button */}
+                            <button
+                              onClick={(e) => onCopyLink(item, e)}
+                              title="复制网盘链接与提取码"
+                              className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold rounded-lg bg-white dark:bg-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 text-neutral-800 dark:text-neutral-100 border border-neutral-300 dark:border-neutral-600 transition-colors shadow-2xs cursor-pointer active:scale-95"
+                            >
+                              {copiedId === item.id ? (
+                                <>
+                                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                                  <span className="text-emerald-600 dark:text-emerald-400">已复制</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Copy className="w-3.5 h-3.5" />
+                                  <span>复制链接</span>
+                                </>
+                              )}
+                            </button>
+
+                            {/* Direct Jump to Pan */}
+                            <a
+                              href={item.driveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              title="直接在新窗口打开网盘页面"
+                              className="flex items-center gap-1 px-3.5 py-1.5 text-xs font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-xs transition-colors shrink-0 active:scale-95"
+                            >
+                              <span>直达网盘</span>
+                              <ExternalLink className="w-3.5 h-3.5" />
+                            </a>
+                          </>
                         )}
-
-                        {/* Copy Link Button */}
-                        <button
-                          onClick={(e) => onCopyLink(item, e)}
-                          title="复制网盘链接与提取码"
-                          className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold rounded-lg bg-white dark:bg-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 text-neutral-800 dark:text-neutral-100 border border-neutral-300 dark:border-neutral-600 transition-colors shadow-2xs cursor-pointer active:scale-95"
-                        >
-                          {copiedId === item.id ? (
-                            <>
-                              <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                              <span className="text-emerald-600 dark:text-emerald-400">已复制</span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="w-3.5 h-3.5" />
-                              <span>复制链接</span>
-                            </>
-                          )}
-                        </button>
-
-                        {/* Direct Jump to Pan */}
-                        <a
-                          href={item.driveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          title="直接在新窗口打开网盘页面"
-                          className="flex items-center gap-1 px-3.5 py-1.5 text-xs font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-xs transition-colors shrink-0 active:scale-95"
-                        >
-                          <span>直达网盘</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
                       </div>
                     </div>
 
@@ -580,7 +660,7 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
 
                     {/* Meta info tags */}
                     <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-neutral-500 dark:text-neutral-400 border-t border-neutral-100 dark:border-neutral-800/80">
-                      {item.size && (
+                      {!item.isWelfare && item.mainCategoryId !== 'welfare' && item.size && (
                         <span className="font-mono font-medium text-neutral-700 dark:text-neutral-300">
                           📦 大小: {item.size}
                         </span>
@@ -635,12 +715,17 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
                     </svg>
 
                     <div className="flex items-baseline gap-2 min-w-0">
-                      <span className="text-emerald-600 dark:text-emerald-400 font-extrabold font-mono text-lg sm:text-xl">
+                      <span className={`font-extrabold font-mono text-lg sm:text-xl ${main.id === 'welfare' ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                         {main.num}
                       </span>
-                      <h3 className="text-base sm:text-xl font-extrabold text-emerald-700 dark:text-emerald-400 group-hover:text-emerald-600 tracking-tight truncate">
+                      <h3 className={`text-base sm:text-xl font-extrabold ${main.id === 'welfare' ? 'text-rose-700 dark:text-rose-400 group-hover:text-rose-600' : 'text-emerald-700 dark:text-emerald-400 group-hover:text-emerald-600'} tracking-tight truncate flex items-center gap-2`}>
                         {main.name}
-                        <span className="ml-2 text-sm font-bold text-neutral-700 dark:text-neutral-300">
+                        {main.id === 'welfare' && (
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-rose-600 text-white shadow-xs animate-pulse">
+                            🎁 限时必领
+                          </span>
+                        )}
+                        <span className="text-sm font-bold text-neutral-700 dark:text-neutral-300 hidden sm:inline">
                           （{main.titleName}）
                         </span>
                       </h3>
@@ -657,8 +742,67 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
                   </div>
                 </div>
 
-                {/* Level 2 & 3: Tree Lines + Sub-Folders + Direct Resources In-Place */}
-                {isMainExpanded && (
+                {/* Level 2: Link Mode Items for Categories without Sub-folders (e.g. 00 特别福利) */}
+                {isMainExpanded && main.subFolders.length === 0 && (
+                  <div className="relative ml-4 sm:ml-6 pl-4 sm:pl-6 border-l-2 border-rose-300 dark:border-rose-700/80 space-y-2.5 my-2.5">
+                    {(resourcesByMainCategory[main.id] || []).length === 0 ? (
+                      <div className="p-3 text-xs text-neutral-400 italic">
+                        暂无特别福利
+                      </div>
+                    ) : (
+                      (resourcesByMainCategory[main.id] || []).map((item) => (
+                        <div
+                          key={item.id}
+                          onClick={() => onSelectResource(item)}
+                          className="group/welfare flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-3.5 rounded-xl bg-rose-50/80 dark:bg-rose-950/30 hover:bg-rose-100/90 dark:hover:bg-rose-900/50 border border-rose-200/90 dark:border-rose-800/80 hover:border-rose-400 dark:hover:border-rose-600 transition-all cursor-pointer gap-2.5 shadow-2xs"
+                        >
+                          {/* Left: Gift icon + Title + tags */}
+                          <div className="flex items-center gap-3 min-w-0 flex-1">
+                            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-rose-500 to-amber-500 text-white flex items-center justify-center text-sm shadow-xs shrink-0 font-bold">
+                              🎁
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <h4 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-neutral-100 group-hover/welfare:text-rose-600 dark:group-hover/welfare:text-rose-400 transition-colors">
+                                  {renderHighlightedText(item.title, searchQuery)}
+                                </h4>
+                                <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-extrabold bg-rose-600 text-white shadow-2xs">
+                                  特别福利
+                                </span>
+                                {item.quality && (
+                                  <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-medium bg-rose-100 dark:bg-rose-900/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
+                                    {item.quality}
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate mt-0.5">
+                                {item.description ? item.description.split('\n')[0] : '点击查看专属福利介绍与领取攻略'}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Right: Button "查看介绍" */}
+                          <div className="flex items-center justify-end gap-2 shrink-0">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onSelectResource(item);
+                              }}
+                              className="flex items-center gap-1 px-3.5 py-1.5 text-xs font-bold rounded-lg bg-rose-600 hover:bg-rose-700 text-white shadow-xs transition-colors cursor-pointer active:scale-95"
+                            >
+                              <span>查看介绍</span>
+                              <ChevronRight className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                )}
+
+                {/* Level 2 & 3: Tree Lines + Sub-Folders + Direct Resources In-Place for Categories with Sub-folders */}
+                {isMainExpanded && main.subFolders.length > 0 && (
                   <div className="relative ml-4 sm:ml-6 pl-4 sm:pl-6 border-l-2 border-neutral-300 dark:border-neutral-700 space-y-4 my-2">
                     {main.subFolders.map((sub, sIdx) => {
                       const subKey = `${main.id}_${sub.id}`;
