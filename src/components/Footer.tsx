@@ -123,19 +123,19 @@ export const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className="w-full mt-6 sm:mt-8 border-t border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm py-6 sm:py-8 transition-colors">
+    <footer className="w-full mt-8 sm:mt-10 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md py-6 sm:py-8 transition-colors">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-6">
         
         {/* 1. SEO 热门搜索词与资源标签云 */}
-        <div className="p-3.5 sm:p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200/80 dark:border-neutral-700/60 space-y-2.5">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-50/90 dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800/90 space-y-3">
           <div className="flex items-center justify-between gap-2 flex-wrap">
             <div className="flex items-center gap-2">
               <Tag className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
-              <span className="font-bold text-xs sm:text-sm text-neutral-900 dark:text-neutral-100">
+              <span className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
                 网盘吧热门搜索热词 · 网盘资源索引
               </span>
             </div>
-            <span className="text-[11px] text-neutral-400 dark:text-neutral-500">
+            <span className="text-[11px] text-slate-400 dark:text-slate-500">
               点击关键词可一键直达搜索
             </span>
           </div>
@@ -146,7 +146,7 @@ export const Footer: React.FC<FooterProps> = ({
                 key={`seo-kw-${idx}`}
                 onClick={() => handleKeywordClick(kw)}
                 type="button"
-                className="px-2.5 py-1 text-xs font-medium rounded-lg bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50/80 dark:hover:bg-blue-950/60 border border-neutral-200/90 dark:border-neutral-700/80 transition-all cursor-pointer shadow-2xs active:scale-95"
+                className="px-2.5 py-1 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50/80 dark:hover:bg-blue-950/60 border border-slate-200/90 dark:border-slate-700/80 transition-all cursor-pointer shadow-2xs active:scale-95"
               >
                 #{kw}
               </button>
@@ -155,19 +155,19 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* 2. Top: Sub-sites quick links row */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-neutral-100 dark:border-neutral-800">
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="font-bold text-xs sm:text-sm text-neutral-900 dark:text-neutral-100">
+            <span className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
               官方分站矩阵：
             </span>
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-neutral-600 dark:text-neutral-400">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-slate-600 dark:text-slate-400">
               {SUB_SITES.map((site) => (
                 <a
                   key={site.id}
                   href={site.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-blue-600 dark:hover:text-blue-400 hover:underline inline-flex items-center gap-0.5 transition-colors"
+                  className="hover:text-blue-600 dark:hover:text-blue-400 hover:underline inline-flex items-center gap-0.5 transition-colors font-medium"
                 >
                   <span>{site.name}</span>
                 </a>
@@ -175,17 +175,17 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3 text-xs text-neutral-500">
+          <div className="flex items-center gap-3 text-xs text-slate-500">
             <button
               onClick={onOpenFeedback}
-              className="hover:text-neutral-800 dark:hover:text-neutral-200 underline cursor-pointer"
+              className="hover:text-slate-800 dark:hover:text-slate-200 underline cursor-pointer"
             >
               侵权申诉 / 失效反馈
             </button>
             <span>•</span>
             <button
               onClick={onOpenSubsitesPortal}
-              className="hover:text-neutral-800 dark:hover:text-neutral-200 underline cursor-pointer"
+              className="hover:text-slate-800 dark:hover:text-slate-200 underline cursor-pointer"
             >
               分站状态总览
             </button>
@@ -193,13 +193,13 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* 3. Middle: Friendly Links (友情链接) */}
-        <div className="space-y-3 pb-4 border-b border-neutral-100 dark:border-neutral-800">
+        <div className="space-y-3 pb-4 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2">
-            <LinkIcon className="w-4 h-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
-            <span className="font-bold text-xs sm:text-sm text-neutral-900 dark:text-neutral-100">
+            <LinkIcon className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
+            <span className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
               友情链接
             </span>
-            <span className="text-xs text-neutral-400 dark:text-neutral-500 hidden sm:inline">
+            <span className="text-xs text-slate-400 dark:text-slate-500 hidden sm:inline">
               （优质行业导航与权威垂直门户）
             </span>
           </div>
@@ -212,21 +212,21 @@ export const Footer: React.FC<FooterProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 title={`${link.name}${link.desc ? ` - ${link.desc}` : ''}`}
-                className="group relative flex flex-col p-2 sm:p-2.5 rounded-xl bg-neutral-50/80 dark:bg-neutral-800/40 hover:bg-neutral-100/90 dark:hover:bg-neutral-800 border border-neutral-200/60 dark:border-neutral-700/60 hover:border-blue-400 dark:hover:border-blue-600 transition-all text-left"
+                className="group relative flex flex-col p-2.5 rounded-xl bg-slate-50/80 dark:bg-slate-900/60 hover:bg-white dark:hover:bg-slate-850 border border-slate-200/70 dark:border-slate-800 hover:border-blue-500/60 dark:hover:border-blue-500/60 transition-all text-left shadow-2xs hover:shadow-xs"
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
-                  <span className="text-xs font-semibold text-neutral-800 dark:text-neutral-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 truncate">
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 truncate">
                     {link.name}
                   </span>
-                  <ExternalLink className="w-3 h-3 text-neutral-400 group-hover:text-blue-500 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-blue-500 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
 
                 <div className="flex items-center justify-between gap-1 mt-auto">
-                  <span className="text-[10px] sm:text-[11px] font-mono text-neutral-400 dark:text-neutral-500 truncate">
+                  <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 dark:text-slate-500 truncate">
                     {link.url.replace('http://', '').replace('/', '')}
                   </span>
                   {link.badge && (
-                    <span className="shrink-0 text-[9px] sm:text-[10px] px-1 py-0.2 font-medium rounded bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 border border-amber-200/60 dark:border-amber-800/60">
+                    <span className="shrink-0 text-[9px] sm:text-[10px] px-1.5 py-0.2 font-bold rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30">
                       {link.badge}
                     </span>
                   )}
@@ -237,8 +237,8 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* 4. SEO 知识库与权威介绍 (有利于搜索引擎长尾关键词索引) */}
-        <section aria-label="关于网盘吧与网盘搜索导航" className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed space-y-1.5">
-          <h3 className="font-bold text-xs text-neutral-700 dark:text-neutral-300">
+        <section aria-label="关于网盘吧与网盘搜索导航" className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed space-y-1.5">
+          <h3 className="font-bold text-xs text-slate-700 dark:text-slate-300">
             关于网盘吧 (www.wangpan8.com) - 专业网盘搜索与资源聚合门户
           </h3>
           <p>
@@ -247,12 +247,12 @@ export const Footer: React.FC<FooterProps> = ({
         </section>
 
         {/* 5. Disclaimer & Copyright */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-400 dark:text-neutral-500 pt-3 border-t border-neutral-100 dark:border-neutral-800/80">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400 dark:text-slate-500 pt-3 border-t border-slate-100 dark:border-slate-800/80">
           <p className="leading-relaxed text-center sm:text-left text-[11px] sm:text-xs">
             免责声明：本站为非营利性网盘资源聚合索引工具 (<span className="text-blue-600 dark:text-blue-400 font-semibold font-mono">www.wangpan8.com</span> 网盘吧)，所有资源均收集自公开互联网及夸克、百度、UC、迅雷等第三方网盘。本站不存储任何音视频或文件实体。若有侵权请联系删除。
           </p>
           <div className="shrink-0 text-center sm:text-right font-medium text-[11px] sm:text-xs">
-            © 2026 网盘吧 · <span className="font-mono text-neutral-600 dark:text-neutral-300 font-bold">www.wangpan8.com</span>
+            © 2026 网盘吧 · <span className="font-mono text-slate-600 dark:text-slate-300 font-bold">www.wangpan8.com</span>
           </div>
         </div>
       </div>

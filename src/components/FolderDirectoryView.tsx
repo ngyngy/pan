@@ -290,43 +290,43 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
     switch (driveType) {
       case 'quark':
         return (
-          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-amber-50 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 border border-amber-300 dark:border-amber-700/80 shrink-0">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30 shrink-0">
             夸克
           </span>
         );
       case 'baidu':
         return (
-          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-blue-50 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 border border-blue-300 dark:border-blue-700/80 shrink-0">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/30 shrink-0">
             百度
           </span>
         );
       case 'uc':
         return (
-          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-orange-50 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 border border-orange-300 dark:border-orange-700/80 shrink-0">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/30 shrink-0">
             UC
           </span>
         );
       case 'xunlei':
         return (
-          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 border border-sky-300 dark:border-sky-700/80 shrink-0">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/30 shrink-0">
             迅雷
           </span>
         );
       case 'aliyun':
         return (
-          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-orange-50 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 border border-orange-300 dark:border-orange-700/80 shrink-0">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/30 shrink-0">
             阿里
           </span>
         );
       case 'official':
         return (
-          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-rose-50 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 border border-rose-300 dark:border-rose-700/80 shrink-0">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/40 shrink-0">
             🎁 官方直链
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-700/80 shrink-0">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 shrink-0">
             {driveName}
           </span>
         );
@@ -355,14 +355,14 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
   return (
     <div className="w-full space-y-4">
       {/* 1. Header Toolbar / Search Results Status Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 p-4 sm:p-5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200/90 dark:border-neutral-800 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-xs">
         {/* Title / Search State Indicator */}
         <div className="flex items-center gap-3">
-          <div className={`p-2.5 rounded-xl ${isSearchActive ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300' : 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300'} shadow-xs`}>
+          <div className={`p-2.5 rounded-xl ${isSearchActive ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400' : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'} shadow-2xs`}>
             {isSearchActive ? <Search className="w-5 h-5" /> : <Layers className="w-5 h-5" />}
           </div>
           <div>
-            <h2 className="text-base sm:text-lg font-extrabold text-neutral-900 dark:text-neutral-100 tracking-tight flex flex-wrap items-center gap-2">
+            <h2 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight flex flex-wrap items-center gap-2">
               {isSearchActive ? (
                 <>
                   <span>搜索结果直达</span>
@@ -373,13 +373,13 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
               ) : (
                 <>
                   <span>八大分类资源目录树</span>
-                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 font-medium">
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/80 font-semibold">
                     单列树形展开 · 实时在本页打开
                   </span>
                 </>
               )}
             </h2>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
               {isSearchActive 
                 ? `共匹配到 ${flatSearchResults.length} 条网盘资源，已为您直接平铺展开展示` 
                 : '1000T海量优质资源聚合，点击文件夹即可直接在本页浏览与转存'}
@@ -392,13 +392,13 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
           {isSearchActive ? (
             <>
               {/* View Switcher during search */}
-              <div className="flex items-center p-1 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+              <div className="flex items-center p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
                 <button
                   onClick={() => setSearchViewMode('direct')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                     searchViewMode === 'direct'
-                      ? 'bg-white dark:bg-neutral-700 text-blue-600 dark:text-blue-400 shadow-xs'
-                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900'
+                      ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-xs'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                   title="直接平铺展示所有匹配内容"
                 >
@@ -409,8 +409,8 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
                   onClick={() => setSearchViewMode('tree')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                     searchViewMode === 'tree'
-                      ? 'bg-white dark:bg-neutral-700 text-blue-600 dark:text-blue-400 shadow-xs'
-                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900'
+                      ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-xs'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                   title="在分类目录树中查看位置"
                 >
@@ -422,7 +422,7 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
               {/* Clear Search button */}
               <button
                 onClick={() => onSearchChange('')}
-                className="inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-xs font-bold text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-700 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-bold text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700 transition-colors cursor-pointer"
                 title="清空搜索回到全部分类"
               >
                 <X className="w-3.5 h-3.5" />
@@ -435,7 +435,7 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
               <button
                 onClick={() => handleExpandAll(true)}
                 id="btn-expand-all-tree"
-                className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white text-sm sm:text-base font-bold shadow-sm hover:shadow-md transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white text-sm sm:text-base font-bold shadow-xs hover:shadow-md hover:shadow-emerald-500/20 transition-all cursor-pointer active:scale-95"
               >
                 <FolderOpen className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-100" />
                 <span>全部展开</span>
@@ -443,9 +443,9 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
               <button
                 onClick={() => handleExpandAll(false)}
                 id="btn-collapse-all-tree"
-                className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 active:scale-95 text-neutral-800 dark:text-neutral-100 text-sm sm:text-base font-bold border border-neutral-300 dark:border-neutral-700 shadow-xs hover:shadow-sm transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-100 text-sm sm:text-base font-bold border border-slate-300/80 dark:border-slate-700 shadow-2xs hover:shadow-xs transition-all cursor-pointer active:scale-95"
               >
-                <FolderClosed className="w-4 h-4 sm:w-5 sm:h-5 text-neutral-500 dark:text-neutral-400" />
+                <FolderClosed className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 dark:text-slate-400" />
                 <span>全部收起</span>
               </button>
             </>
