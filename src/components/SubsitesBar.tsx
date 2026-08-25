@@ -23,7 +23,7 @@ export const SubsitesBar: React.FC<SubsitesBarProps> = ({
           </div>
           <span className="text-sm font-extrabold tracking-tight">官方聚合分站矩阵</span>
           <span className="text-[11px] font-normal text-slate-400 dark:text-slate-500 hidden sm:inline">
-            （7大垂直分站直达 · 点击卡片可快速筛选分类，点击网址直达官方站点）
+            （7大垂直分站 · 点击卡片快速筛选，点击直达分站）
           </span>
         </div>
       </div>
@@ -61,16 +61,16 @@ export const SubsitesBar: React.FC<SubsitesBarProps> = ({
                 </div>
               </div>
 
-              {/* Right: Big, Prominent URL Link Button */}
+              {/* Right: Clean Jump Link Button without raw URL */}
               <a
                 href={site.url}
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                title={`在新窗口访问官方分站: ${site.url}`}
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white text-xs font-bold shadow-xs hover:shadow-md hover:shadow-emerald-500/20 transition-all shrink-0 group/btn"
+                title={`在新窗口访问 ${site.name}`}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-600 dark:bg-emerald-950/50 dark:hover:bg-emerald-600 text-emerald-700 dark:text-emerald-300 hover:text-white dark:hover:text-white border border-emerald-200/80 dark:border-emerald-800/80 hover:border-emerald-600 text-xs font-semibold shadow-xs hover:shadow-sm transition-all duration-150 shrink-0 group/btn"
               >
-                <span className="font-mono tracking-tight">{site.subdomain}</span>
+                <span>直达分站</span>
                 <ExternalLink className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
               </a>
             </div>
