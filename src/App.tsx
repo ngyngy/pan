@@ -147,6 +147,9 @@ export default function App() {
     } else if (sub === 'btczy') {
       targetMain = 'crypto';
       targetSub = 'btc_books';
+    } else if (sub === 'yidong') {
+      targetMain = 'yidong';
+      targetSub = 'yidong_bundle';
     } else {
       targetMain = null;
       targetSub = null;

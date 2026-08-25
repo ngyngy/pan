@@ -18,6 +18,7 @@ const DRIVE_OPTIONS: { id: DriveType; label: string; iconColor: string }[] = [
   { id: 'aliyun', label: '阿里云盘', iconColor: 'text-orange-500' },
   { id: 'xunlei', label: '迅雷云盘', iconColor: 'text-sky-500' },
   { id: 'uc', label: 'UC网盘', iconColor: 'text-rose-500' },
+  { id: 'yidong', label: '移动云盘', iconColor: 'text-teal-500' },
 ];
 
 export const TopSearchBar: React.FC<TopSearchBarProps> = ({

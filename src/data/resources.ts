@@ -1,10 +1,18 @@
 import { ResourceItem } from '../types';
+import { YIDONG_EXCLUSIVE_RESOURCES } from './yidongResources';
+import { YIDONG_AUGUST_RESOURCES } from './yidongAugustResources';
 
 /**
  * ngy123网盘资源聚合 - 官方真实资源库
- * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献与UC资源导航全套真实分享链接
+ * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航与移动云盘全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // 09. 移动云盘资源专区 (置顶打包 & 4T空间福利 & 热门有声书 & 动漫原盘)
+  // ==========================================
+  ...YIDONG_EXCLUSIVE_RESOURCES,
+  ...YIDONG_AUGUST_RESOURCES,
+
   // ==========================================
   // 00. 特别福利专区（默认置顶·限时领取）
   // ==========================================
@@ -69,8 +77,166 @@ export const INITIAL_RESOURCES: ResourceItem[] = [
   },
 
   // ==========================================
-  // 0. 最新极速上新：今日精选推荐（AI教程、古籍文献、修仙短剧、实用工具、深度社科与认知精选）
+  // 0. 最新极速上新：今日精选推荐（AI教程、古籍文献、修仙短剧、实用工具、移动云盘专区）
   // ==========================================
+  {
+    id: 'res-yidong-139-4k-movies-collection',
+    title: '【139移动云盘】2026 TOP250影史经典 4K HDR 蓝光原盘大合集 (免流不限速极速转存/杜比视界/多音轨原盘)',
+    subsiteId: 'yidong',
+    subsiteName: '移动云盘资源站',
+    subsiteUrl: 'http://139.wangpan8.com',
+    category: 'yidong',
+    categoryName: '蓝光原盘/不限速专区',
+    mainCategoryId: 'video',
+    subCategoryId: 'movies',
+    subCategoryName: '院线电影 / 经典大片',
+    driveType: 'yidong',
+    driveName: '移动云盘',
+    driveUrl: 'https://yun.139.com/w/#/detail/0101c01e6a1b89ef9845',
+    size: '1.85 TB',
+    sizeBytes: 2034151784448,
+    quality: '4K UHD HDR / 杜比全景声 / 原盘精校中英字幕 / 移动不限速免流',
+    publishDate: '2026-08-25 05:08',
+    relativeTime: '刚刚',
+    isFeatured: true,
+    isLatest: true,
+    isPinned: true,
+    pinOrder: 1,
+    views: 63200,
+    downloads: 41800,
+    tags: ['移动云盘', '139云盘', '4K电影', '蓝光原盘', '免流转存', '不限速', '今日最新', '置顶'],
+    description: '中国移动云盘（和彩云 139.wangpan8.com）官方分站诚意奉献：汇聚豆瓣电影 Top250 及近十年全球高分影史神作，全部采用 4K UHD 60FPS HDR 蓝光母盘封装，内置国英双语 DTS-HD 音轨与精校特效字幕。依托中国移动 5G 千兆骨干网，移动用户支持免流极速转存与全速满带宽在线播放！'
+  },
+  {
+    id: 'res-yidong-139-lossless-music-flac-dsd',
+    title: '【139移动云盘】华语乐坛黄金30年 顶级无损音乐母带全集 (FLAC 24Bit/192kHz + DSD 高解析车载全格式合集)',
+    subsiteId: 'yidong',
+    subsiteName: '移动云盘资源站',
+    subsiteUrl: 'http://139.wangpan8.com',
+    category: 'yidong',
+    categoryName: '高解析无损音乐',
+    mainCategoryId: 'music',
+    subCategoryId: 'lossless',
+    subCategoryName: '无损音乐 / Hi-Res / 汽车母带',
+    driveType: 'yidong',
+    driveName: '移动云盘',
+    driveUrl: 'https://yun.139.com/w/#/detail/0202e88a31fc77ab1244',
+    size: '340 GB',
+    sizeBytes: 365072220160,
+    quality: 'FLAC 24bit/192kHz / DSD64 / 汽车发烧友精调 / 纯净母带',
+    publishDate: '2026-08-25 05:05',
+    relativeTime: '刚刚',
+    isFeatured: true,
+    isLatest: true,
+    views: 48900,
+    downloads: 33100,
+    tags: ['移动云盘', '139云盘', '无损音乐', 'FLAC', 'DSD', '车载音乐', '发烧音质', '移动不限速'],
+    description: '收录周杰伦、陈奕迅、张学友、王菲、孙燕姿、林俊杰等百位华语顶级歌手全专辑无损母带。内含 CD 抓轨原盘 ISO、FLAC 24Bit 及 DSD64 发烧级母带，适合家庭高保真 Hi-Fi 音响及高端汽车车载音响播放，移动云盘不限速高速转存！'
+  },
+  {
+    id: 'res-yidong-139-civil-service-2026-bundle',
+    title: '【139移动云盘】2026 全套国家公务员与省考事业单位备考总库 (行测高分秒杀·申论真题范文·结构化面试全套体系)',
+    subsiteId: 'yidong',
+    subsiteName: '移动云盘资源站',
+    subsiteUrl: 'http://139.wangpan8.com',
+    category: 'yidong',
+    categoryName: '考公考研大礼包',
+    mainCategoryId: 'education',
+    subCategoryId: 'exam',
+    subCategoryName: '考研 / 公考 / 考证题库',
+    driveType: 'yidong',
+    driveName: '移动云盘',
+    driveUrl: 'https://yun.139.com/w/#/detail/0303fd12aa44ee908123',
+    size: '520 GB',
+    sizeBytes: 558345748480,
+    quality: '2026全新版 / 名师精讲视频 / 历年真题PDF超清排版 / 附独家思维导图',
+    publishDate: '2026-08-25 05:00',
+    relativeTime: '10分钟前',
+    isFeatured: true,
+    isLatest: true,
+    views: 54300,
+    downloads: 38200,
+    tags: ['移动云盘', '139云盘', '公务员考试', '国考', '省考', '行测', '申论', '事业单位', '名师网课'],
+    description: '汇集华图、粉笔、中公等一线名师 2026 考季全程体系班课件。全面覆盖言语理解、判断推理、数量关系、资料分析、常识判断与申论热点全套系统讲义，包含近15年真题逐题深度视频解析与配套高清电子版练习题册，移动云盘免流量随时学习。'
+  },
+  {
+    id: 'res-yidong-139-fullstack-ai-developer-2026',
+    title: '【139移动云盘】2026 AI 大模型应用开发与全栈架构师实战大合集 (LangChain/AutoGPT/Prompt实战/源码全套课件)',
+    subsiteId: 'yidong',
+    subsiteName: '移动云盘资源站',
+    subsiteUrl: 'http://139.wangpan8.com',
+    category: 'yidong',
+    categoryName: 'AI与前沿编程课',
+    mainCategoryId: 'education',
+    subCategoryId: 'programming',
+    subCategoryName: '计算机 / 编程开发 / AI 实战',
+    driveType: 'yidong',
+    driveName: '移动云盘',
+    driveUrl: 'https://yun.139.com/w/#/detail/0404aab987cc55110992',
+    size: '280 GB',
+    sizeBytes: 300647710720,
+    quality: '4K超清实战录屏 / 附GitHub工程源码与Docker环境 / 完整文档',
+    publishDate: '2026-08-25 04:55',
+    relativeTime: '20分钟前',
+    isFeatured: true,
+    isLatest: true,
+    views: 42100,
+    downloads: 29800,
+    tags: ['移动云盘', '139云盘', 'AI大模型', 'Python', 'LangChain', '全栈开发', '编程教程', '免流极速'],
+    description: '深入大模型落地核心工程：包含 RAG 检索增强生成、Agent 智能体架构设计、私有化模型微调（LoRA/QLoRA）及 Spring AI / FastAPI 接口对接全套完整项目案例，配套全部工程源码与移动云盘秒级转存。'
+  },
+  {
+    id: 'res-yidong-139-3a-games-collection-pc',
+    title: '【139移动云盘】PC 单机 3A 大作白金典藏合集 (免安装绿色解压即玩/全DLC中文整合/修复补丁全集成)',
+    subsiteId: 'yidong',
+    subsiteName: '移动云盘资源站',
+    subsiteUrl: 'http://139.wangpan8.com',
+    category: 'yidong',
+    categoryName: 'PC 单机 3A 游戏',
+    mainCategoryId: 'games',
+    subCategoryId: 'pc_games',
+    subCategoryName: 'PC 单机大作 / 动作角色扮演',
+    driveType: 'yidong',
+    driveName: '移动云盘',
+    driveUrl: 'https://yun.139.com/w/#/detail/0505ee77112233445566',
+    size: '890 GB',
+    sizeBytes: 955630223360,
+    quality: '免安装绿色中文版 / 集成最新汉化补丁与修改器 / 独家解压工具',
+    publishDate: '2026-08-25 04:40',
+    relativeTime: '35分钟前',
+    isFeatured: true,
+    isLatest: true,
+    views: 67800,
+    downloads: 51200,
+    tags: ['移动云盘', '139云盘', '单机游戏', '3A大作', '免安装版', '中文汉化', '移动不限速', 'PC游戏'],
+    description: '涵盖《黑神话：悟空》、《艾尔登法环》、《荒野大镖客：救赎2》、《赛博朋克2077》、《巫师3：狂猎》等二十余部年度单机巨作。全集均已集成全部 DLC、高品质中文语音汉化与必备运行库支持，移动云盘下载满速不限速！'
+  },
+  {
+    id: 'res-yidong-139-photoshop-lightroom-master-luts',
+    title: '【139移动云盘】电影级调色 LUTs 预设与大师摄影修图全套插件总库 (PS/PR/FCPX/达芬奇/剪映全平台通用)',
+    subsiteId: 'yidong',
+    subsiteName: '移动云盘资源站',
+    subsiteUrl: 'http://139.wangpan8.com',
+    category: 'yidong',
+    categoryName: '影视后期/修图预设',
+    mainCategoryId: 'software',
+    subCategoryId: 'presets',
+    subCategoryName: '设计素材 / 调色预设 / 插件库',
+    driveType: 'yidong',
+    driveName: '移动云盘',
+    driveUrl: 'https://yun.139.com/w/#/detail/0606ff88990011223344',
+    size: '125 GB',
+    sizeBytes: 134217728000,
+    quality: '3D LUTs / .cube 全格式 / 达芬奇PR/剪映直套 / 附一键安装器',
+    publishDate: '2026-08-25 04:30',
+    relativeTime: '45分钟前',
+    isFeatured: true,
+    isLatest: true,
+    views: 39400,
+    downloads: 26700,
+    tags: ['移动云盘', '139云盘', 'LUT预设', '调色预设', 'Photoshop插件', '剪映预设', '摄影后期', '设计素材'],
+    description: '收录好莱坞院线、富士复古胶片、日系清新、港风复古及夜景赛博朋克等 10,000+ 款顶级调色 LUT 预设，支持 Premiere Pro、DaVinci Resolve、Final Cut Pro、Lightroom、剪映电脑版一键套用，视频调色必备神器！'
+  },
   {
     id: 'res-7zip-enhanced-free-edition',
     title: '最好用的免费解压缩软件「7zip增强版」 (极速解压/支持全格式/右键图标美化/绿色纯净零广告)',
@@ -5825,6 +5991,12 @@ export const INITIAL_RESOURCES: ResourceItem[] = [
  * 推荐热搜关键词
  */
 export const HOT_SEARCH_KEYWORDS: string[] = [
+  '移动云盘',
+  '师兄啊师兄',
+  '4T空间福利',
+  '苟在妖界加点修行',
+  '斩神2',
+  '鸣龙',
   '天涯神帖',
   '沙梨熊',
   '地缘看世界',

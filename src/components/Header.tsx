@@ -38,6 +38,7 @@ const DRIVE_OPTIONS: { id: DriveType; label: string; shortLabel: string; color: 
   { id: 'aliyun', label: '阿里云盘', shortLabel: '阿里', color: 'text-orange-500' },
   { id: 'xunlei', label: '迅雷云盘', shortLabel: '迅雷', color: 'text-sky-500' },
   { id: 'uc', label: 'UC网盘', shortLabel: 'UC', color: 'text-rose-500' },
+  { id: 'yidong', label: '移动云盘', shortLabel: '移动', color: 'text-teal-500' },
 ];
 
 export const Header: React.FC<HeaderProps> = ({

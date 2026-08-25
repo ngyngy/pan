@@ -53,6 +53,7 @@ const DRIVE_OPTIONS: { id: DriveType; label: string; color: string }[] = [
   { id: 'aliyun', label: '阿里云盘', color: 'bg-orange-50 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 border-orange-300' },
   { id: 'xunlei', label: '迅雷云盘', color: 'bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 border-sky-300' },
   { id: 'uc', label: 'UC网盘', color: 'bg-rose-50 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 border-rose-300' },
+  { id: 'yidong', label: '移动云盘', color: 'bg-teal-50 dark:bg-teal-950/80 text-teal-600 dark:text-teal-400 border-teal-300' },
 ];
 
 const SUGGESTED_SEARCHES = [
@@ -316,6 +317,12 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
         return (
           <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/30 shrink-0">
             阿里
+          </span>
+        );
+      case 'yidong':
+        return (
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-teal-500/10 text-teal-600 dark:text-teal-400 border border-teal-500/30 shrink-0">
+            移动云盘
           </span>
         );
       case 'official':
@@ -715,14 +722,19 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
                     </svg>
 
                     <div className="flex items-baseline gap-2 min-w-0">
-                      <span className={`font-extrabold font-mono text-lg sm:text-xl ${main.id === 'welfare' ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+                      <span className={`font-extrabold font-mono text-lg sm:text-xl ${main.id === 'welfare' ? 'text-rose-600 dark:text-rose-400' : main.id === 'yidong' ? 'text-teal-600 dark:text-teal-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                         {main.num}
                       </span>
-                      <h3 className={`text-base sm:text-xl font-extrabold ${main.id === 'welfare' ? 'text-rose-700 dark:text-rose-400 group-hover:text-rose-600' : 'text-emerald-700 dark:text-emerald-400 group-hover:text-emerald-600'} tracking-tight truncate flex items-center gap-2`}>
+                      <h3 className={`text-base sm:text-xl font-extrabold ${main.id === 'welfare' ? 'text-rose-700 dark:text-rose-400 group-hover:text-rose-600' : main.id === 'yidong' ? 'text-teal-700 dark:text-teal-400 group-hover:text-teal-600' : 'text-emerald-700 dark:text-emerald-400 group-hover:text-emerald-600'} tracking-tight truncate flex items-center gap-2`}>
                         {main.name}
                         {main.id === 'welfare' && (
                           <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-rose-600 text-white shadow-xs animate-pulse">
                             🎁 限时必领
+                          </span>
+                        )}
+                        {main.id === 'yidong' && (
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-teal-600 text-white shadow-xs">
+                            📱 免流不限速
                           </span>
                         )}
                         <span className="text-sm font-bold text-neutral-700 dark:text-neutral-300 hidden sm:inline">

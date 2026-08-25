@@ -23,13 +23,13 @@ export const SubsitesBar: React.FC<SubsitesBarProps> = ({
           </div>
           <span className="text-sm font-extrabold tracking-tight">官方聚合分站矩阵</span>
           <span className="text-[11px] font-normal text-slate-400 dark:text-slate-500 hidden sm:inline">
-            （6大垂直分站直达 · 点击卡片可快速筛选分类，点击网址直达官方站点）
+            （7大垂直分站直达 · 点击卡片可快速筛选分类，点击网址直达官方站点）
           </span>
         </div>
       </div>
 
-      {/* 2 Rows Layout: 3 columns per row (6 sub-sites in total) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3">
+      {/* Grid Layout: Responsive columns for 7 sub-sites */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 sm:gap-3">
         {SUB_SITES.map((site) => {
           const isSelected = selectedSubsite === site.category;
           const count = resourceCounts[site.id] || site.totalResources;

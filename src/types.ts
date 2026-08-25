@@ -1,9 +1,9 @@
-export type DriveType = 'all' | 'quark' | 'baidu' | 'uc' | 'aliyun' | 'xunlei' | 'magnet' | '115';
+export type DriveType = 'all' | 'quark' | 'baidu' | 'uc' | 'aliyun' | 'xunlei' | 'yidong' | 'magnet' | '115';
 
-export type SubSiteCategory = 'all' | 'tianya' | 'xuexi' | 'dy' | 'gxs' | 'btczy' | 'uc_nav';
+export type SubSiteCategory = 'all' | 'tianya' | 'xuexi' | 'dy' | 'gxs' | 'btczy' | 'uc_nav' | 'yidong';
 
-// 9 Core Main Folder Categories (including 00 特别福利)
-export type MainFolderCategoryKey = 'welfare' | 'video' | 'education' | 'software' | 'books' | 'games' | 'music' | 'crypto' | 'wallpaper';
+// 10 Core Main Folder Categories (including 00 特别福利, 09 移动云盘专区)
+export type MainFolderCategoryKey = 'welfare' | 'video' | 'education' | 'software' | 'books' | 'games' | 'music' | 'crypto' | 'wallpaper' | 'yidong';
 
 export interface SubFolderCategory {
   id: string;
@@ -50,17 +50,17 @@ export interface ResourceItem {
   subCategoryId?: string;
   subCategoryName?: string;
   
-  subsiteId: 'tianya' | 'xuexi' | 'dy' | 'gxs' | 'btczy' | 'uc';
+  subsiteId: 'tianya' | 'xuexi' | 'dy' | 'gxs' | 'btczy' | 'uc' | 'yidong';
   subsiteName: string;
   subsiteUrl: string;
   category: SubSiteCategory;
   categoryName: string;
-  driveType: 'quark' | 'baidu' | 'uc' | 'aliyun' | 'xunlei' | 'magnet' | '115' | 'official';
+  driveType: 'quark' | 'baidu' | 'uc' | 'aliyun' | 'xunlei' | 'yidong' | 'magnet' | '115' | 'official';
   driveName: string;
   driveUrl: string;
   extractCode?: string;
-  size: string;
-  sizeBytes: number;
+  size?: string;
+  sizeBytes?: number;
   quality?: string;
   rating?: number;
   year?: string;
