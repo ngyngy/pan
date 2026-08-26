@@ -1,12 +1,18 @@
 import { ResourceItem } from '../types';
 import { YIDONG_EXCLUSIVE_RESOURCES } from './yidongResources';
 import { YIDONG_AUGUST_RESOURCES } from './yidongAugustResources';
+import { FEATURED_EBOOKS_AND_COURSES } from './featuredEbooksAndCourses';
 
 /**
  * ngy123网盘资源聚合 - 官方真实资源库
- * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航与移动云盘全套真实分享链接
+ * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航、移动云盘与经典电子书合集全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // 00. 经典电子书 & 认知思维 & 剑桥教材精选（最新入库）
+  // ==========================================
+  ...FEATURED_EBOOKS_AND_COURSES,
+
   // ==========================================
   // 09. 移动云盘资源专区 (置顶打包 & 4T空间福利 & 热门有声书 & 动漫原盘)
   // ==========================================
@@ -5991,6 +5997,13 @@ export const INITIAL_RESOURCES: ResourceItem[] = [
  * 推荐热搜关键词
  */
 export const HOT_SEARCH_KEYWORDS: string[] = [
+  '理想国300册',
+  '1000套电子书',
+  '绝版古籍',
+  '有毒的逻辑',
+  '思辨与立场',
+  '社会心理学',
+  '剑桥Unlock',
   '移动云盘',
   '师兄啊师兄',
   '4T空间福利',
