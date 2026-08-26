@@ -5997,6 +5997,9 @@ export const INITIAL_RESOURCES: ResourceItem[] = [
  * 推荐热搜关键词
  */
 export const HOT_SEARCH_KEYWORDS: string[] = [
+  '小学学习资料',
+  '1-6年级全科',
+  '小升初真题',
   '理想国300册',
   '1000套电子书',
   '绝版古籍',

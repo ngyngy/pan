@@ -6,6 +6,43 @@ import { ResourceItem } from '../types';
  */
 export const FEATURED_EBOOKS_AND_COURSES: ResourceItem[] = [
   {
+    id: 'primary-school-1-6-all-subjects-mega-pack',
+    title: '这个小学学习资料太全了（1-6年级全科大合集）',
+    mainCategoryId: 'education',
+    subCategoryId: 'school',
+    subCategoryName: '中小学辅导',
+    subsiteId: 'xuexi',
+    subsiteName: '中小学学习与精品网课',
+    subsiteUrl: 'http://xuexi.wangpan8.com',
+    category: 'xuexi',
+    categoryName: '小学全科/同步提分',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/929ad4163378',
+    size: '128.5 GB',
+    sizeBytes: 137975824384,
+    quality: '高清PDF试卷/教案课件/奥数音视频全套',
+    publishDate: '2026-08-26 04:20',
+    relativeTime: '刚刚',
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    views: 15680,
+    downloads: 9240,
+    tags: [
+      '小学学习资料',
+      '1-6年级全科',
+      '小学辅导',
+      '名校真题',
+      '拼音阅读写作',
+      '奥数思维',
+      '小升初真题',
+      '夸克网盘'
+    ],
+    description:
+      '【资源说明】小学1-6年级全学科网盘大合集，涵盖部编版人教/苏教/北师大等主流版本，包含名校试卷、提分导图、奥数思维与小升初真题密卷。\n\n主要内容涵盖：\n1. 1-6年级同步提分：语文拼音/阅读/写作、数学口算与奥数思维、英语自然拼读与语法全套\n2. 名校真题试卷：各单元达标测试卷、期中/期末全真模拟卷、小升初重点真题密卷\n3. 教学与拓展：全套精品课件、教案与重难点公式导图\n\n*（本资源由 wangpan8.com 提供）*\n更多资源访问：www.wangpan8.com 网盘吧'
+  },
+  {
     id: 'ebook-lixiangguo-300-collection',
     title: '理想国书单合集（300册·精选历史/哲学/社会学/文学经典）',
     mainCategoryId: 'books',
