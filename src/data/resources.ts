@@ -5997,6 +5997,11 @@ export const INITIAL_RESOURCES: ResourceItem[] = [
  * 推荐热搜关键词
  */
 export const HOT_SEARCH_KEYWORDS: string[] = [
+  '几百G考研',
+  '黄保余全套',
+  '中考语文',
+  '初中满分作文',
+  '1-6年级语文',
   '小学学习资料',
   '1-6年级全科',
   '小升初真题',
