@@ -212,10 +212,8 @@ export default function App() {
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-4 sm:pb-6 space-y-4 sm:space-y-5">
-        {/* 1. Top 6 Sub-Sites Fast Portal Bar (紧凑2行3列，大链接) */}
+        {/* 1. Top Sub-Sites Fast Portal Bar (点击整个卡片直达对应分站) */}
         <SubsitesBar
-          selectedSubsite={filters.selectedSubsite}
-          onSelectSubsite={handleSelectSubsite}
           resourceCounts={resourceCounts}
         />
 
