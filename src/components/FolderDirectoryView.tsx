@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { ResourceItem, MainFolderCategoryKey, DriveType } from '../types';
 import { MAIN_FOLDERS } from '../data/categories';
+import { SchoolSubjectHierarchyView } from './SchoolSubjectHierarchyView';
 
 interface FolderDirectoryViewProps {
   resources: ResourceItem[];
@@ -57,7 +58,9 @@ const DRIVE_OPTIONS: { id: DriveType; label: string; color: string }[] = [
 ];
 
 const SUGGESTED_SEARCHES = [
-  '云游戏',
+  '学而思',
+  '中小学辅导',
+  '高考真题',
   '特别福利',
   '周星驰',
   '天涯神贴',
@@ -81,15 +84,13 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
   searchQuery,
   onSearchChange
 }) => {
-  // Local state: which main folder is expanded (00 特别福利 默认展开)
+  // Local state: which main folder is expanded (00 特别福利 默认展开，其余全部收起)
   const [expandedMains, setExpandedMains] = useState<Record<string, boolean>>({
     welfare: true
   });
 
-  // Local state: which subfolder is expanded in-place to show resources (免费获得7小时云游戏 默认展开)
-  const [expandedSubs, setExpandedSubs] = useState<Record<string, boolean>>({
-    welfare_cloud_game_welfare: true
-  });
+  // Local state: which subfolder is expanded in-place to show resources (默认全部收起)
+  const [expandedSubs, setExpandedSubs] = useState<Record<string, boolean>>({});
 
   // View mode when search is active: 'direct' (flat direct results) or 'tree' (tree with auto-expanded matches)
   const [searchViewMode, setSearchViewMode] = useState<'direct' | 'tree'>('direct');
@@ -133,7 +134,7 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
     flatSearchResults.forEach((r) => {
       let matchedMain = r.mainCategoryId;
       if (!matchedMain) {
-        if (r.isWelfare || r.tags.some(t => /福利|云游戏|酷卡云|兑换码/.test(t))) {
+        if (r.isWelfare || r.tags.some(t => /福利|手游|礼包|兑换码/.test(t))) {
           matchedMain = 'welfare';
         } else if (r.subsiteId === 'dy' || r.tags.some(t => /影视|电视剧|美剧|HBO|Netflix|短剧|电影|4K|动漫|兽夫|广播剧|裙下臣/.test(t))) {
           matchedMain = 'video';
@@ -174,9 +175,9 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
       let matchedSub = r.subCategoryId;
 
       if (!matchedMain) {
-        if (r.isWelfare || r.tags.some(t => /福利|云游戏|酷卡云|兑换码/.test(t))) {
+        if (r.isWelfare || r.tags.some(t => /福利|手游|礼包|兑换码/.test(t))) {
           matchedMain = 'welfare';
-          matchedSub = 'cloud_game_welfare';
+          matchedSub = 'discount_game_welfare';
         } else if (r.subsiteId === 'dy' || r.tags.some(t => /影视|电视剧|美剧|HBO|Netflix|短剧|电影|4K|动漫|兽夫|广播剧|裙下臣/.test(t))) {
           matchedMain = 'video';
           if (r.tags.some(t => /美剧|HBO|Netflix|绝命毒师|权力的游戏|黄石|老友记|生活大爆炸|怪奇物语|行尸走肉|越狱/.test(t)) || /美剧|HBO|Netflix|Breaking Bad|Game of Thrones|Yellowstone|Friends/.test(r.title)) {
@@ -864,8 +865,16 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
 
                           {/* Level 3: Direct Resource Links under this Sub-folder */}
                           {isSubExpanded && (
-                            <div className="relative ml-4 sm:ml-6 pl-4 sm:pl-6 border-l-2 border-dashed border-neutral-300 dark:border-neutral-700/80 space-y-2 my-2.5">
-                              {subResources.length === 0 ? (
+                            <div className="relative ml-2 sm:ml-4 pl-2 sm:pl-4 border-l-2 border-dashed border-neutral-300 dark:border-neutral-700/80 space-y-2 my-2.5">
+                              {main.id === 'education' && sub.id === 'school' ? (
+                                <SchoolSubjectHierarchyView
+                                  resources={subResources}
+                                  searchQuery={searchQuery}
+                                  copiedId={copiedId}
+                                  onSelectResource={onSelectResource}
+                                  onCopyLink={onCopyLink}
+                                />
+                              ) : subResources.length === 0 ? (
                                 <div className="p-3 text-xs text-neutral-400 italic">
                                   当前子分类暂无符合筛选的网盘资源
                                 </div>

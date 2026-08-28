@@ -15,8 +15,8 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
     id: 'welfare',
     num: '00',
     name: '特别福利',
-    titleName: '限时免费领取 / 独家激活码 / 游戏云电脑 / 会员兑换',
-    shortDesc: '长期更新专属免费福利、云游戏免费时长、平台VIP会员与实用兑换码',
+    titleName: '限时免费领取 / 独家激活码 / 游戏BT平台 / 会员兑换',
+    shortDesc: '长期更新专属免费福利、热门游戏礼包、平台VIP会员与实用兑换码',
     badge: '限时必领',
     colorClass: 'rose',
     textColorClass: 'text-rose-700 dark:text-rose-400',
@@ -103,8 +103,8 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
         id: 'school',
         name: '中小学辅导',
         code: '02-1',
-        description: '小学英语1-6年级全套、学而思全科培优、初高中必刷题库、名校真题卷、53系列与提分学霸笔记',
-        tags: ['小学英语1-6年级', '学而思培优', '小学必刷题', '初中必刷题', '高中必刷题', '53中考真题', '中考冲刺营']
+        description: '涵盖语文、数学、英语三大科目（小学/初中/高中全学段），名师网课体系、必刷题库与中高考冲刺提分讲义',
+        tags: ['中小学辅导', '语文', '数学', '英语', '小学', '初中', '高中', '学而思', '黄保余', '必刷题']
       },
       {
         id: 'dedao',

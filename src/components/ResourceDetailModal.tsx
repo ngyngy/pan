@@ -71,10 +71,7 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
   };
 
   const handleCopyFullShare = () => {
-    if (resource.id === 'welfare-kuka-cloud-game-7hours' || resource.title.includes('云游戏')) {
-      const welfareText = `很久没有送福利了，今天直接给大家送7小时的云游戏。\n第一步，下载酷卡云\n官网下载：https://superkuka.com/client_download\n网盘下载：https://pan.quark.cn/s/ae2d56e47271\n第二步，个人中心——兑换，输入 南宫8888\n第三步 ，个人中心——兑换，输入 875018\n\n7小时云游戏到手，不用下载即可体验各种游戏大作。\n速度要快！`;
-      navigator.clipboard.writeText(welfareText);
-    } else if (resource.id === 'game-mobile-zero-one-discount-platform' || resource.title.includes('0.1折')) {
+    if (resource.id === 'game-mobile-zero-one-discount-platform' || resource.title.includes('0.1折')) {
       const discountText = `【特别福利】0.1折手游平台 (热门手游千款0.1折充值 / 官方BT福利变态版)\n【夸克网盘下载】：https://pan.quark.cn/s/4979ed20ffd0\n【夸克口令】：/~90ea3aMBnt~:/\n【官网直达下载】：https://www.3387.com/cps/app/6a85087b2beb0.html\n【福利说明】：聚合千款热门仙侠、卡牌、传奇、策略及二次元手游，充值全场永久0.1折（648元仅需6.48元），上线送满级VIP特权与无限元宝礼包，安卓手机一键极速安装畅玩！`;
       navigator.clipboard.writeText(discountText);
     } else if (isWelfareItem) {
@@ -134,170 +131,21 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
           {/* SPECIAL WELFARE PRESENTATION */}
           {isWelfareItem ? (
             <div className="space-y-4">
-              {/* 1. 云游戏专属福利展示 */}
-              {(resource.id === 'welfare-kuka-cloud-game-7hours' || resource.title.includes('云游戏')) ? (
-                <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-rose-50/90 to-amber-50/60 dark:from-rose-950/40 dark:to-neutral-900 border border-rose-200 dark:border-rose-800/80 shadow-xs space-y-4">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-xl bg-rose-500 text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
-                      🎁
-                    </div>
-                    <div>
-                      <h4 className="font-extrabold text-neutral-900 dark:text-neutral-100 text-base">
-                        福利介绍与领取流程
-                      </h4>
-                      <p className="text-xs text-rose-600 dark:text-rose-400 font-medium">
-                        免下载畅玩各种游戏大作 · 输入双兑换码送7小时云游戏
-                      </p>
-                    </div>
+              {/* 0.1折手游平台专属福利展示 */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-rose-50/90 to-amber-50/60 dark:from-rose-950/40 dark:to-neutral-900 border border-rose-200 dark:border-rose-800/80 shadow-xs space-y-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-rose-500 to-amber-500 text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
+                    🎮
                   </div>
-
-                  <div className="p-3.5 rounded-xl bg-white/90 dark:bg-neutral-800/90 border border-rose-100 dark:border-neutral-700 space-y-3 font-mono text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 leading-relaxed">
-                    <p className="font-bold text-rose-700 dark:text-rose-300">
-                      很久没有送福利了，今天直接给大家送7小时的云游戏。
+                  <div>
+                    <h4 className="font-extrabold text-neutral-900 dark:text-neutral-100 text-base">
+                      0.1折手游特权充值平台 · 变态BT福利
+                    </h4>
+                    <p className="text-xs text-rose-600 dark:text-rose-400 font-medium">
+                      充值全场永久0.1折（648元仅需6.48元）· 上线送满V与无限元宝
                     </p>
-
-                    <div className="space-y-2 pt-1">
-                      {/* Step 1 */}
-                      <div className="p-2.5 rounded-lg bg-neutral-50 dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-700 space-y-2.5">
-                        <div className="flex items-center gap-2">
-                          <span className="px-2 py-0.5 rounded bg-rose-600 text-white text-xs font-bold shrink-0">第一步</span>
-                          <span className="font-bold text-xs sm:text-sm text-neutral-800 dark:text-neutral-200">下载酷卡云（提供官网与网盘双通道）：</span>
-                        </div>
-
-                        {/* Option 1: Official Download */}
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between p-2 rounded-md bg-white dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 gap-2">
-                          <div className="flex items-center gap-2 flex-wrap min-w-0">
-                            <span className="px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 text-[11px] font-bold shrink-0">
-                              官网下载
-                            </span>
-                            <a 
-                              href="https://superkuka.com/client_download" 
-                              target="_blank" 
-                              rel="noreferrer"
-                              className="text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline break-all"
-                            >
-                              https://superkuka.com/client_download
-                            </a>
-                          </div>
-                          <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
-                            <button
-                              onClick={() => handleCopyText('https://superkuka.com/client_download', 'link')}
-                              className="flex items-center gap-1 px-2.5 py-1 text-xs rounded bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-200 transition-colors cursor-pointer"
-                            >
-                              {copiedDownloadLink ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
-                              <span>{copiedDownloadLink ? '已复制' : '复制网址'}</span>
-                            </button>
-                            <a
-                              href="https://superkuka.com/client_download"
-                              target="_blank"
-                              rel="noreferrer"
-                              className="flex items-center gap-1 px-2.5 py-1 text-xs font-bold rounded bg-blue-600 hover:bg-blue-700 text-white transition-colors cursor-pointer"
-                            >
-                              <span>打开官网</span>
-                              <ExternalLink className="w-3 h-3" />
-                            </a>
-                          </div>
-                        </div>
-
-                        {/* Option 2: Quark Drive Download */}
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between p-2 rounded-md bg-white dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 gap-2">
-                          <div className="flex items-center gap-2 flex-wrap min-w-0">
-                            <span className="px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 text-[11px] font-bold shrink-0">
-                              网盘下载
-                            </span>
-                            <a 
-                              href="https://pan.quark.cn/s/ae2d56e47271" 
-                              target="_blank" 
-                              rel="noreferrer"
-                              className="text-xs sm:text-sm font-semibold text-amber-600 dark:text-amber-400 hover:underline break-all"
-                            >
-                              https://pan.quark.cn/s/ae2d56e47271
-                            </a>
-                          </div>
-                          <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
-                            <button
-                              onClick={() => handleCopyText('https://pan.quark.cn/s/ae2d56e47271', 'panLink')}
-                              className="flex items-center gap-1 px-2.5 py-1 text-xs rounded bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-200 transition-colors cursor-pointer"
-                            >
-                              {copiedPanDownloadLink ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
-                              <span>{copiedPanDownloadLink ? '已复制' : '复制网盘'}</span>
-                            </button>
-                            <a
-                              href="https://pan.quark.cn/s/ae2d56e47271"
-                              target="_blank"
-                              rel="noreferrer"
-                              className="flex items-center gap-1 px-2.5 py-1 text-xs font-bold rounded bg-amber-600 hover:bg-amber-700 text-white transition-colors cursor-pointer"
-                            >
-                              <span>直达网盘</span>
-                              <ExternalLink className="w-3 h-3" />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Step 2 */}
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 rounded-lg bg-neutral-50 dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-700 gap-2">
-                        <div className="flex items-center gap-2 flex-wrap min-w-0">
-                          <span className="px-2 py-0.5 rounded bg-rose-600 text-white text-xs font-bold shrink-0">第二步</span>
-                          <span className="font-medium text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">个人中心——兑换，输入</span>
-                          <span className="font-bold text-sm sm:text-base text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950 px-2 py-0.5 rounded border border-rose-200 dark:border-rose-800">
-                            南宫8888
-                          </span>
-                        </div>
-                        <button
-                          onClick={() => handleCopyText('南宫8888', 'code1')}
-                          className="flex items-center gap-1 px-3 py-1 text-xs font-bold rounded bg-rose-600 hover:bg-rose-700 text-white shadow-2xs transition-colors cursor-pointer shrink-0 self-end sm:self-auto"
-                        >
-                          {copiedCode1 ? <Check className="w-3 h-3 text-white" /> : <Copy className="w-3 h-3" />}
-                          <span>{copiedCode1 ? '已复制兑换码' : '复制兑换码'}</span>
-                        </button>
-                      </div>
-
-                      {/* Step 3 */}
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 rounded-lg bg-neutral-50 dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-700 gap-2">
-                        <div className="flex items-center gap-2 flex-wrap min-w-0">
-                          <span className="px-2 py-0.5 rounded bg-rose-600 text-white text-xs font-bold shrink-0">第三步</span>
-                          <span className="font-medium text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">个人中心——兑换，输入</span>
-                          <span className="font-bold text-sm sm:text-base text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950 px-2 py-0.5 rounded border border-rose-200 dark:border-rose-800">
-                            875018
-                          </span>
-                        </div>
-                        <button
-                          onClick={() => handleCopyText('875018', 'code2')}
-                          className="flex items-center gap-1 px-3 py-1 text-xs font-bold rounded bg-rose-600 hover:bg-rose-700 text-white shadow-2xs transition-colors cursor-pointer shrink-0 self-end sm:self-auto"
-                        >
-                          {copiedCode2 ? <Check className="w-3 h-3 text-white" /> : <Copy className="w-3 h-3" />}
-                          <span>{copiedCode2 ? '已复制兑换码' : '复制兑换码'}</span>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="pt-2 border-t border-dashed border-rose-200 dark:border-neutral-700 text-xs sm:text-sm space-y-1">
-                      <p className="font-semibold text-neutral-800 dark:text-neutral-200">
-                        7小时云游戏到手，不用下载即可体验各种游戏大作。
-                      </p>
-                      <p className="font-extrabold text-rose-600 dark:text-rose-400">
-                        速度要快！
-                      </p>
-                    </div>
                   </div>
                 </div>
-              ) : (
-                /* 2. 0.1折手游平台专属福利展示 */
-                <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-rose-50/90 to-amber-50/60 dark:from-rose-950/40 dark:to-neutral-900 border border-rose-200 dark:border-rose-800/80 shadow-xs space-y-4">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-rose-500 to-amber-500 text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
-                      🎮
-                    </div>
-                    <div>
-                      <h4 className="font-extrabold text-neutral-900 dark:text-neutral-100 text-base">
-                        0.1折手游特权充值平台 · 变态BT福利
-                      </h4>
-                      <p className="text-xs text-rose-600 dark:text-rose-400 font-medium">
-                        充值全场永久0.1折（648元仅需6.48元）· 上线送满V与无限元宝
-                      </p>
-                    </div>
-                  </div>
 
                   {/* Feature Bullets */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -424,7 +272,6 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
                     </div>
                   </div>
                 </div>
-              )}
 
               {/* Tags */}
               {resource.tags && resource.tags.length > 0 && (
