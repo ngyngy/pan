@@ -10,7 +10,8 @@ import {
   X,
   HardDrive,
   CheckCircle2,
-  ChevronDown
+  ChevronDown,
+  Twitter
 } from 'lucide-react';
 import { Logo } from './Logo';
 import { DriveType } from '../types';
@@ -121,7 +122,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Mobile-only quick actions */}
-          <div className="flex md:hidden items-center gap-1">
+          <div className="flex md:hidden items-center gap-0.5 sm:gap-1">
             <button
               onClick={onOpenHotRank}
               className="p-2 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/80 rounded-xl active:scale-95 transition-all"
@@ -143,6 +144,26 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <Users className="w-4 h-4 text-emerald-500" />
             </button>
+            <a
+              id="mobile-nav-weibo-link"
+              href="https://weibo.com/u/6184008812"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-xl active:scale-95 transition-all text-xs font-bold flex items-center justify-center"
+              title="关注微博"
+            >
+              微博
+            </a>
+            <a
+              id="mobile-nav-x-link"
+              href="https://x.com/nangongyuan/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 text-slate-700 dark:text-slate-200 hover:bg-sky-50 dark:hover:bg-sky-950/40 rounded-xl active:scale-95 transition-all flex items-center justify-center"
+              title="关注 X (Twitter)"
+            >
+              <Twitter className="w-4 h-4 text-sky-500" />
+            </a>
             <button
               onClick={onToggleDarkMode}
               className="p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 rounded-xl active:scale-95 transition-all"
@@ -320,6 +341,32 @@ export const Header: React.FC<HeaderProps> = ({
             <Users className="w-4 h-4 text-emerald-500 shrink-0" />
             <span>QQ群</span>
           </button>
+
+          {/* 微博 */}
+          <a
+            id="nav-weibo-link"
+            href="https://weibo.com/u/6184008812"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs lg:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-xl transition-all cursor-pointer group"
+            title="关注南宫远微博 (https://weibo.com/u/6184008812)"
+          >
+            <span className="w-2 h-2 rounded-full bg-red-500 group-hover:scale-125 transition-transform shrink-0" />
+            <span>微博</span>
+          </a>
+
+          {/* X (Twitter) */}
+          <a
+            id="nav-x-link"
+            href="https://x.com/nangongyuan/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs lg:text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-sky-500 dark:hover:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 rounded-xl transition-all cursor-pointer group"
+            title="关注南宫远 X / Twitter (https://x.com/nangongyuan/)"
+          >
+            <Twitter className="w-4 h-4 text-sky-500 shrink-0 group-hover:scale-110 transition-transform" />
+            <span>X</span>
+          </a>
 
           {/* 浅色/深色模式切换 */}
           <button
