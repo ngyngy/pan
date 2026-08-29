@@ -106,9 +106,9 @@ export function classifySchoolResource(item: ResourceItem): {
 
   // 科目匹配
   const hasChinese = /语文|作文|古诗|文言文|文学|文坛|阅读|满分作文|古文观止|黄保余|宋北平|现代文|议论文|诗词/.test(text);
-  const hasMath = /数学|奥数|速算|计算高手|几何|函数|导数|圆锥曲线|名校学典|题库.*数学|解题大招|压轴题.*数学/.test(text);
+  const hasMath = /数学|奥数|速算|计算高手|几何|函数|导数|圆锥曲线|名校学典|题库.*数学|解题大招|压轴题.*数学|最值|考点专题|鹰击长空/.test(text);
   const hasEnglish = /英语|自然拼读|新概念|剑桥|pep|外研|词汇|完形|听力|语法|长难句|unlock|3500/.test(text);
-  const isK12AllInOne = /小学初中高中|语数英|小初高|全科|九科|全科目|冲刺营|通学包|名校课堂|会考|一模二模|必刷题 全年级|初中资源总库|学霸资料/.test(text);
+  const isK12AllInOne = /小学初中高中|语数英|小初高|全科|九科|全科目|冲刺营|通学包|名校课堂|会考|一模二模|必刷题 全年级|初中资源总库|学霸资料|中考真题|高考真题|历年真题|试卷合集/.test(text);
 
   if (hasChinese) subjects.push('chinese');
   if (hasMath) subjects.push('math');

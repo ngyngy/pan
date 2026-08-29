@@ -58,6 +58,9 @@ const DRIVE_OPTIONS: { id: DriveType; label: string; color: string }[] = [
 ];
 
 const SUGGESTED_SEARCHES = [
+  '景甜',
+  '中考真题',
+  '中考数学',
   '学而思',
   '中小学辅导',
   '高考真题',
