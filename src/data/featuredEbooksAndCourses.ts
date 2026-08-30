@@ -6,8 +6,36 @@ import { ResourceItem } from '../types';
  */
 export const FEATURED_EBOOKS_AND_COURSES: ResourceItem[] = [
   // ==========================================
-  // 今日最新入库：景甜超清写真视频合集 & 2026中考数学专题与真题
+  // 今日最新入库：只狼影逝二度 & 景甜写真视频 & 2026中考数学专题与真题
   // ==========================================
+  {
+    id: 'game-sekiro-shadows-die-twice-pc',
+    title: '《只狼：影逝二度》(Sekiro: Shadows Die Twice) 年度版 绿色免安装中文完整版 (集成全更新补丁/年度附加内容/动作RPG神作)',
+    mainCategoryId: 'games',
+    subCategoryId: 'pc_games',
+    subCategoryName: '各类游戏安装包 / 完整版+DLC',
+    subsiteId: 'uc',
+    subsiteName: '游戏资源与精品软件专区',
+    subsiteUrl: 'http://uc.wangpan8.com',
+    category: 'uc_nav',
+    categoryName: 'PC单机游戏 / 动作冒险',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/a36a59020d69',
+    size: '16.5 GB',
+    sizeBytes: 17716740096,
+    quality: '年度版免安装绿色解压即玩 / 官方简繁中文 / 集成最新版本与DLC修复',
+    publishDate: '2026-08-30 01:25',
+    relativeTime: '刚刚',
+    isFeatured: true,
+    isLatest: true,
+    isCollection: false,
+    views: 26800,
+    downloads: 14700,
+    tags: ['只狼', '只狼影逝二度', 'Sekiro', 'FromSoftware', '动作RPG', '宫崎英高', 'PC单机', '夸克网盘', '今日最新'],
+    description:
+      '《只狼：影逝二度》(Sekiro: Shadows Die Twice) 年度版绿色免安装中文完整版。FromSoftware动作RPG巅峰巨作，TGA年度最佳游戏。解压即玩，完美支持手柄操作与画质增强补丁。\n\n夸克网盘链接：https://pan.quark.cn/s/a36a59020d69\n\n更多资源访问：www.wangpan8.com 网盘吧'
+  },
   {
     id: 'jingtian-photo-video-complete-collection',
     title: '全网热议·景甜超清写真照片与精选视频全集打包 (全网都在发景甜，超清照片/生图/红毯现场/视频下载)',
