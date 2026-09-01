@@ -4,12 +4,18 @@ import { YIDONG_AUGUST_RESOURCES } from './yidongAugustResources';
 import { FEATURED_EBOOKS_AND_COURSES } from './featuredEbooksAndCourses';
 import { SEPTEMBER_LEARNING_RESOURCES } from './septemberLearningResources';
 import { THOUGHT_EBOOKS_MASTERPIECE } from './thoughtEbooksMasterpiece';
+import { INDIE_GAMES_MASTERPIECE } from './indieGamesMasterpiece';
 
 /**
  * ngy123网盘资源聚合 - 官方真实资源库
  * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航、移动云盘与经典电子书合集全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // 高口碑精品独立游戏专区 (容量 < 5GB，获奖神作大合集)
+  // ==========================================
+  ...INDIE_GAMES_MASTERPIECE,
+
   // ==========================================
   // 经典社科与认知思辨必读名著书单（15部重磅大作）
   // ==========================================

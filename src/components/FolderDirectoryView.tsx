@@ -58,6 +58,16 @@ const DRIVE_OPTIONS: { id: DriveType; label: string; color: string }[] = [
 ];
 
 const SUGGESTED_SEARCHES = [
+  '空洞骑士',
+  '哈迪斯',
+  '星露谷物语',
+  '小丑牌',
+  '杀戮尖塔',
+  '极乐迪斯科',
+  '动物井',
+  '蔚蓝',
+  '茶杯头',
+  '泰拉瑞亚',
   '置身事内',
   '枪炮病菌与钢铁',
   '叫魂',

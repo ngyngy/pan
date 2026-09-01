@@ -238,8 +238,8 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
     id: 'games',
     num: '05',
     name: '游戏资源',
-    titleName: 'PC单机大作 / 完整版+DLC / 模拟器 / 补丁',
-    shortDesc: '3A单机游戏安装包、DLC全整合、联机补丁、修改器与怀旧模拟器',
+    titleName: 'PC单机大作 / 完整版+DLC / 模拟器 / 补丁 / 小容量高分神作',
+    shortDesc: '3A单机游戏安装包、DLC全整合、联机补丁、修改器与5G以下小容量高分神作',
     badge: '畅快畅玩',
     colorClass: 'emerald',
     textColorClass: 'text-emerald-700 dark:text-emerald-400',
@@ -266,6 +266,13 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
         code: '05-3',
         description: '几百款iOS精选游戏大合集、IPA脱壳直装包、Steam爆款移植与手机单机神作',
         tags: ['几百款iOS游戏', 'iOS游戏合集', 'IPA安装包', '手机单机', '独立神作', '像素肉鸽', '夸克网盘']
+      },
+      {
+        id: 'small_indie_masterpieces',
+        name: '小容量高分神作',
+        code: '05-4',
+        description: '容量5G以下、近10-20年高口碑获奖独立游戏神作专区（空洞骑士、哈迪斯、星露谷物语、小丑牌、杀戮尖塔、极乐迪斯科、动物井等16款独立神作）',
+        tags: ['小容量高分神作', '5G以下', '空洞骑士', '哈迪斯', '星露谷物语', '小丑牌', '杀戮尖塔', '极乐迪斯科', '动物井', '独立神作', '夸克网盘']
       }
     ]
   },
