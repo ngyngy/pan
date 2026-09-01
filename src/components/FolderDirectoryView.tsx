@@ -58,8 +58,14 @@ const DRIVE_OPTIONS: { id: DriveType; label: string; color: string }[] = [
 ];
 
 const SUGGESTED_SEARCHES = [
+  '置身事内',
+  '枪炮病菌与钢铁',
+  '叫魂',
+  '思考快与慢',
+  '失控',
+  '自私的基因',
+  '超越百岁',
   '孙宇晨：财富自由革命之路',
-  '孙宇晨',
   '9月学习资源',
   '被讨厌的勇气',
   '初中必刷题',
