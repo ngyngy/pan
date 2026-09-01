@@ -6,6 +6,37 @@ import { ResourceItem } from '../types';
  */
 export const FEATURED_EBOOKS_AND_COURSES: ResourceItem[] = [
   // ==========================================
+  // 今日重磅特辑：孙宇晨：财富自由革命之路
+  // ==========================================
+  {
+    id: 'audio-course-sun-yuchen-wealth-freedom-revolution',
+    title: '「孙宇晨：财富自由革命之路」全集高清音频大课 (认知突围/商业思维/财富杠杆与个人跃迁完整音频+讲义)',
+    mainCategoryId: 'books',
+    subCategoryId: 'audiobooks',
+    subCategoryName: '有声书 / 知识大课',
+    subsiteId: 'xuexi',
+    subsiteName: '商业认知与思维成长',
+    subsiteUrl: 'http://xuexi.wangpan8.com',
+    category: 'xuexi',
+    categoryName: '商业思维 / 财富认知音频大课',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/bb64bdef1d99',
+    size: '1.4 GB',
+    sizeBytes: 1503238553,
+    quality: '高品质无损MP3全集音频 + 配套文字精华讲义PDF',
+    publishDate: '2026-08-31 06:15',
+    relativeTime: '刚刚',
+    isFeatured: true,
+    isLatest: true,
+    isCollection: false,
+    views: 48900,
+    downloads: 31200,
+    tags: ['孙宇晨', '财富自由革命之路', '财富自由', '商业思维', '认知突围', '创业与投资', '有声大课', '夸克网盘', '今日重磅'],
+    description:
+      '「孙宇晨：财富自由革命之路」独家音频完整大课。\n深度解析个人认知破局、商业杠杆、注意力经济、财富增长底层逻辑与打破阶层固化的实战思考。\n\n资源格式：完整无损MP3音频 + 精编讲义笔记。\n夸克网盘永久分享链接：https://pan.quark.cn/s/bb64bdef1d99\n\n更多热门精选资源访问：www.wangpan8.com 网盘吧'
+  },
+  // ==========================================
   // 今日最新入库：被讨厌的勇气 & 只狼影逝二度 & 景甜写真视频 & 2026中考数学
   // ==========================================
   {

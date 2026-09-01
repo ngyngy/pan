@@ -58,6 +58,8 @@ const DRIVE_OPTIONS: { id: DriveType; label: string; color: string }[] = [
 ];
 
 const SUGGESTED_SEARCHES = [
+  '孙宇晨：财富自由革命之路',
+  '孙宇晨',
   '9月学习资源',
   '被讨厌的勇气',
   '初中必刷题',
