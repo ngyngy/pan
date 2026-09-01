@@ -6,8 +6,36 @@ import { ResourceItem } from '../types';
  */
 export const FEATURED_EBOOKS_AND_COURSES: ResourceItem[] = [
   // ==========================================
-  // 今日最新入库：只狼影逝二度 & 景甜写真视频 & 2026中考数学专题与真题
+  // 今日最新入库：被讨厌的勇气 & 只狼影逝二度 & 景甜写真视频 & 2026中考数学
   // ==========================================
+  {
+    id: 'ebook-courage-to-be-disliked-kishimi-koga',
+    title: '《被讨厌的勇气》“自我启发之父”阿德勒的哲学课 (岸见一郎 / 古贺史健 著 · 完整高清中文版/精排EPUB+PDF+思维导图+精读音频)',
+    mainCategoryId: 'books',
+    subCategoryId: 'ebooks',
+    subCategoryName: '经典电子书 / 社科名著',
+    subsiteId: 'xuexi',
+    subsiteName: '经典电子书与成长书库',
+    subsiteUrl: 'http://xuexi.wangpan8.com',
+    category: 'xuexi',
+    categoryName: '社科心理 / 哲学经典电子书',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/3f7316287bd9',
+    size: '850 MB',
+    sizeBytes: 891289600,
+    quality: '高清精排EPUB + 无水印PDF + 深度拆书精读音频 + 全书逻辑思维导图',
+    publishDate: '2026-08-31 05:35',
+    relativeTime: '刚刚',
+    isFeatured: true,
+    isLatest: true,
+    isCollection: false,
+    views: 35800,
+    downloads: 21600,
+    tags: ['被讨厌的勇气', '阿德勒', '岸见一郎', '古贺史健', '心理学', '自我启发', '哲学思维', '经典电子书', '夸克网盘', '今日最新'],
+    description:
+      '《被讨厌的勇气》——“自我启发之父”阿德勒的哲学课（[日] 岸见一郎、古贺史健 著）。现象级心理学与自我成长神作，用青年与哲人的对话形式，直面人际关系的烦恼、课题分离、自由与获得幸福的勇气。\n\n资源包含：全本高清精排EPUB/PDF、全书精读音频与知识框架思维导图。\n夸克网盘链接：https://pan.quark.cn/s/3f7316287bd9\n\n更多优质资源访问：www.wangpan8.com 网盘吧'
+  },
   {
     id: 'game-sekiro-shadows-die-twice-pc',
     title: '《只狼：影逝二度》(Sekiro: Shadows Die Twice) 年度版 绿色免安装中文完整版 (集成全更新补丁/年度附加内容/动作RPG神作)',

@@ -2,12 +2,18 @@ import { ResourceItem } from '../types';
 import { YIDONG_EXCLUSIVE_RESOURCES } from './yidongResources';
 import { YIDONG_AUGUST_RESOURCES } from './yidongAugustResources';
 import { FEATURED_EBOOKS_AND_COURSES } from './featuredEbooksAndCourses';
+import { SEPTEMBER_LEARNING_RESOURCES } from './septemberLearningResources';
 
 /**
  * ngy123网盘资源聚合 - 官方真实资源库
  * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航、移动云盘与经典电子书合集全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // 夸克网盘 · 9月学习资源权威合集 (小学10套 + 初中35套 + 高中12套 + 专项2套)
+  // ==========================================
+  ...SEPTEMBER_LEARNING_RESOURCES,
+
   // ==========================================
   // 00. 经典电子书 & 认知思维 & 剑桥教材精选（最新入库）
   // ==========================================

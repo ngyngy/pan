@@ -105,10 +105,10 @@ export function classifySchoolResource(item: ResourceItem): {
   const stages: ('primary' | 'junior' | 'senior')[] = [];
 
   // 科目匹配
-  const hasChinese = /语文|作文|古诗|文言文|文学|文坛|阅读|满分作文|古文观止|黄保余|宋北平|现代文|议论文|诗词/.test(text);
-  const hasMath = /数学|奥数|速算|计算高手|几何|函数|导数|圆锥曲线|名校学典|题库.*数学|解题大招|压轴题.*数学|最值|考点专题|鹰击长空/.test(text);
-  const hasEnglish = /英语|自然拼读|新概念|剑桥|pep|外研|词汇|完形|听力|语法|长难句|unlock|3500/.test(text);
-  const isK12AllInOne = /小学初中高中|语数英|小初高|全科|九科|全科目|冲刺营|通学包|名校课堂|会考|一模二模|必刷题 全年级|初中资源总库|学霸资料|中考真题|高考真题|历年真题|试卷合集/.test(text);
+  const hasChinese = /语文|作文|古诗|唐诗|默写|文言文|文学|文坛|阅读|满分作文|古文观止|黄保余|宋北平|现代文|议论文|诗词|生字/i.test(text);
+  const hasMath = /数学|奥数|速算|计算高手|计算达人|几何|函数|导数|圆锥曲线|名校学典|题库.*数学|解题大招|压轴题.*数学|最值|考点专题|鹰击长空|隐藏的公式|公式/i.test(text);
+  const hasEnglish = /英语|自然拼读|新概念|剑桥|pep|外研|词汇|完形|听力|语法|长难句|unlock|3500|listen up/i.test(text);
+  const isK12AllInOne = /小学初中高中|语数英|小初高|全科|九科|全科目|冲刺营|通学包|名校课堂|会考|一模二模|必刷题 全年级|初中资源总库|学霸资料|中考真题|高考真题|历年真题|试卷合集|物理|化学|生物|历史|地理|道法|政治|方程式|理综|文综/i.test(text);
 
   if (hasChinese) subjects.push('chinese');
   if (hasMath) subjects.push('math');
@@ -118,9 +118,9 @@ export function classifySchoolResource(item: ResourceItem): {
   }
 
   // 学段匹配
-  const hasPrimary = /小学|1-6年级|六年级|一至六年级|小升初|少儿|幼小/.test(text);
-  const hasJunior = /初中|中考|7-9年级|初一|初二|初三|七年级|八年级|九年级|8年级|53系列|万唯/.test(text);
-  const hasSenior = /高中|高考|高一|高二|高三|10-12年级|高分作文模板|文言文120|导数|圆锥曲线|3500/.test(text);
+  const hasPrimary = /小学|1-6年级|六年级|一至六年级|小升初|少儿|幼小|小低|2-6上|1-6上|学霸作业本/i.test(text);
+  const hasJunior = /初中|中考|7-9年级|初一|初二|初三|七年级|八年级|九年级|8年级|53系列|万唯|7上|8上|9上|七上|八上|九上|78年级|789年级/i.test(text);
+  const hasSenior = /高中|高考|高一|高二|高三|10-12年级|高分作文模板|文言文120|导数|圆锥曲线|3500|选必|必修/i.test(text);
 
   if (hasPrimary) stages.push('primary');
   if (hasJunior) stages.push('junior');

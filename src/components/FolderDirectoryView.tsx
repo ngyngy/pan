@@ -58,6 +58,12 @@ const DRIVE_OPTIONS: { id: DriveType; label: string; color: string }[] = [
 ];
 
 const SUGGESTED_SEARCHES = [
+  '9月学习资源',
+  '被讨厌的勇气',
+  '初中必刷题',
+  '马哥几何',
+  '高考英语',
+  '上好课',
   '只狼',
   '景甜',
   '中考真题',
