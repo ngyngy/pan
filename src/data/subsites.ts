@@ -41,6 +41,19 @@ export const SUB_SITES: SubSiteInfo[] = [
     highlightTags: ['三体有声剧', '球状闪电', '流浪地球广播剧', '丧尸来袭五个兽夫', '全城皆是我裙下臣', '凡人修仙传4K']
   },
   {
+    id: 'youxi',
+    name: '游戏资源下载',
+    subdomain: 'youxi.ngy123.com',
+    url: 'http://youxi.ngy123.com',
+    category: 'youxi',
+    description: '收录Steam近10-20年高口碑独立神作、PC单机大作、中文免安装绿色版及全DLC整合包。',
+    badge: '单机/独立',
+    iconName: 'Gamepad2',
+    color: 'purple',
+    totalResources: 69,
+    highlightTags: ['奥日全集', '死亡细胞', '潜水员戴夫', '以撒的结合', '饥荒联机', '逆转裁判']
+  },
+  {
     id: 'gxs',
     name: '高晓松资源下载',
     subdomain: 'gxs.ngy123.com',

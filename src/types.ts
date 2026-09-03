@@ -1,6 +1,6 @@
 export type DriveType = 'all' | 'quark' | 'baidu' | 'uc' | 'aliyun' | 'xunlei' | 'yidong' | 'magnet' | '115';
 
-export type SubSiteCategory = 'all' | 'tianya' | 'xuexi' | 'dy' | 'gxs' | 'btczy' | 'uc_nav' | 'yidong';
+export type SubSiteCategory = 'all' | 'tianya' | 'xuexi' | 'dy' | 'gxs' | 'btczy' | 'uc_nav' | 'yidong' | 'youxi';
 
 // 10 Core Main Folder Categories (including 00 特别福利, 09 移动云盘专区)
 export type MainFolderCategoryKey = 'welfare' | 'video' | 'education' | 'software' | 'books' | 'games' | 'music' | 'crypto' | 'wallpaper' | 'yidong';
@@ -50,7 +50,7 @@ export interface ResourceItem {
   subCategoryId?: string;
   subCategoryName?: string;
   
-  subsiteId: 'tianya' | 'xuexi' | 'dy' | 'gxs' | 'btczy' | 'uc' | 'yidong';
+  subsiteId: 'tianya' | 'xuexi' | 'dy' | 'gxs' | 'btczy' | 'uc' | 'yidong' | 'youxi';
   subsiteName: string;
   subsiteUrl: string;
   category: SubSiteCategory;

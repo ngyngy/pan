@@ -98,6 +98,7 @@ export const RequestResourceModal: React.FC<RequestResourceModalProps> = ({
                 className="w-full px-3 py-2 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none"
               >
                 <option value="影视资源">影视资源 (dy)</option>
+                <option value="游戏资源">游戏资源下载 (youxi)</option>
                 <option value="天涯神贴">天涯神贴 (tianya)</option>
                 <option value="中小学学习资料">中小学学习资料 (xuexi)</option>
                 <option value="高晓松专区">高晓松专区 (gxs)</option>

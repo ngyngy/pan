@@ -18,13 +18,13 @@ export const SubsitesBar: React.FC<SubsitesBarProps> = ({
           </div>
           <span className="text-sm font-extrabold tracking-tight">官方聚合分站矩阵</span>
           <span className="text-[11px] font-normal text-slate-400 dark:text-slate-500 hidden sm:inline">
-            （7大垂直分站 · 点击任意卡片直接在新窗口打开对应分站）
+            （8大垂直分站 · 点击任意卡片直接在新窗口打开对应分站）
           </span>
         </div>
       </div>
 
-      {/* Grid Layout: Responsive columns for 7 sub-sites */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 sm:gap-3">
+      {/* Grid Layout: Responsive columns for 8 sub-sites */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
         {SUB_SITES.map((site) => {
           const count = resourceCounts[site.id] || site.totalResources;
 

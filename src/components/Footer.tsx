@@ -69,6 +69,11 @@ const FRIENDLY_LINKS: FriendlyLink[] = [
     desc: '4K超清院线影视与爆款短剧'
   },
   {
+    name: '游戏资源下载',
+    url: 'http://youxi.ngy123.com/',
+    desc: 'PC单机大作与高口碑独立神作'
+  },
+  {
     name: 'AI导航',
     url: 'http://ai.ngy123.com/',
     desc: '前沿人工智能工具与大模型'

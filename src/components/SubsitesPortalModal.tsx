@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ExternalLink, Globe, CheckCircle2, Sparkles, BookOpen, GraduationCap, Film, Mic2, Coins, Compass, Smartphone } from 'lucide-react';
+import { X, ExternalLink, Globe, CheckCircle2, Sparkles, BookOpen, GraduationCap, Film, Mic2, Coins, Compass, Smartphone, Gamepad2 } from 'lucide-react';
 import { SUB_SITES } from '../data/subsites';
 
 interface SubsitesPortalModalProps {
@@ -23,6 +23,8 @@ export const SubsitesPortalModal: React.FC<SubsitesPortalModalProps> = ({
         return <GraduationCap className="w-5 h-5 text-emerald-500" />;
       case 'dy':
         return <Film className="w-5 h-5 text-rose-500" />;
+      case 'youxi':
+        return <Gamepad2 className="w-5 h-5 text-purple-500" />;
       case 'gxs':
         return <Mic2 className="w-5 h-5 text-indigo-500" />;
       case 'btczy':

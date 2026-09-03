@@ -150,6 +150,9 @@ export default function App() {
     } else if (sub === 'yidong') {
       targetMain = 'yidong';
       targetSub = 'yidong_bundle';
+    } else if (sub === 'youxi') {
+      targetMain = 'games';
+      targetSub = null;
     } else {
       targetMain = null;
       targetSub = null;
