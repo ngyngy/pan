@@ -5,12 +5,62 @@ import { FEATURED_EBOOKS_AND_COURSES } from './featuredEbooksAndCourses';
 import { SEPTEMBER_LEARNING_RESOURCES } from './septemberLearningResources';
 import { THOUGHT_EBOOKS_MASTERPIECE } from './thoughtEbooksMasterpiece';
 import { INDIE_GAMES_MASTERPIECE } from './indieGamesMasterpiece';
+import { POPULAR_GAMES_RESOURCES } from './popularGamesResources';
+import { MUSIC_MASTERPIECE_RESOURCES } from './musicMasterpieceResources';
 
 /**
  * ngy123网盘资源聚合 - 官方真实资源库
  * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航、移动云盘与经典电子书合集全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // 听书资源重磅精选 (茅山后裔全集有声小说)
+  // ==========================================
+  {
+    id: 'res-audiobook-maoshan-houyi-baidu',
+    title: '【听书资源】《茅山后裔》全集有声小说典藏版（大力金刚掌经典道术悬疑名作）',
+    mainCategoryId: 'books',
+    subCategoryId: 'audiobooks',
+    subCategoryName: '有声书 / 广播剧 / 经典演播',
+    subsiteId: 'tianya',
+    subsiteName: '天涯神贴与文学典籍',
+    subsiteUrl: 'http://tianya.ngy123.com',
+    category: 'tianya',
+    categoryName: '悬疑灵异有声书 / 道术秘闻',
+    driveType: 'baidu',
+    driveName: '百度网盘',
+    driveUrl: 'https://pan.baidu.com/s/1oF_DU0nmpNSSiIHI85LJFw?pwd=5bh2',
+    extractCode: '5bh2',
+    size: '2.45 GB',
+    sizeBytes: 2630667468,
+    quality: '高品质全集音频 / 经典悬疑播讲 / 完整分轨',
+    publishDate: '2026-09-02 19:40',
+    relativeTime: '刚刚',
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    views: 32800,
+    downloads: 18900,
+    tags: ['茅山后裔', '听书资源', '有声小说', '大力金刚掌', '道术秘闻', '悬疑灵异', '盗墓探险', '百度网盘', '今日最新'],
+    description: `通过网盘分享的文件：茅山后裔
+
+中国灵异探险道术小说鼻祖级巅峰神作《茅山后裔》（大力金刚掌 著）全集有声书！讲述张国忠、张毅城父子运用茅山正宗道术，破解千古悬案、探寻古墓秘辛的传奇故事。剧情严谨考究、悬念迭起，道法阵法精妙入扣，听书党必听镇盘经典。
+
+链接: https://pan.baidu.com/s/1oF_DU0nmpNSSiIHI85LJFw?pwd=5bh2 提取码: 5bh2
+
+更多资源访问：www.wangpan8.com 网盘吧`
+  },
+
+  // ==========================================
+  // 音乐板块精选合集 (周杰伦全集/黑胶WAV/张惠妹/MJ/FuoEvolve/1264首华语无损)
+  // ==========================================
+  ...MUSIC_MASTERPIECE_RESOURCES,
+
+  // ==========================================
+  // 高口碑精品独立游戏与PC大作合集 (奥日/死亡细胞/以撒/潜水员戴夫/饥荒/传送门/逆转裁判等43款神作)
+  // ==========================================
+  ...POPULAR_GAMES_RESOURCES,
+
   // ==========================================
   // 高口碑精品独立游戏专区 (容量 < 5GB，获奖神作大合集)
   // ==========================================

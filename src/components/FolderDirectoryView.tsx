@@ -229,11 +229,15 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
           matchedSub = 'variety_doc';
         } else if (r.subsiteId === 'tianya' || r.subsiteId === 'btczy') {
           matchedMain = 'books';
-          if (r.tags.some(t => /金庸|古龙|聊斋|武侠/.test(t))) matchedSub = 'novels';
+          if (r.tags.some(t => /有声|听书|广播剧/.test(t))) matchedSub = 'audiobooks';
+          else if (r.tags.some(t => /金庸|古龙|聊斋|武侠/.test(t))) matchedSub = 'novels';
           else matchedSub = 'ebooks';
-        } else if (r.tags.some(t => /音乐|无损|CD|歌曲/.test(t))) {
+        } else if (r.tags.some(t => /音乐|无损|CD|歌曲|FuoEvolve|播放器/.test(t))) {
           matchedMain = 'music';
-          matchedSub = 'lossless';
+          if (r.tags.some(t => /工具|播放器|搜歌|FuoEvolve/.test(t))) matchedSub = 'music_tools';
+          else if (r.tags.some(t => /专辑|周杰伦|张惠妹|歌手|全集/.test(t))) matchedSub = 'albums';
+          else if (r.tags.some(t => /演唱会|Live/.test(t))) matchedSub = 'concert';
+          else matchedSub = 'lossless';
         } else if (r.subsiteId === 'btczy' || r.tags.some(t => /比特币|区块链|中本聪|ahr999|九神|币安|Bitcoin|Broken Money|精通比特币/i.test(t))) {
           matchedMain = 'crypto';
           if (r.tags.some(t => /工具|脚本|量化|助手|下载库/.test(t))) matchedSub = 'btc_tools';
@@ -241,7 +245,8 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
           else matchedSub = 'btc_books';
         } else {
           matchedMain = 'books';
-          matchedSub = 'ebooks';
+          if (r.tags.some(t => /有声|听书|广播剧/.test(t))) matchedSub = 'audiobooks';
+          else matchedSub = 'ebooks';
         }
       }
 
