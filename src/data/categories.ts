@@ -68,8 +68,8 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
         id: 'short_drama',
         name: '短剧',
         code: '01-5',
-        description: '热门爆款短剧全集、AI前沿短剧、逆袭爽文微短剧每日实时连载',
-        tags: ['爆款短剧', 'AI短剧', '爽文短剧', '全集完结']
+        description: '热门爆款短剧全集、J-检察官的提案、AI前沿短剧、逆袭爽文微短剧每日实时连载',
+        tags: ['爆款短剧', '检察官的提案', 'AI短剧', '爽文短剧', '全集完结']
       },
       {
         id: 'variety_doc',
@@ -369,8 +369,8 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
         id: 'wallpapers',
         name: '高清壁纸大全 / 静态图库',
         code: '08-1',
-        description: '美女壁纸大全10万张合集、壁纸资源大合集、4K/8K电脑手机超清壁纸',
-        tags: ['美女壁纸大全', '10万张壁纸', '壁纸资源合集', '4K壁纸', '夸克网盘']
+        description: '美女壁纸大全10万张合集、宋雨琦22P高清明星写真美图、壁纸资源大合集、4K/8K电脑手机超清壁纸',
+        tags: ['美女壁纸大全', '宋雨琦', '明星写真', '10万张壁纸', '壁纸资源合集', '4K壁纸', '夸克网盘']
       },
       {
         id: 'live_wallpapers',
