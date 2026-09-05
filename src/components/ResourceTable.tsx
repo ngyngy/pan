@@ -152,6 +152,14 @@ export const ResourceTable: React.FC<ResourceTableProps> = ({
                           码: {item.extractCode}
                         </span>
                       )}
+
+                      {/* Has recommendation post badge */}
+                      {item.recommendation && (
+                        <span className="inline-flex items-center gap-0.5 text-rose-600 dark:text-rose-400 font-medium text-[11px] bg-rose-50 dark:bg-rose-950/40 px-1.5 py-0.5 rounded border border-rose-200/60 dark:border-rose-900/50">
+                          <Sparkles className="w-3 h-3" />
+                          含发布文案
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>

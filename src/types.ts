@@ -73,9 +73,10 @@ export interface ResourceItem {
   pinOrder?: number;
   isWelfare?: boolean;
   views: number;
-  downloads: number;
+  downloads?: number;
   tags: string[];
   description?: string;
+  recommendation?: string;
   fileList?: string[];
 }
 

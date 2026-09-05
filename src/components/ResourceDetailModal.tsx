@@ -36,6 +36,7 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
   const [copiedDownloadLink, setCopiedDownloadLink] = useState(false);
   const [copiedPanDownloadLink, setCopiedPanDownloadLink] = useState(false);
   const [copiedOfficialGameLink, setCopiedOfficialGameLink] = useState(false);
+  const [copiedRecommendation, setCopiedRecommendation] = useState(false);
   const [copiedAll, setCopiedAll] = useState(false);
 
   if (!resource) return null;
@@ -70,8 +71,18 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
     }
   };
 
+  const handleCopyRecommendation = () => {
+    if (resource.recommendation) {
+      navigator.clipboard.writeText(resource.recommendation);
+      setCopiedRecommendation(true);
+      setTimeout(() => setCopiedRecommendation(false), 2000);
+    }
+  };
+
   const handleCopyFullShare = () => {
-    if (resource.id === 'game-mobile-zero-one-discount-platform' || resource.title.includes('0.1折')) {
+    if (resource.recommendation) {
+      navigator.clipboard.writeText(resource.recommendation);
+    } else if (resource.id === 'game-mobile-zero-one-discount-platform' || resource.title.includes('0.1折')) {
       const discountText = `【特别福利】0.1折手游平台 (热门手游千款0.1折充值 / 官方BT福利变态版)\n【夸克网盘下载】：https://pan.quark.cn/s/4979ed20ffd0\n【夸克口令】：/~90ea3aMBnt~:/\n【官网直达下载】：https://www.3387.com/cps/app/6a85087b2beb0.html\n【福利说明】：聚合千款热门仙侠、卡牌、传奇、策略及二次元手游，充值全场永久0.1折（648元仅需6.48元），上线送满级VIP特权与无限元宝礼包，安卓手机一键极速安装畅玩！`;
       navigator.clipboard.writeText(discountText);
     } else if (isWelfareItem) {
@@ -369,8 +380,32 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
                 </div>
               )}
 
+              {/* Official Recommendation Text If Available */}
+              {resource.recommendation && (
+                <div className="p-4 rounded-xl bg-gradient-to-br from-amber-500/10 via-rose-500/5 to-transparent dark:from-amber-500/15 dark:via-rose-500/10 border border-amber-300/80 dark:border-amber-700/60 shadow-xs">
+                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-base">📢</span>
+                      <span className="font-bold text-xs sm:text-sm text-amber-900 dark:text-amber-200">
+                        官方精选推荐文案 (可直接发布 / 社群 / 朋友圈)
+                      </span>
+                    </div>
+                    <button
+                      onClick={handleCopyRecommendation}
+                      className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 active:scale-95 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
+                    >
+                      {copiedRecommendation ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                      <span>{copiedRecommendation ? '已复制文案' : '一键复制推荐文案'}</span>
+                    </button>
+                  </div>
+                  <div className="p-3.5 rounded-lg bg-white/95 dark:bg-neutral-900/90 border border-amber-200/70 dark:border-amber-900/50 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 whitespace-pre-line leading-relaxed font-sans select-all max-h-60 overflow-y-auto">
+                    {resource.recommendation}
+                  </div>
+                </div>
+              )}
+
               {/* Description */}
-              {resource.description && (
+              {resource.description && !resource.recommendation && (
                 <div>
                   <h4 className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-1.5">
                     资源简述
@@ -431,7 +466,12 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
               className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors cursor-pointer shadow-2xs"
             >
               {copiedAll ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Share2 className="w-3.5 h-3.5" />}
-              <span>{copiedAll ? '已复制全部攻略' : (isWelfareItem ? '一键复制福利说明' : '复制整套信息')}</span>
+              <span>
+                {copiedAll 
+                  ? (resource.recommendation ? '已复制推荐文案' : '已复制全部攻略') 
+                  : (resource.recommendation ? '复制发布推荐文案' : (isWelfareItem ? '一键复制福利说明' : '复制整套信息'))
+                }
+              </span>
             </button>
 
             {!isWelfareItem && (

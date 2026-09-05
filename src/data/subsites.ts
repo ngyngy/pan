@@ -98,11 +98,11 @@ export const SUB_SITES: SubSiteInfo[] = [
     subdomain: '139.ngy123.com',
     url: 'http://139.ngy123.com',
     category: 'yidong',
-    description: '中国移动云盘（和彩云）海量不限速免流资源专区，涵盖蓝光4K原盘大片、无损车载音乐、公考考研课件与大型绿色实用软件。',
-    badge: '移动不限速',
+    description: '中国移动云盘（和彩云）免流不限速优质资源专区，涵盖免费4T空间领取、全套资源打包、海量精品有声书与备考实用资料。',
+    badge: '免流不限速',
     iconName: 'Smartphone',
     color: 'teal',
-    totalResources: 24,
-    highlightTags: ['移动云盘免流', '4K蓝光原盘', '无损车载音乐', '公考考研合集', '不限速下载', '装机必备']
+    totalResources: 36,
+    highlightTags: ['移动云盘免流', '4T空间直领', '百部有声小说', '不限速下载', '资源大打包', '备考学习']
   }
 ];

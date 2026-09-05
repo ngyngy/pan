@@ -1,6 +1,6 @@
 import { ResourceItem } from '../types';
+import { FEATURED_QUARK_UPDATES } from './featuredQuarkUpdates';
 import { YIDONG_EXCLUSIVE_RESOURCES } from './yidongResources';
-import { YIDONG_AUGUST_RESOURCES } from './yidongAugustResources';
 import { FEATURED_EBOOKS_AND_COURSES } from './featuredEbooksAndCourses';
 import { SEPTEMBER_LEARNING_RESOURCES } from './septemberLearningResources';
 import { THOUGHT_EBOOKS_MASTERPIECE } from './thoughtEbooksMasterpiece';
@@ -13,6 +13,11 @@ import { MUSIC_MASTERPIECE_RESOURCES } from './musicMasterpieceResources';
  * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航、移动云盘与经典电子书合集全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // 今日重磅发布 · 优质推荐文案合集（求救信号2026 / 东野圭吾105本 / 少儿英语启蒙）
+  // ==========================================
+  ...FEATURED_QUARK_UPDATES,
+
   // ==========================================
   // 听书资源重磅精选 (茅山后裔全集有声小说)
   // ==========================================
@@ -82,10 +87,9 @@ export const INITIAL_RESOURCES: ResourceItem[] = [
   ...FEATURED_EBOOKS_AND_COURSES,
 
   // ==========================================
-  // 09. 移动云盘资源专区 (置顶打包 & 4T空间福利 & 热门有声书 & 动漫原盘)
+  // 09. 移动云盘资源专区 (置顶打包 & 4T空间福利 & 热门有声书 & 备考工具)
   // ==========================================
   ...YIDONG_EXCLUSIVE_RESOURCES,
-  ...YIDONG_AUGUST_RESOURCES,
 
   // ==========================================
   // 00. 特别福利专区（默认置顶·限时领取）

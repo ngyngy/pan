@@ -399,8 +399,8 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
     id: 'yidong',
     num: '09',
     name: '移动云盘资源',
-    titleName: '139 移动云盘 / 免流不限速 / 全部资源打包 / 免费4T空间 / 百部热门有声书 / 动漫影视',
-    shortDesc: '全部资源一键打包（提取码4ura）、免费领4T空间（提取码z3rv）、110+部精品有声书与4K动漫影视',
+    titleName: '139 移动云盘 / 免流不限速 / 全部资源打包 / 免费4T空间 / 百部热门有声书 / 备考学习工具',
+    shortDesc: '全部资源一键打包、免费领4T空间、百部精品有声书与备考实用资料',
     badge: '免流不限速',
     colorClass: 'teal',
     textColorClass: 'text-teal-700 dark:text-teal-400',
@@ -411,7 +411,7 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
         id: 'yidong_bundle',
         name: '全部资源打包 & 4T空间福利',
         code: '09-1',
-        description: '移动云盘全部资源一键打包链接（提取码:4ura）、免费领取4T空间福利（提取码:z3rv）、139官网直达',
+        description: '移动云盘全部资源一键打包链接、免费领取4T空间福利、139官网直达',
         tags: ['全部资源打包', '4T空间福利', '4ura', 'z3rv', '139.wangpan8.com', '移动云盘']
       },
       {
@@ -422,16 +422,9 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
         tags: ['师兄啊师兄', '苟在妖界加点修行', '苟在武道世界成圣', '鸣龙', '斩神2', '横刀夺爱', '宋时行', '有声小说']
       },
       {
-        id: 'yidong_anime_video',
-        name: '经典动漫 / 影视动画原盘',
-        code: '09-3',
-        description: '诛仙、仙逆、凡人修仙传、遮天、时光代理人、斗罗大陆Ⅱ、吞噬星空、茶啊二中、6月日漫60部等精品动画',
-        tags: ['诛仙', '仙逆', '凡人修仙传', '遮天', '时光代理人', '斗罗大陆', '吞噬星空', '日漫60部']
-      },
-      {
         id: 'yidong_study_tools',
         name: '备考学习 / 实用工具 / 区块链',
-        code: '09-4',
+        code: '09-3',
         description: '长沙小升初试卷合集、区块链启示录中本聪文集、精通区块链、货币未来、AI工具箱',
         tags: ['长沙小升初试卷', '区块链启示录', '精通区块链', '货币未来', 'AI工具箱']
       }
