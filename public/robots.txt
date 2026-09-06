@@ -1,0 +1,50 @@
+# Robots.txt for 网盘吧 (www.wangpan8.com)
+# 针对 Google, 百度, Bing, 360, 搜狗以及主流 AI 搜索引擎 (GPTBot, PerplexityBot, ClaudeBot, Bytespider) 完全开放
+
+User-agent: *
+Allow: /
+Allow: /resource/
+Allow: /category/
+Allow: /sitemap.xml
+Allow: /sitemap.html
+
+# 主流 AI 搜索爬虫 (GEO 优化)
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# 传统搜索引擎爬虫
+User-agent: Googlebot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: YisouSpider
+Allow: /
+
+# Sitemap 权威地址
+Sitemap: https://www.wangpan8.com/sitemap.xml

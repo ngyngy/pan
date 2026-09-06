@@ -59,6 +59,20 @@ export default function App() {
   const [targetFeedbackResource, setTargetFeedbackResource] = useState<ResourceItem | null>(null);
   const [showHotRankModal, setShowHotRankModal] = useState<boolean>(false);
 
+  // 识别来自 SEO/GEO 独立页或外部长链直达的资源 ID，自动弹出详情弹窗
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const searchParams = new URLSearchParams(window.location.search);
+      const targetId = searchParams.get('id') || searchParams.get('r');
+      if (targetId) {
+        const found = resources.find((r) => r.id === targetId);
+        if (found) {
+          setSelectedResource(found);
+        }
+      }
+    }
+  }, [resources]);
+
   // Toast system
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [copiedId, setCopiedId] = useState<string | null>(null);
