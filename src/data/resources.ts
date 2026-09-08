@@ -7,12 +7,18 @@ import { THOUGHT_EBOOKS_MASTERPIECE } from './thoughtEbooksMasterpiece';
 import { INDIE_GAMES_MASTERPIECE } from './indieGamesMasterpiece';
 import { POPULAR_GAMES_RESOURCES } from './popularGamesResources';
 import { MUSIC_MASTERPIECE_RESOURCES } from './musicMasterpieceResources';
+import { BILIBILI_PAID_COURSES } from './bilibiliCourses';
 
 /**
  * ngy123网盘资源聚合 - 官方真实资源库
  * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航、移动云盘与经典电子书合集全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // B站付费精品课程大合集单项资源（240+套名师系统课全部收录于 02-3 文件夹）
+  // ==========================================
+  ...BILIBILI_PAID_COURSES,
+
   // ==========================================
   // 今日重磅发布 · 优质推荐文案合集（求救信号2026 / 东野圭吾105本 / 少儿英语启蒙）
   // ==========================================
@@ -672,10 +678,12 @@ export const INITIAL_RESOURCES: ResourceItem[] = [
     isFeatured: true,
     isLatest: true,
     isCollection: true,
-    views: 18920,
-    downloads: 9450,
-    tags: ['B站付费课程', '1-260套全集', '1.4TB典藏', '编程开发', '设计剪辑', '名师系统课', '夸克网盘'],
-    description: '夸克网盘重磅分享「B站付费课程大合集（第1-260套全收录·1.4TB豪华典藏）」，囊括B站热门专栏、IT编程开发、剪辑特效、手绘插画、商业职场等全套完整视频与源码素材。'
+    isPinned: true,
+    pinOrder: 1,
+    views: 88920,
+    downloads: 49450,
+    tags: ['B站付费课程', '1-260套全集', '1.4TB典藏', '编程开发', '设计剪辑', '名师系统课', '夸克网盘', '置顶合集'],
+    description: '【B站付费课全网终极总目录】夸克网盘重磅分享「B站付费课程大合集（第1-260套全收录·1.4TB豪华典藏）」，囊括简七理财、SPSS统计、Python速通、Java实战、李兴兴剪辑、戴锦华电影、局座张召忠、宋浩高数微积分、罗翔刑法、清华靳卫萍等本文件夹下收录的240+套名师系统课与全部高清视频、课件讲义与实战源码。'
   },
   {
     id: 'ielts-complete-prep-collection',
