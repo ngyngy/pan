@@ -68,8 +68,8 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
         id: 'short_drama',
         name: '短剧',
         code: '01-5',
-        description: '热门爆款短剧全集、J-检察官的提案、AI前沿短剧、逆袭爽文微短剧每日实时连载',
-        tags: ['爆款短剧', '检察官的提案', 'AI短剧', '爽文短剧', '全集完结']
+        description: '热门爆款短剧全集、BL漫剧《My Dearest我最亲爱的》无雾版、拿捏疯太子、J-检察官的提案、AI前沿短剧、逆袭爽文微短剧每日实时连载',
+        tags: ['爆款短剧', 'My Dearest', '我最亲爱的', '拿捏疯太子', '检察官的提案', 'AI短剧', '爽文短剧', '全集完结']
       },
       {
         id: 'variety_doc',
@@ -157,10 +157,10 @@ export const MAIN_FOLDERS: MainFolderCategory[] = [
       },
       {
         id: 'design_tools',
-        name: '各种经典教程',
+        name: '各种经典教程 / 剪辑素材库',
         code: '03-2',
-        description: 'B站冯默风PS零基础摄影后期调色、设计剪辑实战网课、Adobe全家桶与剪辑配套教程',
-        tags: ['各种经典教程', '冯默风PS调色', '摄影后期', '设计剪辑', 'Adobe教程']
+        description: '6111条历史冷知识视频素材库（45GB高清无水印·T3883）、B站冯默风PS摄影后期调色、设计剪辑实战网课与自媒体素材包',
+        tags: ['各种经典教程', '6111条历史冷知识', 'T3883素材', '自媒体素材', '视频剪辑', '冯默风PS调色', '摄影后期']
       },
       {
         id: 'system_tools',
