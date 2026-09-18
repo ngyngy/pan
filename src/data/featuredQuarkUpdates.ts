@@ -8,7 +8,7 @@ export const FEATURED_QUARK_UPDATES: ResourceItem[] = [
   // 1.《求救信号 Mayday (2026)》
   {
     id: 'res-quark-movie-mayday-2026',
-    title: '《求救信号 Mayday (2026)》官方高清中字 / 悬疑灾难惊悚反转大作',
+    title: '《求救信号 Mayday (2026)》4K 杜比视界·全景声顶级原盘压制版 (2160p.ATVP.WEB-DL.DDP5.1.Atmos.DV.H.265-SmartWeb)',
     mainCategoryId: 'video',
     subCategoryId: 'movie',
     subCategoryName: '电影',
@@ -19,30 +19,30 @@ export const FEATURED_QUARK_UPDATES: ResourceItem[] = [
     categoryName: '悬疑惊悚 / 灾难电影',
     driveType: 'quark',
     driveName: '夸克网盘',
-    driveUrl: 'https://pan.quark.cn/s/71e535e4b28f',
-    extractCode: '',
-    quality: '4K / 1080P 高清中字',
-    size: '8.6GB',
-    publishDate: '2026-09-04',
-    relativeTime: '今日推荐',
-    views: 23600,
-    downloads: 4180,
+    driveUrl: 'https://pan.quark.cn/s/fcec847516f4',
+    extractCode: '/~d9623awnPg~:/',
+    quality: '4K 2160p · Apple TV+ (ATVP) · 杜比视界 (DV) · 杜比全景声 (Atmos DDP5.1) · H.265 · SmartWeb',
+    size: '16.8 GB',
+    sizeBytes: 18038862643,
+    publishDate: '2026-09-18 08:50',
+    relativeTime: '刚刚更新',
+    views: 46800,
+    downloads: 18900,
     isFeatured: true,
     isLatest: true,
-    tags: ['求救信号', 'Mayday', '2026电影', '悬疑惊悚', '灾难片', '夸克网盘', '极限反转', '高分悬疑'],
-    description: '如果你喜欢悬疑、惊悚、灾难类电影，这部《求救信号 Mayday》值得关注。一场突如其来的危机，让原本平静的局面迅速失控。当求救信号出现，却迟迟得不到回应，未知的危险、不断升级的紧张局势，以及人与人之间在极端环境下的选择，逐渐把故事推向高潮。这类电影最大的看点，就是那种“不知道接下来会发生什么”的压迫感。随着线索一点点展开，观众也会跟着角色一起寻找答案。喜欢紧张刺激、悬疑反转和灾难题材的朋友，可以收藏这一部。',
-    recommendation: `🎬 《求救信号 Mayday (2026)》
+    tags: ['求救信号', 'Mayday', '2026电影', 'SmartWeb', '4K杜比视界', 'Dolby Atmos', 'ATVP', '悬疑惊悚', '灾难片', '夸克网盘', '极限反转', '今日最新'],
+    description: '【2026年度惊悚反转大作·SmartWeb顶级母盘压制】《求救信号》(Mayday 2026) 2160p.ATVP.WEB-DL.DDP5.1.Atmos.DV.H.265-SmartWeb 顶级发烧原盘压制版！一场突如其来的空难危机，让原本平静的局面迅速失控。当求救信号出现却迟迟得不到回应，未知的危险与极端人性选择交织。Apple TV+ 官方片源，支持杜比视界（Dolby Vision）与杜比全景声（Dolby Atmos），视听压迫感拉满！口令【/~d9623awnPg~:/】直达！',
+    recommendation: `🎬 《求救信号 Mayday (2026)》2160p.ATVP.WEB-DL.DDP5.1.Atmos.DV.H.265-SmartWeb
 
-如果你喜欢悬疑、惊悚、灾难类电影，这部《求救信号 Mayday》值得关注。
+如果你喜欢悬疑、惊悚、灾难类电影，这部《求救信号 Mayday》绝对是年度必看之作。
 
 一场突如其来的危机，让原本平静的局面迅速失控。当求救信号出现，却迟迟得不到回应，未知的危险、不断升级的紧张局势，以及人与人之间在极端环境下的选择，逐渐把故事推向高潮。
 
-这类电影最大的看点，就是那种“不知道接下来会发生什么”的压迫感。随着线索一点点展开，观众也会跟着角色一起寻找答案。
+本版本为 SmartWeb 制作组打造的 Apple TV+ 4K 杜比视界（Dolby Vision）+ 杜比全景声（Dolby Atmos DDP5.1）顶级母盘压制版，大屏观影沉浸感十足。
 
-喜欢紧张刺激、悬疑反转和灾难题材的朋友，可以收藏这一部。
-
-我用夸克网盘给你分享了「求救信号 Mayday (2026)」。
-链接：https://pan.quark.cn/s/71e535e4b28f
+我用夸克网盘给你分享了「求救信号Mayday.2026.2160p.ATVP.WEB-DL.DDP5.1.Atmos.DV.H.265-SmartWeb」。
+口令：/~d9623awnPg~:/
+链接：https://pan.quark.cn/s/fcec847516f4
 
 更多资源访问 www.wangpan8.com 网盘吧`
   },
