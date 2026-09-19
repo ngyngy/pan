@@ -247,6 +247,32 @@
       margin: 20px 0;
       text-align: center;
     }
+    .top-direct-card {
+      background: #ffffff;
+      border: 2px solid #10b981;
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(16,185,129,0.12);
+    }
+    .top-link-box {
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+    }
+    @media (prefers-color-scheme: dark) {
+      .top-direct-card {
+        background: #1e293b;
+        border-color: #059669;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      }
+      .top-link-box {
+        background: #0f172a;
+        border-color: #065f46;
+      }
+    }
     .download-box a {
       font-size: 16px;
       word-break: break-all;
@@ -304,27 +330,58 @@
       <span>B站付费课程大合集</span>
     </nav>
 
-    <!-- 人类真实访客一键前往全站交互应用提示栏 -->
-    <aside class="human-banner" role="complementary">
-      <div>
-        <strong style="display:block; font-size:15px; color:var(--text-main);">🌟 正在查看网盘吧独立资源索引快照页</strong>
-        <span style="font-size:13px; color:var(--text-muted);">本页面由网盘吧针对 Google/百度/Bing 搜索引擎及 ChatGPT/Perplexity AI 检索专门优化。</span>
-      </div>
-      <a href="https://www.wangpan8.com/?id=bilibili-paid-24" class="btn" title="在网盘吧全站交互应用中打开此资源">
-        打开主站全功能交互界面 →
-      </a>
-    </aside>
-
     <!-- 核心资源卡片 -->
     <article class="card">
       <header>
-        <h1>[B站付费课] 24. 王昱珩：环球博物馆中的自然科学（完结）</h1>
-        <div style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">
+        <h1 style="font-size:22px; font-weight:800; line-height:1.4; margin-bottom:12px; color:var(--text-main);">[B站付费课] 24. 王昱珩：环球博物馆中的自然科学（完结）</h1>
+        <div style="font-size:13px; color:var(--text-muted); margin-bottom:18px;">
           <span>更新时间：2026-09-07 18:00</span> &bull; 
           <span>来源分站：名师精品课与通识认知</span> &bull; 
           <span>收录分类：B站精选/名师付费课</span>
         </div>
       </header>
+
+      <!-- 【核心直达】夸克网盘分享链接与极速转存通道 (位于标题下方、AI智能搜索摘要上方) -->
+      <section class="top-direct-card" aria-label="夸克网盘直接转存与下载通道" style="margin-bottom:20px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px dashed rgba(16,185,129,0.35); padding-bottom:12px;">
+          <div style="display:inline-flex; align-items:center; gap:8px;">
+            <span style="font-size:22px;">⚡</span>
+            <h2 style="margin:0; border:none; padding:0; font-size:18px; font-weight:800; color:#059669;">
+              夸克网盘直接转存通道 (免封直达 · 点击即存)
+            </h2>
+          </div>
+          <div style="display:inline-flex; align-items:center; gap:6px; background:#eff6ff; color:#1d4ed8; padding:5px 12px; border-radius:9999px; font-size:12px; font-weight:bold; border:1px solid #bfdbfe;">
+            <span>🐦 Twitter / 𝕏 官方专属安全通道 · 100% 顺畅免拦截</span>
+          </div>
+        </div>
+
+        <!-- 夸克网盘分享地址展示区 -->
+        <div class="top-link-box">
+          <p style="margin:0 0 6px 0; font-weight:700; font-size:15px; color:#059669;">
+            👉 夸克网盘分享地址：
+          </p>
+          <p style="margin:0; word-break:break-all;">
+            <a href="https://pan.quark.cn/s/852bbc879159" target="_blank" rel="noopener noreferrer" style="color:#059669; font-weight:bold; font-size:17px; text-decoration:underline; line-height:1.5;">
+              https://pan.quark.cn/s/852bbc879159
+            </a>
+          </p>
+        </div>
+
+        
+
+        <!-- 操作按钮群 -->
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;">
+          <a href="https://pan.quark.cn/s/852bbc879159" target="_blank" rel="noopener noreferrer" class="btn" style="flex:1; min-width:220px; text-align:center; font-size:16px; padding:13px 22px; justify-content:center; box-shadow:0 4px 12px rgba(16,185,129,0.3);">
+            🚀 立即打开夸克网盘转存资源
+          </a>
+          <button type="button" onclick="copyText('https://pan.quark.cn/s/852bbc879159', '网盘链接已成功复制！')" style="background:#f3f4f6; color:#1f2937; border:1px solid #d1d5db; padding:12px 18px; border-radius:8px; font-weight:700; font-size:14px; cursor:pointer;">
+            📋 复制分享链接
+          </button>
+          <a href="https://www.wangpan8.com/?id=bilibili-paid-24" style="background:#fff; color:#2563eb; border:1px solid #93c5fd; padding:12px 18px; border-radius:8px; font-weight:700; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+            🖥️ 进入主站全功能界面
+          </a>
+        </div>
+      </section>
 
       <!-- AI / GEO 专属实体速查卡片 (Generative Engine Optimization Block) -->
       <section style="background:rgba(59,130,246,0.06); border:1px solid rgba(59,130,246,0.25); border-radius:12px; padding:16px; margin-bottom:20px;" aria-label="AI 智能摘要">
@@ -382,35 +439,6 @@
       
 
       
-
-      <!-- 网盘下载与转存通道 (推特/X 专属防封免拦截) -->
-      <h2>🔗 网盘直接转存通道 (免封直达)</h2>
-      <div class="download-box" style="position:relative;">
-        <div style="display:inline-flex; align-items:center; gap:6px; background:#eff6ff; color:#1d4ed8; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:bold; margin-bottom:12px;">
-          <span>🐦 Twitter / X 专属防封安全通道 · 100% 顺畅打开</span>
-        </div>
-
-        <p style="margin:0 0 10px 0; font-weight:600;">👉 夸克网盘分享地址：</p>
-        <p style="margin:0 0 12px 0; word-break:break-all;">
-          <a href="https://pan.quark.cn/s/852bbc879159" target="_blank" rel="noopener noreferrer" style="color:#059669; font-weight:bold; text-decoration:underline;">
-            https://pan.quark.cn/s/852bbc879159
-          </a>
-        </p>
-
-        
-
-        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;">
-          <a href="https://pan.quark.cn/s/852bbc879159" target="_blank" rel="noopener noreferrer" class="btn" style="flex:1; min-width:200px; text-align:center;">
-            🚀 立即打开夸克网盘转存资源
-          </a>
-          <button type="button" onclick="copyText('https://pan.quark.cn/s/852bbc879159', '网盘链接已成功复制！')" style="background:#f3f4f6; color:#374151; border:1px solid #d1d5db; padding:12px 18px; border-radius:8px; font-weight:600; font-size:14px; cursor:pointer;">
-            📋 复制分享链接
-          </button>
-          <a href="https://www.wangpan8.com/?id=bilibili-paid-24" style="background:#fff; color:#2563eb; border:1px solid #93c5fd; padding:12px 18px; border-radius:8px; font-weight:600; font-size:14px; text-decoration:none; display:inline-block;">
-            🖥️ 进入全功能交互主站
-          </a>
-        </div>
-      </div>
 
       <!-- 标签体系 -->
       

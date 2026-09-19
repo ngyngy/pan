@@ -331,6 +331,80 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
           ) : (
             /* STANDARD RESOURCE PRESENTATION */
             <>
+              {/* 【核心置顶】直接网盘转存通道 (夸克直达与复制) */}
+              <div className="p-4 rounded-xl bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-emerald-500/10 dark:from-emerald-950/40 dark:via-neutral-900 dark:to-emerald-950/30 border-2 border-emerald-500 dark:border-emerald-600 shadow-sm space-y-3">
+                <div className="flex items-center justify-between flex-wrap gap-2 pb-2 border-b border-dashed border-emerald-200 dark:border-emerald-800/80">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">⚡</span>
+                    <h4 className="font-extrabold text-sm sm:text-base text-emerald-950 dark:text-emerald-100 flex items-center gap-1.5">
+                      <span>{resource.driveName}直接转存通道</span>
+                      <span className="text-[11px] px-2 py-0.5 rounded-full bg-emerald-600 text-white font-bold">
+                        点击即存
+                      </span>
+                    </h4>
+                  </div>
+                  <span className="text-xs text-neutral-500 dark:text-neutral-400 font-medium">
+                    文件规格：{resource.quality || '高清典藏版'}
+                  </span>
+                </div>
+
+                {/* 夸克链接与复制 */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 rounded-lg bg-white/95 dark:bg-neutral-800/90 border border-emerald-200 dark:border-neutral-700 gap-2">
+                  <div className="flex items-center gap-2 min-w-0 flex-1">
+                    <span className="px-2 py-0.5 rounded bg-emerald-600 text-white text-xs font-bold shrink-0">
+                      {resource.driveName}
+                    </span>
+                    <a
+                      href={resource.driveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-xs sm:text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:underline truncate"
+                      title={resource.driveUrl}
+                    >
+                      {resource.driveUrl}
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
+                    <button
+                      onClick={() => handleCopyText(resource.driveUrl, 'link')}
+                      className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 text-neutral-700 dark:text-neutral-200 transition-colors cursor-pointer"
+                    >
+                      {copiedDownloadLink ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                      <span>{copiedDownloadLink ? '已复制链接' : '复制网盘链接'}</span>
+                    </button>
+                    <a
+                      href={resource.driveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1 px-3 py-1 text-xs font-bold rounded bg-emerald-600 hover:bg-emerald-700 text-white shadow-2xs transition-colors cursor-pointer"
+                    >
+                      <span>打开网盘转存</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* 提取码/口令（如有） */}
+                {resource.extractCode && (
+                  <div className="flex items-center justify-between p-2.5 bg-amber-50/90 dark:bg-amber-950/40 rounded-lg border border-amber-200 dark:border-amber-900/50">
+                    <div className="flex items-center gap-2">
+                      <KeyRound className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                      <span className="font-medium text-amber-900 dark:text-amber-200 text-xs">提取码 / 口令：</span>
+                      <span className="font-mono text-sm font-bold text-amber-800 dark:text-amber-300 tracking-wider bg-white dark:bg-black/30 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800">
+                        {resource.extractCode}
+                      </span>
+                    </div>
+                    <button
+                      onClick={handleCopyExtractCode}
+                      className="flex items-center gap-1 px-2.5 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white text-xs font-medium transition-colors cursor-pointer"
+                    >
+                      {copiedCode ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                      <span>{copiedCode ? '已复制' : '复制代码'}</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+
               {/* Subsite Origin Card */}
               <div className="flex items-center justify-between p-3.5 bg-neutral-50 dark:bg-neutral-800/60 rounded-xl border border-neutral-200/60 dark:border-neutral-800">
                 <div className="flex items-center gap-2.5">
