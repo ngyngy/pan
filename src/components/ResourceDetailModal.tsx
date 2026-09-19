@@ -13,9 +13,19 @@ import {
   ShieldAlert, 
   FileText,
   Clock,
-  HardDrive
+  HardDrive,
+  Send,
+  Sparkles,
+  Link2
 } from 'lucide-react';
 import { ResourceItem } from '../types';
+import { 
+  getResourceHtmlLandingUrl, 
+  getResourceSpaDirectUrl, 
+  generateTwitterPostText, 
+  getTwitterIntentUrl,
+  OFFICIAL_DOMAIN
+} from '../utils/shareUtils';
 
 interface ResourceDetailModalProps {
   resource: ResourceItem | null;
@@ -38,10 +48,17 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
   const [copiedOfficialGameLink, setCopiedOfficialGameLink] = useState(false);
   const [copiedRecommendation, setCopiedRecommendation] = useState(false);
   const [copiedAll, setCopiedAll] = useState(false);
+  const [copiedTwitterPost, setCopiedTwitterPost] = useState(false);
+  const [copiedHtmlPageUrl, setCopiedHtmlPageUrl] = useState(false);
 
   if (!resource) return null;
 
   const isWelfareItem = resource.isWelfare || resource.mainCategoryId === 'welfare';
+
+  // 本站专属独立落地链接 (推特防封静态页)
+  const twitterSafeLandingUrl = getResourceHtmlLandingUrl(resource.id, true);
+  // 推特发帖快捷跳转链接
+  const twitterIntentUrl = getTwitterIntentUrl(resource, true);
 
   const handleCopyExtractCode = () => {
     if (resource.extractCode) {
@@ -49,6 +66,19 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
       setCopiedCode(true);
       setTimeout(() => setCopiedCode(false), 2000);
     }
+  };
+
+  const handleCopyTwitterPost = () => {
+    const postText = generateTwitterPostText(resource, true);
+    navigator.clipboard.writeText(postText);
+    setCopiedTwitterPost(true);
+    setTimeout(() => setCopiedTwitterPost(false), 2000);
+  };
+
+  const handleCopyHtmlPageUrl = () => {
+    navigator.clipboard.writeText(twitterSafeLandingUrl);
+    setCopiedHtmlPageUrl(true);
+    setTimeout(() => setCopiedHtmlPageUrl(false), 2000);
   };
 
   const handleCopyText = (text: string, type: 'code1' | 'code2' | 'link' | 'panLink' | 'officialGameLink') => {
@@ -83,13 +113,13 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
     if (resource.recommendation) {
       navigator.clipboard.writeText(resource.recommendation);
     } else if (resource.id === 'game-mobile-zero-one-discount-platform' || resource.title.includes('0.1折')) {
-      const discountText = `【特别福利】0.1折手游平台 (热门手游千款0.1折充值 / 官方BT福利变态版)\n【夸克网盘下载】：https://pan.quark.cn/s/4979ed20ffd0\n【夸克口令】：/~90ea3aMBnt~:/\n【官网直达下载】：https://www.3387.com/cps/app/6a85087b2beb0.html\n【福利说明】：聚合千款热门仙侠、卡牌、传奇、策略及二次元手游，充值全场永久0.1折（648元仅需6.48元），上线送满级VIP特权与无限元宝礼包，安卓手机一键极速安装畅玩！`;
+      const discountText = `【特别福利】0.1折手游平台 (热门手游千款0.1折充值 / 官方BT福利变态版)\n【本站直达专页】：${twitterSafeLandingUrl}\n【夸克网盘下载】：https://pan.quark.cn/s/4979ed20ffd0\n【夸克口令】：/~90ea3aMBnt~:/\n【官网直达下载】：https://www.3387.com/cps/app/6a85087b2beb0.html\n【福利说明】：聚合千款热门仙侠、卡牌、传奇、策略及二次元手游，充值全场永久0.1折（648元仅需6.48元），上线送满级VIP特权与无限元宝礼包，安卓手机一键极速安装畅玩！`;
       navigator.clipboard.writeText(discountText);
     } else if (isWelfareItem) {
-      const text = `【特别福利】：${resource.title}\n【下载链接】：${resource.driveUrl}${resource.extractCode ? `\n【提取码/口令】：${resource.extractCode}` : ''}\n【说明】：${resource.description || ''}`;
+      const text = `【特别福利】：${resource.title}\n【本站防封直达】：${twitterSafeLandingUrl}\n【下载链接】：${resource.driveUrl}${resource.extractCode ? `\n【提取码/口令】：${resource.extractCode}` : ''}\n【说明】：${resource.description || ''}`;
       navigator.clipboard.writeText(text);
     } else {
-      const text = `【资源名称】：${resource.title}\n【网盘类型】：${resource.driveName}\n【分享链接】：${resource.driveUrl}${resource.extractCode ? `\n【提取码】：${resource.extractCode}` : ''}\n【来源分站】：${resource.subsiteName} (${resource.subsiteUrl})\n【聚合门户】：网盘吧 (www.wangpan8.com)`;
+      const text = `【资源名称】：${resource.title}\n【本站防封直达（推特发帖请发此链接）】：${twitterSafeLandingUrl}\n【网盘类型】：${resource.driveName}\n【分享链接】：${resource.driveUrl}${resource.extractCode ? `\n【提取码/口令】：${resource.extractCode}` : ''}\n【来源分站】：${resource.subsiteName} (${resource.subsiteUrl})\n【聚合门户】：网盘吧 (www.wangpan8.com)`;
       navigator.clipboard.writeText(text);
     }
     setCopiedAll(true);
@@ -343,6 +373,82 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
                 </div>
               </div>
 
+              {/* TWITTER ANTI-BAN DEDICATED LINK MODULE */}
+              <div className="p-4 rounded-xl bg-gradient-to-br from-sky-500/10 via-blue-500/5 to-emerald-500/10 dark:from-sky-950/40 dark:via-neutral-900 dark:to-emerald-950/30 border border-sky-300/80 dark:border-sky-800/80 shadow-xs space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-lg bg-sky-500 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs">
+                      𝕏
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-xs sm:text-sm text-neutral-900 dark:text-neutral-100 flex items-center gap-1.5">
+                        <span>推特 / 𝕏 专用免拦截直达链接</span>
+                        <span className="text-[10px] px-1.5 py-0.2 rounded bg-emerald-600 text-white font-medium">防封专享</span>
+                      </h4>
+                      <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
+                        推特已屏蔽夸克直链！在推特发帖发此本站独立链接，用户在推特内点击可 100% 顺畅打开并转存。
+                      </p>
+                    </div>
+                  </div>
+
+                  <a
+                    href={twitterIntentUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-white dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200 text-xs font-bold transition-all shadow-2xs shrink-0 self-end sm:self-auto cursor-pointer"
+                  >
+                    <Send className="w-3 h-3" />
+                    <span>去推特发帖</span>
+                  </a>
+                </div>
+
+                {/* URL Bar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-2 rounded-lg bg-white/90 dark:bg-neutral-800/90 border border-sky-200 dark:border-neutral-700 gap-2">
+                  <div className="flex items-center gap-1.5 min-w-0 flex-1">
+                    <Link2 className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+                    <input
+                      readOnly
+                      value={twitterSafeLandingUrl}
+                      onClick={(e) => (e.target as HTMLInputElement).select()}
+                      className="text-xs font-mono text-neutral-700 dark:text-neutral-200 bg-transparent border-none outline-none w-full truncate select-all"
+                    />
+                  </div>
+                  <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
+                    <button
+                      onClick={handleCopyHtmlPageUrl}
+                      className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded bg-sky-50 dark:bg-sky-950/60 hover:bg-sky-100 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 transition-colors cursor-pointer"
+                    >
+                      {copiedHtmlPageUrl ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                      <span>{copiedHtmlPageUrl ? '已复制本站链接' : '复制本站链接'}</span>
+                    </button>
+                    <a
+                      href={twitterSafeLandingUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 text-neutral-700 dark:text-neutral-200 transition-colors cursor-pointer"
+                    >
+                      <span>预览页面</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Twitter Post Copy Bar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-2 rounded-lg bg-sky-50/70 dark:bg-sky-950/30 border border-sky-100 dark:border-sky-900/60 gap-2">
+                  <div className="text-xs text-neutral-600 dark:text-neutral-300 flex items-center gap-1">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                    <span>自动整合：资源标题 + 规格 + 夸克口令 + 本站独立链接 + 话题标签</span>
+                  </div>
+                  <button
+                    onClick={handleCopyTwitterPost}
+                    className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold rounded-lg bg-sky-600 hover:bg-sky-700 text-white shadow-2xs transition-colors shrink-0 self-end sm:self-auto cursor-pointer"
+                  >
+                    {copiedTwitterPost ? <Check className="w-3.5 h-3.5 text-white" /> : <Copy className="w-3.5 h-3.5" />}
+                    <span>{copiedTwitterPost ? '已复制推特推文' : '一键复制推特文案'}</span>
+                  </button>
+                </div>
+              </div>
+
               {/* Extract code section if exists */}
               {resource.extractCode && (
                 <div className="flex items-center justify-between p-3.5 bg-amber-50 dark:bg-amber-950/40 rounded-xl border border-amber-200 dark:border-amber-900/50">
@@ -460,7 +566,16 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
             <span>{isWelfareItem ? '福利问题反馈' : '链接失效投诉'}</span>
           </button>
 
-          <div className="flex items-center gap-2 ml-auto">
+          <div className="flex items-center gap-2 ml-auto flex-wrap">
+            <button
+              onClick={handleCopyTwitterPost}
+              title="一键复制专为推特排版的防封文案（带本站独立免拦截链接与夸克口令）"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold border border-sky-300 dark:border-sky-800 bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 hover:bg-sky-100 dark:hover:bg-sky-900/60 transition-colors cursor-pointer shadow-2xs"
+            >
+              {copiedTwitterPost ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Send className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />}
+              <span>{copiedTwitterPost ? '已复制推特文案' : '复制推特防封文案'}</span>
+            </button>
+
             <button
               onClick={handleCopyFullShare}
               className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors cursor-pointer shadow-2xs"

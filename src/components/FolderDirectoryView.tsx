@@ -37,6 +37,7 @@ interface FolderDirectoryViewProps {
   resources: ResourceItem[];
   onSelectResource: (resource: ResourceItem) => void;
   onCopyLink: (resource: ResourceItem, e?: React.MouseEvent) => void;
+  onCopyTwitterPost?: (resource: ResourceItem, e?: React.MouseEvent) => void;
   copiedId: string | null;
   activeMainFolder: MainFolderCategoryKey | null;
   activeSubFolder: string | null;
@@ -106,6 +107,7 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
   resources,
   onSelectResource,
   onCopyLink,
+  onCopyTwitterPost,
   copiedId,
   selectedDrive,
   onSelectDrive,
@@ -659,7 +661,7 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
                             {/* Copy Link Button */}
                             <button
                               onClick={(e) => onCopyLink(item, e)}
-                              title="复制网盘链接与提取码"
+                              title="复制网盘链接与提取码（含本站专属免封落地页）"
                               className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold rounded-lg bg-white dark:bg-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 text-neutral-800 dark:text-neutral-100 border border-neutral-300 dark:border-neutral-600 transition-colors shadow-2xs cursor-pointer active:scale-95"
                             >
                               {copiedId === item.id ? (
@@ -674,6 +676,18 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
                                 </>
                               )}
                             </button>
+
+                            {/* Twitter Anti-Ban Copy Button */}
+                            {onCopyTwitterPost && (
+                              <button
+                                onClick={(e) => onCopyTwitterPost(item, e)}
+                                title="复制推特专用防封推文（带本站独立落地页，免被推特封禁）"
+                                className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold rounded-lg bg-sky-50 hover:bg-sky-100 dark:bg-sky-950/60 dark:hover:bg-sky-900/80 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 transition-colors shadow-2xs cursor-pointer active:scale-95"
+                              >
+                                <span className="font-bold">𝕏</span>
+                                <span className="hidden sm:inline">推特防封文案</span>
+                              </button>
+                            )}
 
                             {/* Direct Jump to Pan */}
                             <a
@@ -986,6 +1000,16 @@ export const FolderDirectoryView: React.FC<FolderDirectoryViewProps> = ({
                                             </>
                                           )}
                                         </button>
+
+                                        {onCopyTwitterPost && (
+                                          <button
+                                            onClick={(e) => onCopyTwitterPost(item, e)}
+                                            title="复制推特专用防封推文与独立落地页"
+                                            className="flex items-center gap-1 px-2 py-1 text-xs font-bold rounded-lg bg-sky-50 hover:bg-sky-100 dark:bg-sky-950/60 dark:hover:bg-sky-900/80 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 transition-colors shadow-2xs cursor-pointer"
+                                          >
+                                            <span className="font-bold">𝕏</span>
+                                          </button>
+                                        )}
 
                                         <a
                                           href={item.driveUrl}

@@ -13,6 +13,7 @@ import { Footer } from './components/Footer';
 import { ToastContainer, ToastMessage } from './components/Toast';
 import { INITIAL_RESOURCES } from './data/resources';
 import { ResourceItem, FilterState, SubSiteCategory, DriveType, MainFolderCategoryKey } from './types';
+import { getResourceHtmlLandingUrl, generateTwitterPostText } from './utils/shareUtils';
 
 export default function App() {
   // Dark mode state
@@ -182,13 +183,23 @@ export default function App() {
 
   const handleCopyLink = (resource: ResourceItem, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
+    const landingUrl = getResourceHtmlLandingUrl(resource.id, true);
     const text = resource.extractCode
-      ? `【${resource.title}】\n链接：${resource.driveUrl}\n提取码：${resource.extractCode}`
-      : `【${resource.title}】\n链接：${resource.driveUrl}`;
+      ? `【${resource.title}】\n本站免封专页（推特发帖发此链接）：${landingUrl}\n夸克网盘链接：${resource.driveUrl}\n提取口令：${resource.extractCode}`
+      : `【${resource.title}】\n本站免封专页（推特发帖发此链接）：${landingUrl}\n网盘链接：${resource.driveUrl}`;
     
     navigator.clipboard.writeText(text);
     setCopiedId(resource.id);
-    addToast('success', `已复制《${resource.title.slice(0, 18)}...》分享链接及提取码！`);
+    addToast('success', `已复制《${resource.title.slice(0, 16)}...》分享信息（含本站推特免封专属链接）！`);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  const handleCopyTwitterPost = (resource: ResourceItem, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    const text = generateTwitterPostText(resource, true);
+    navigator.clipboard.writeText(text);
+    setCopiedId(resource.id);
+    addToast('success', `已复制《${resource.title.slice(0, 16)}...》推特防封文案（带独立专页与口令）！`);
     setTimeout(() => setCopiedId(null), 2000);
   };
 
@@ -240,6 +251,7 @@ export default function App() {
             resources={resources}
             onSelectResource={setSelectedResource}
             onCopyLink={handleCopyLink}
+            onCopyTwitterPost={handleCopyTwitterPost}
             copiedId={copiedId}
             activeMainFolder={filters.activeMainFolder || null}
             activeSubFolder={filters.activeSubFolder || null}

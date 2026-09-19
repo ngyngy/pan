@@ -256,8 +256,19 @@ export const Footer: React.FC<FooterProps> = ({
           <p className="leading-relaxed text-center sm:text-left text-[11px] sm:text-xs">
             免责声明：本站为非营利性网盘资源聚合索引工具 (<span className="text-blue-600 dark:text-blue-400 font-semibold font-mono">www.wangpan8.com</span> 网盘吧)，所有资源均收集自公开互联网及夸克、百度、UC、迅雷等第三方网盘。本站不存储任何音视频或文件实体。若有侵权请联系删除。
           </p>
-          <div className="shrink-0 text-center sm:text-right font-medium text-[11px] sm:text-xs">
-            © 2026 网盘吧 · <span className="font-mono text-slate-600 dark:text-slate-300 font-bold">www.wangpan8.com</span>
+          <div className="shrink-0 text-center sm:text-right font-medium text-[11px] sm:text-xs flex items-center gap-3 justify-center sm:justify-end">
+            <a 
+              href="/sitemap.html" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 font-semibold"
+              title="查看全网独立推特免拦截页面与资源全集索引"
+            >
+              <span>推特防封独立页总览</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+            <span>•</span>
+            <span>© 2026 网盘吧 · <span className="font-mono text-slate-600 dark:text-slate-300 font-bold">www.wangpan8.com</span></span>
           </div>
         </div>
       </div>
