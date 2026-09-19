@@ -383,19 +383,33 @@
 
       
 
-      <!-- 网盘下载与转存通道 -->
-      <h2>🔗 网盘直接转存通道</h2>
-      <div class="download-box">
+      <!-- 网盘下载与转存通道 (推特/X 专属防封免拦截) -->
+      <h2>🔗 网盘直接转存通道 (免封直达)</h2>
+      <div class="download-box" style="position:relative;">
+        <div style="display:inline-flex; align-items:center; gap:6px; background:#eff6ff; color:#1d4ed8; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:bold; margin-bottom:12px;">
+          <span>🐦 Twitter / X 专属防封安全通道 · 100% 顺畅打开</span>
+        </div>
+
         <p style="margin:0 0 10px 0; font-weight:600;">👉 夸克网盘分享地址：</p>
-        <p style="margin:0 0 12px 0;">
-          <a href="https://pan.quark.cn/s/7b75c5d34432" target="_blank" rel="noopener noreferrer" style="color:#059669; font-weight:bold;">
+        <p style="margin:0 0 12px 0; word-break:break-all;">
+          <a href="https://pan.quark.cn/s/7b75c5d34432" target="_blank" rel="noopener noreferrer" style="color:#059669; font-weight:bold; text-decoration:underline;">
             https://pan.quark.cn/s/7b75c5d34432
           </a>
         </p>
+
         
-        <a href="https://pan.quark.cn/s/7b75c5d34432" target="_blank" rel="noopener noreferrer" class="btn">
-          立即打开夸克网盘转存资源
-        </a>
+
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;">
+          <a href="https://pan.quark.cn/s/7b75c5d34432" target="_blank" rel="noopener noreferrer" class="btn" style="flex:1; min-width:200px; text-align:center;">
+            🚀 立即打开夸克网盘转存资源
+          </a>
+          <button type="button" onclick="copyText('https://pan.quark.cn/s/7b75c5d34432', '网盘链接已成功复制！')" style="background:#f3f4f6; color:#374151; border:1px solid #d1d5db; padding:12px 18px; border-radius:8px; font-weight:600; font-size:14px; cursor:pointer;">
+            📋 复制分享链接
+          </button>
+          <a href="https://www.wangpan8.com/?id=bilibili-paid-a203" style="background:#fff; color:#2563eb; border:1px solid #93c5fd; padding:12px 18px; border-radius:8px; font-weight:600; font-size:14px; text-decoration:none; display:inline-block;">
+            🖥️ 进入全功能交互主站
+          </a>
+        </div>
       </div>
 
       <!-- 标签体系 -->
@@ -483,5 +497,36 @@
       <p style="font-size:12px;">本页面内容均为互联网公开收集整理，仅供个人学习交流与研究，版权归原作者所有。如有侵权，请联系管理员及时处理。</p>
     </footer>
   </div>
+
+  <div id="toast" style="display:none; position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:rgba(17,24,39,0.95); color:#fff; padding:10px 20px; border-radius:8px; font-size:14px; font-weight:bold; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,0.25);"></div>
+  <script>
+    function copyText(text, msg) {
+      if (!text) return;
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(show).catch(function() { fallback(text); });
+      } else {
+        fallback(text);
+      }
+      function fallback(val) {
+        var ta = document.createElement('textarea');
+        ta.value = val;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); show(); } catch(e) {}
+        document.body.removeChild(ta);
+      }
+      function show() {
+        var toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = msg || '已成功复制到剪贴板！';
+          toast.style.display = 'block';
+          clearTimeout(window.__toastTimer);
+          window.__toastTimer = setTimeout(function() { toast.style.display = 'none'; }, 2000);
+        }
+      }
+    }
+  </script>
 </body>
 </html>
