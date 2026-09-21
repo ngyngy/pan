@@ -247,48 +247,150 @@
       margin: 20px 0;
       text-align: center;
     }
-    .top-direct-card {
+    /* 仿截图 夸克网盘分享原生风格卡片 (不暴露可点击外链，防误触/防拦截/极简转存) */
+    .quark-app-modal {
       background: #ffffff;
-      border: 2px solid #10b981;
-      border-radius: 16px;
-      padding: 20px 22px;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 24px 22px;
       margin-bottom: 24px;
-      box-shadow: 0 8px 24px rgba(16,185,129,0.12);
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.02);
     }
-    .top-link-box {
-      background: #f0fdf4;
-      border: 1px solid #86efac;
-      border-radius: 10px;
-      padding: 12px 16px;
-      margin-bottom: 14px;
+    .quark-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 22px;
     }
-    .twitter-app-tip {
-      background: #fffbeb;
-      border: 1.5px solid #f59e0b;
+    .quark-logo-badge {
+      width: 38px;
+      height: 38px;
+      background: #2563eb;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+    }
+    .quark-modal-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1e293b;
+      letter-spacing: -0.2px;
+    }
+    .quark-section-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .quark-section-dot {
+      width: 8px;
+      height: 8px;
+      background: #2563eb;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .quark-section-desc {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.6;
+      margin: 0 0 12px 0;
+    }
+    .btn-quark-primary {
+      display: block;
+      width: 100%;
+      background: #3b82f6;
+      color: #ffffff !important;
+      text-align: center;
+      padding: 13px 20px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+    .btn-quark-primary:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+    }
+    .quark-url-display-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 14px;
-      color: #92400e;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+      color: #334155;
+      word-break: break-all;
+      user-select: all;
+      cursor: text;
+      margin-bottom: 12px;
+    }
+    .btn-copy-quark {
+      display: block;
+      width: 100%;
+      background: #eff6ff;
+      color: #2563eb;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+    .btn-copy-quark:hover {
+      background: #dbeafe;
+    }
+    .quark-footer-note {
+      font-size: 12px;
+      color: #94a3b8;
+      text-align: center;
+      margin: 12px 0 0 0;
+      line-height: 1.5;
     }
     @media (prefers-color-scheme: dark) {
-      .top-direct-card {
+      .quark-app-modal {
         background: #1e293b;
-        border-color: #059669;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        border-color: #334155;
+        box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
       }
-      .top-link-box {
+      .quark-modal-title, .quark-section-label {
+        color: #f1f5f9;
+      }
+      .quark-section-desc {
+        color: #94a3b8;
+      }
+      .quark-url-display-box {
         background: #0f172a;
-        border-color: #065f46;
+        border-color: #334155;
+        color: #cbd5e1;
       }
-      .twitter-app-tip {
-        background: #451a03;
-        border-color: #b45309;
-        color: #fef3c7;
+      .btn-copy-quark {
+        background: rgba(59, 130, 246, 0.15);
+        color: #60a5fa;
+        border-color: rgba(59, 130, 246, 0.3);
       }
-    }
-    .download-box a {
-      font-size: 16px;
-      word-break: break-all;
+      .btn-copy-quark:hover {
+        background: rgba(59, 130, 246, 0.25);
+      }
+      .quark-footer-note {
+        color: #64748b;
+      }
     }
     .faq-item {
       margin-bottom: 16px;
@@ -354,62 +456,56 @@
         </div>
       </header>
 
-      <!-- 【核心直达】夸克网盘分享链接与极速转存通道 (位于标题下方、AI智能搜索摘要上方) -->
-      <section class="top-direct-card" aria-label="夸克网盘直接转存与下载通道" style="margin-bottom:20px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px dashed rgba(16,185,129,0.35); padding-bottom:12px;">
-          <div style="display:inline-flex; align-items:center; gap:8px;">
-            <span style="font-size:22px;">⚡</span>
-            <h2 style="margin:0; border:none; padding:0; font-size:18px; font-weight:800; color:#059669;">
-              夸克网盘直接转存通道 (免封直达 · 点击即存)
-            </h2>
+      <!-- 【夸克网盘分享原生风格卡片】严格参照用户提供截图样式构建：不出现可点击链接，防误点/防推特屏蔽 -->
+      <section class="quark-app-modal" aria-label="夸克网盘分享">
+        <!-- 头部 Logo 与 标题 -->
+        <div class="quark-modal-header">
+          <div class="quark-logo-badge" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
+            </svg>
           </div>
-          <div style="display:inline-flex; align-items:center; gap:6px; background:#eff6ff; color:#1d4ed8; padding:5px 12px; border-radius:9999px; font-size:12px; font-weight:bold; border:1px solid #bfdbfe;">
-            <span>🐦 Twitter / 𝕏 官方专属安全通道 · 100% 顺畅免拦截</span>
-          </div>
+          <h2 class="quark-modal-title" style="margin:0; padding:0; border:none;">夸克网盘分享</h2>
         </div>
 
-        <!-- 夸克网盘分享地址展示区 -->
-        <div class="top-link-box">
-          <p style="margin:0 0 6px 0; font-weight:700; font-size:15px; color:#059669;">
-            👉 夸克网盘分享地址：
+        <!-- 1. 打开资源 -->
+        <div style="margin-bottom:20px;">
+          <div class="quark-section-label">
+            <span class="quark-section-dot"></span>
+            <span>打开资源</span>
+          </div>
+          <p class="quark-section-desc">
+            点击按钮唤起夸克并自动跳转。若未打开，请复制链接到浏览器自行打开。
           </p>
-          <p style="margin:0; word-break:break-all;">
-            <a href="https://pan.quark.cn/s/3f7316287bd9" target="_blank" rel="noopener noreferrer" style="color:#059669; font-weight:bold; font-size:17px; text-decoration:underline; line-height:1.5;">
-              https://pan.quark.cn/s/3f7316287bd9
-            </a>
-          </p>
+          <button type="button" class="btn-quark-primary" onclick="handleOpenQuarkApp('https://pan.quark.cn/s/3f7316287bd9')">
+            打开夸克 App
+          </button>
         </div>
 
-        <!-- ⚠️ 推特/𝕏 内置浏览器专属安全提示与复制指引 (防止内置 Webview 拦截遮蔽) -->
-        <div class="twitter-app-tip" id="twitterAppTip">
-          <div style="display:flex; align-items:flex-start; gap:10px;">
-            <span style="font-size:20px; line-height:1.2;">⚠️</span>
-            <div style="flex:1; font-size:13px; line-height:1.6;">
-              <strong style="font-size:14px; display:block; margin-bottom:4px; color:#b45309;">
-                推特 / 𝕏 手机端用户特别提醒（防止外链被屏蔽）：
-              </strong>
-              <span>如果您当前是在 <strong>推特 / 𝕏 APP 内置浏览器</strong> 中打开本页，直接点击网盘链接极易被推特安全策略拦截或屏蔽。</span>
-              <div style="margin-top:6px; padding:8px 12px; background:rgba(245,158,11,0.12); border-radius:8px; border:1px dashed #f59e0b; font-weight:600;">
-                💡 <strong>正确操作步骤：</strong><br>
-                ① 点击下方【📋 复制分享链接】按钮；<br>
-                ② 切换到手机系统浏览器（Safari / Chrome）粘贴打开，或直接打开【夸克APP】即可秒级转存！
-              </div>
-            </div>
+        <!-- 2. 网盘链接（纯文本不可点，仅供查看与一键复制，不出现可点击外链，免得误点打不开） -->
+        <div style="margin-bottom:6px;">
+          <div class="quark-section-label">
+            <span class="quark-section-dot"></span>
+            <span>网盘链接</span>
           </div>
+          <div class="quark-url-display-box" id="quarkUrlText" title="双击或点击复制">
+            https://pan.quark.cn/s/3f7316287bd9
+          </div>
+          <button type="button" class="btn-copy-quark" onclick="copyText('https://pan.quark.cn/s/3f7316287bd9', '夸克链接已成功复制！')">
+            复制夸克链接
+          </button>
+          <p class="quark-footer-note">
+            打开 App 没反应？也可以复制夸克链接，再用 Safari、Chrome 或夸克 APP 打开。
+          </p>
         </div>
 
         
 
-        <!-- 操作按钮群 -->
-        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;">
-          <a href="https://pan.quark.cn/s/3f7316287bd9" target="_blank" rel="noopener noreferrer" class="btn" style="flex:1; min-width:220px; text-align:center; font-size:16px; padding:13px 22px; justify-content:center; box-shadow:0 4px 12px rgba(16,185,129,0.3);">
-            🚀 立即打开夸克网盘转存资源
-          </a>
-          <button type="button" onclick="copyText('https://pan.quark.cn/s/3f7316287bd9', '网盘链接已成功复制！')" style="background:#f3f4f6; color:#1f2937; border:1px solid #d1d5db; padding:12px 18px; border-radius:8px; font-weight:700; font-size:14px; cursor:pointer;">
-            📋 复制分享链接
-          </button>
-          <a href="https://www.wangpan8.com/?id=ebook-courage-to-be-disliked-kishimi-koga" style="background:#fff; color:#2563eb; border:1px solid #93c5fd; padding:12px 18px; border-radius:8px; font-weight:700; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-            🖥️ 进入主站全功能界面
+        <!-- 快速回到主站全部功能 -->
+        <div style="margin-top:14px; text-align:center;">
+          <a href="https://www.wangpan8.com/?id=ebook-courage-to-be-disliked-kishimi-koga" style="color:#64748b; font-size:12px; text-decoration:underline;">
+            🖥️ 浏览该资源的网盘吧主站全功能详情
           </a>
         </div>
       </section>
@@ -570,6 +666,26 @@
 
   <div id="toast" style="display:none; position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:rgba(17,24,39,0.95); color:#fff; padding:10px 20px; border-radius:8px; font-size:14px; font-weight:bold; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,0.25);"></div>
   <script>
+    function handleOpenQuarkApp(url) {
+      if (!url) return;
+      // 1. 优先自动复制到剪贴板，确保万无一失
+      copyText(url, '链接已自动复制！正在尝试唤起夸克 App...');
+      
+      // 2. 尝试唤起夸克网盘 App (Quark URL Scheme)
+      // 夸克移动端常见的 scheme 协议
+      var quarkScheme = 'quark://open?url=' + encodeURIComponent(url);
+      var startTime = Date.now();
+      
+      window.location.href = quarkScheme;
+      
+      // 3. 如果在 1.5 秒内没有离开页面，说明可能在 Twitter 内置 Webview 或未安装 App，弹窗友好提示
+      setTimeout(function() {
+        if (Date.now() - startTime < 2200) {
+          copyText(url, '夸克链接已复制！请切换到手机浏览器或直接打开夸克APP');
+        }
+      }, 1500);
+    }
+
     function copyText(text, msg) {
       if (!text) return;
       if (navigator.clipboard && window.isSecureContext) {
