@@ -5,6 +5,43 @@ import { ResourceItem } from '../types';
  * 包含官方直发推文文案与亮点说明
  */
 export const FEATURED_QUARK_UPDATES: ResourceItem[] = [
+  // 0.《挑情丑闻 (2026)》
+  {
+    id: 'res-quark-movie-tiaoqing-chouwen-2026',
+    title: '《挑情丑闻 (2026)》高清完整版 (最新热播悬疑/爱情剧情电影)',
+    mainCategoryId: 'video',
+    subCategoryId: 'movie',
+    subCategoryName: '电影',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源站',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '剧情 / 爱情 / 悬疑惊悚',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/d920315b2450',
+    extractCode: '/~78d63b2FdE~:/',
+    quality: '1080P/4K 高清原画完整版 / 官方中字',
+    size: '4.5 GB',
+    sizeBytes: 4831838208,
+    publishDate: '2026-09-22 09:00',
+    relativeTime: '最新上架',
+    views: 18600,
+    downloads: 7200,
+    isFeatured: true,
+    isLatest: true,
+    tags: ['挑情丑闻', '挑情丑闻2026', '2026电影', '剧情片', '爱情电影', '悬疑', '夸克网盘', '今日最新', '最新上架'],
+    description: '【2026最新影视精选】《挑情丑闻》（2026）高清完整版，剧情曲折跌宕，交织复杂人性与欲望纠葛。夸克网盘极速免封转存，支持手机APP口令【/~78d63b2FdE~:/】与直达链接秒级转存收藏！',
+    recommendation: `🎬 《挑情丑闻 (2026)》高清完整版
+
+2026最新热门剧情反转电影《挑情丑闻》，聚焦欲望与纠葛，剧情跌宕起伏。
+
+我用夸克网盘给你分享了「挑情丑闻（2026）」，点击链接或复制整段内容，打开「夸克APP」即可获取。
+口令：/~78d63b2FdE~:/
+链接：https://pan.quark.cn/s/d920315b2450
+
+更多资源访问 www.wangpan8.com 网盘吧`
+  },
   // 1.《求救信号 Mayday (2026)》
   {
     id: 'res-quark-movie-mayday-2026',
