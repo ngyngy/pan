@@ -496,19 +496,6 @@
         <a href="https://pan.quark.cn/s/a36a59020d69" style="color:#2563eb; font-weight:bold; text-decoration:underline;">请点击这里直接打开</a>
       </div>
 
-      <!-- Twitter / 𝕏 APP 内置浏览器专属安全提示 (通过 UA 智能侦测唤出) -->
-      <div id="twitterAppTip" style="display:none; margin-bottom:18px; background:#fffbeb; border:1.5px solid #f59e0b; border-radius:12px; padding:12px 16px; color:#92400e; font-size:13px; line-height:1.5;">
-        <div style="display:flex; align-items:flex-start; gap:10px;">
-          <span style="font-size:20px; line-height:1.2;">⚠️</span>
-          <div>
-            <strong style="font-size:14px; display:block; margin-bottom:4px; color:#b45309;">
-              推特 / 𝕏 手机端用户特别提醒（防止外链被屏蔽）：
-            </strong>
-            <span>检测到您在 <strong>推特 / 𝕏 APP 内置浏览器</strong> 中访问。为防止推特内置 Webview 拦截外部网盘，建议点击下方<strong>【打开夸克 App】</strong>一键转存，或点击<strong>【复制夸克链接】</strong>后切换至手机 Safari / Chrome 浏览器打开！</span>
-          </div>
-        </div>
-      </div>
-
       <!-- 【夸克网盘分享原生风格卡片】严格参照用户提供截图样式构建：不出现可点击链接，防误点/防推特屏蔽 -->
       <section class="quark-app-modal" aria-label="夸克网盘分享">
         <!-- 头部 Logo 与 标题 -->
@@ -765,18 +752,13 @@
       }
     }
 
-    // 智能识别客户端访问环境：Twitter 环境专属指引与电脑端备用提示
+    // 智能识别客户端访问环境：电脑端备用提示
     (function checkClientEnvironment() {
       var ua = navigator.userAgent || '';
       var isTwitter = /Twitter/i.test(ua);
       var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua) || 
                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
       var isBot = /bot|spider|crawl|slurp|googlebot|bingbot|baiduspider|bytespider/i.test(ua);
-
-      var tipEl = document.getElementById('twitterAppTip');
-      if (tipEl && isTwitter) {
-        tipEl.style.display = 'block';
-      }
 
       var pcEl = document.getElementById('pcRedirectNotice');
       if (pcEl && !isMobile && !isTwitter && !isBot) {

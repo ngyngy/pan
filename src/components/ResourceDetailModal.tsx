@@ -384,18 +384,6 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
                   </div>
                 </div>
 
-                {/* ⚠️ 推特/𝕏 用户专属防屏蔽提示 */}
-                <div className="p-3 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 text-xs text-amber-800 dark:text-amber-200 space-y-1">
-                  <div className="font-bold flex items-center gap-1 text-amber-900 dark:text-amber-100">
-                    <span>⚠️</span>
-                    <span>推特 / 𝕏 手机端用户特别提醒：</span>
-                  </div>
-                  <p className="leading-relaxed text-neutral-700 dark:text-neutral-300">
-                    若您在<strong>推特 APP 内置浏览器</strong>中直接点击链接，常会被拦截或提示遮蔽。
-                    建议先点击<strong>【复制网盘链接】</strong>，再切换到手机浏览器（Safari / Chrome）打开，或者直接切换打开<strong>【夸克APP】</strong>即可直接转存！
-                  </p>
-                </div>
-
                 {/* 提取码/口令（如有） */}
                 {resource.extractCode && (
                   <div className="flex items-center justify-between p-2.5 bg-amber-50/90 dark:bg-amber-950/40 rounded-lg border border-amber-200 dark:border-amber-900/50">
