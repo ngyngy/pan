@@ -5,7 +5,83 @@ import { ResourceItem } from '../types';
  * 包含官方直发推文文案与亮点说明
  */
 export const FEATURED_QUARK_UPDATES: ResourceItem[] = [
-  // 0.《挑情丑闻 (2026)》
+  // 0.《倚天屠龙记 1994版全64集》
+  {
+    id: "res-quark-drama-yitian-tulongji-1994-full",
+    title: "《倚天屠龙记 (1994版)》全64集未删减珍藏版 (无码无台标·国语中字·马景涛/叶童/周海媚/孙兴主演·武侠巅峰经典)",
+    mainCategoryId: "video",
+    subCategoryId: "tv",
+    subCategoryName: "剧集",
+    subsiteId: "dy",
+    subsiteName: "影视短剧资源站",
+    subsiteUrl: "http://dy.ngy123.com",
+    category: "dy",
+    categoryName: "经典武侠 / 国产古装连续剧",
+    driveType: "quark",
+    driveName: "夸克网盘",
+    driveUrl: "https://pan.quark.cn/s/7ca5afb6e727",
+    extractCode: "/~1ebd3b2r1M~:/",
+    quality: "1080P/超清重制完整版 / 无码无台标纯净版 / 国语中字全64集",
+    size: "48.5 GB",
+    sizeBytes: 52079075328,
+    publishDate: "2026-09-23 08:30",
+    relativeTime: "绝版重温",
+    views: 45200,
+    downloads: 18600,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ["倚天屠龙记", "1994版倚天屠龙记", "倚天屠龙记1994", "马景涛", "周海媚", "叶童", "孙兴", "经典武侠", "金庸武侠", "无码无台标", "夸克网盘", "今日最新", "全64集"],
+    description: "【华语武侠永恒神作·绝版画质收藏】1994版《倚天屠龙记》全64集未删减收藏版！赖水清导演执导，马景涛、叶童、周海媚、孙兴等领衔主演。周海媚饰演的“周芷若”超凡脱俗堪称金庸钦点最完美芷若，孙兴饰演的“杨逍”风流倜傥狂放不羁成为一代传奇。该版本为难得的无码无台标、纯净画面、国语中字全集打包。夸克网盘极速免封转存，支持APP口令【/~1ebd3b2r1M~:/】与专属链接一键转存！",
+    recommendation: `🎬 《倚天屠龙记 (1994版)》全64集珍藏版 (无码无台标·国语中字)
+
+金庸武侠不可逾越的经典巅峰！周海媚版周芷若、孙兴版杨逍、马景涛版张无忌，配乐《爱江山更爱美人》《刀剑如梦》《随遇而安》曲曲封神！
+
+我用夸克网盘给你分享了「【国产剧】倚天屠龙记.全64集.1994版.无码无台标.国语中字【2025-04-09】」。
+口令：/~1ebd3b2r1M~:/
+链接：https://pan.quark.cn/s/7ca5afb6e727
+
+更多资源访问 www.wangpan8.com 网盘吧`
+  },
+  // 0.《财阀X刑警 第二季 (2026)[附第1季]》
+  {
+    id: 'res-quark-drama-chaebol-x-detective-s2-2026',
+    title: '《财阀X刑警 第二季 (2026)》全集[附第1季全集] (韩国动作/喜剧/刑侦大剧·安普贤/郑恩彩)',
+    mainCategoryId: 'video',
+    subCategoryId: 'tv',
+    subCategoryName: '剧集',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源站',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '韩剧 / 动作喜剧 / 刑侦推理',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/6ff604417e63',
+    extractCode: '/~00fb3b2HNG~:/',
+    quality: '1080P/4K 高清原画完整版 / 官方中字 / 附第1季全集',
+    size: '32.6 GB',
+    sizeBytes: 35002777600,
+    publishDate: '2026-09-22 09:30',
+    relativeTime: '热播更新',
+    views: 29800,
+    downloads: 11200,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['财阀X刑警', '财阀X刑警第二季', '财阀X刑警2026', '安普贤', '郑恩彩', '热门韩剧', '动作喜剧', '刑侦悬疑', '夸克网盘', '今日最新', '第1季全集'],
+    description: '【2026爆款韩剧回归】《财阀X刑警 第二季》(2026) 高清完整版已上线！内附第1季全集打包。不务正业的财阀三世陈利手（安普贤 饰）继续用雄厚财力和过人直觉惩奸除恶，搭档实力派刑警携手破获离奇要案。剧情幽默解气、节奏飞起，夸克网盘极速免封转存，支持APP口令【/~00fb3b2HNG~:/】与直达链接秒级转存！',
+    recommendation: `🎬 《财阀X刑警 第二季 (2026)》[附第1季全集]
+
+安普贤领衔爆款爽剧重磅回归！用钱砸死罪犯，以财阀手段扫除罪恶，动作、喜剧、刑侦爽感翻倍！
+
+我用夸克网盘给你分享了「财阀X刑警 第二季 (2026)[附第1季][韩国 动作 喜剧 刑侦][安普贤 郑恩彩] [夸克网盘]_kkpan」。
+口令：/~00fb3b2HNG~:/
+链接：https://pan.quark.cn/s/6ff604417e63
+
+更多资源访问 www.wangpan8.com 网盘吧`
+  },
+  // 1.《挑情丑闻 (2026)》
   {
     id: 'res-quark-movie-tiaoqing-chouwen-2026',
     title: '《挑情丑闻 (2026)》高清完整版 (最新热播悬疑/爱情剧情电影)',
