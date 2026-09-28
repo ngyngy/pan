@@ -22,7 +22,35 @@
     <meta name="keywords" content="网盘吧,网盘搜索,网盘资源,网盘吧官网,夸克网盘资源,百度网盘资源,UC网盘资源,迅雷云盘资源,网盘资源聚合,夸克资源搜索引擎,百度云网盘搜索,阿里云盘,天涯神贴合集,中小学学习资料,4K电影下载,热播短剧合集,高晓松资源下载,比特币区块链,正版图书免费入库,夸克吧,网盘导航,www.wangpan8.com,wangpan8" />
     <meta name="author" content="网盘吧 (www.wangpan8.com)" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <link rel="canonical" href="https://www.wangpan8.com/" />
+    
+    <!-- 权威主域名规范化标记 (Canonical URL) - 告知搜索引擎与多域名绑定的首选权威主域 www.wangpan8.com -->
+    <link rel="canonical" href="https://www.wangpan8.com/" id="canonical-url" />
+    <script>
+      (function() {
+        try {
+          var primaryOrigin = 'https://www.wangpan8.com';
+          var path = window.location.pathname || '/';
+          var search = window.location.search || '';
+          if (!path.startsWith('/')) path = '/' + path;
+          var canonicalUrl = primaryOrigin + path + search;
+          
+          var canonicalTag = document.getElementById('canonical-url') || document.querySelector('link[rel="canonical"]');
+          if (!canonicalTag) {
+            canonicalTag = document.createElement('link');
+            canonicalTag.setAttribute('rel', 'canonical');
+            document.head.appendChild(canonicalTag);
+          }
+          canonicalTag.setAttribute('href', canonicalUrl);
+
+          var ogUrl = document.querySelector('meta[property="og:url"]');
+          if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+          var twitterUrl = document.querySelector('meta[name="twitter:url"]');
+          if (twitterUrl) twitterUrl.setAttribute('content', canonicalUrl);
+          var mobileAgent = document.querySelector('meta[name="mobile-agent"]');
+          if (mobileAgent) mobileAgent.setAttribute('content', 'format=html5;url=' + canonicalUrl);
+        } catch (e) {}
+      })();
+    </script>
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 
     <!-- Mobile & Chinese Search Engine Directives (Baidu, 360, Sogou, Shenma) -->

@@ -4,7 +4,7 @@ import path from 'path';
 import fs from 'fs';
 import {defineConfig, Plugin} from 'vite';
 
-// 专门为独立 SEO/GEO 资源页提供独立页面直出与 Clean URL 支持插件
+// 专门为独立 SEO/GEO 资源页提供独立页面直出与 Clean URL 支持插件，并为多域名绑定提供标准 Canonical 响应头与元标记
 function seoCleanUrlPlugin(): Plugin {
   return {
     name: 'seo-clean-url-plugin',
@@ -12,6 +12,10 @@ function seoCleanUrlPlugin(): Plugin {
       server.middlewares.use((req, res, next) => {
         if (!req.url) return next();
         const urlPath = req.url.split('?')[0];
+
+        // 统一向所有请求注入权威主域名 Canonical 规范化响应头 (支持三域名绑定场景)
+        const primaryCanonical = `https://www.wangpan8.com${req.url.startsWith('/') ? req.url : '/' + req.url}`;
+        res.setHeader('Link', `<${primaryCanonical}>; rel="canonical"`);
 
         // 1. 响应 sitemap.xml
         if (urlPath === '/sitemap.xml') {
@@ -67,6 +71,15 @@ function seoCleanUrlPlugin(): Plugin {
 
         next();
       });
+    },
+    transformIndexHtml(html, ctx) {
+      const reqUrl = ctx.originalUrl || ctx.path || '/';
+      const cleanPath = reqUrl.startsWith('/') ? reqUrl : `/${reqUrl}`;
+      const canonicalUrl = `https://www.wangpan8.com${cleanPath}`;
+      return html.replace(
+        /<link rel="canonical" href="[^"]*"/,
+        `<link rel="canonical" href="${canonicalUrl}"`
+      );
     },
   };
 }

@@ -108,7 +108,7 @@
   </script>
 
   <!-- 智能设备判定与重定向路由:
-       1. 电脑端 (PC/Mac/桌面设备): 毫秒级直达夸克网盘真实页面，省去中间多余点击
+       1. 电脑端 (PC/Mac/桌面设备): 毫秒级直达目标网盘（夸克/百度等）真实页面，省去中间多余点击
        2. 推特 / 𝕏 手机端及移动设备: 停留在本防封与唤起判定页，防止外部网盘被拦截，支持一键唤起与免封复制
        3. 搜索引擎蜘蛛 (Google/Baidu/Bing等): 严格保留完整页面内容与结构化数据以保障 SEO 权威索引
   -->
@@ -127,7 +127,7 @@
         var isNoRedirect = window.location.search.indexOf('noredirect=1') !== -1 || window.location.search.indexOf('preview=1') !== -1;
 
         // 判定规则执行：
-        // 电脑端直接跳转到夸克网盘；推特/𝕏 APP 及移动端留在本落地判定页
+        // 电脑端直接跳转到对应网盘；推特/𝕏 APP 及移动端留在本落地判定页
         if (!isMobile && !isTwitter && !isBot && !isNoRedirect) {
           var targetDriveUrl = "https://pan.quark.cn/s/8176d5b34fcb";
           if (targetDriveUrl && targetDriveUrl.length > 5) {
@@ -496,7 +496,7 @@
         <a href="https://pan.quark.cn/s/8176d5b34fcb" style="color:#2563eb; font-weight:bold; text-decoration:underline;">请点击这里直接打开</a>
       </div>
 
-      <!-- 【夸克网盘分享原生风格卡片】严格参照用户提供截图样式构建：不出现可点击链接，防误点/防推特屏蔽 -->
+      <!-- 【网盘分享原生风格安全卡片】严格适配夸克/百度网盘等主流网盘：不出现可点击链接，防误点/防推特屏蔽 -->
       <section class="quark-app-modal" aria-label="夸克网盘分享">
         <!-- 头部 Logo 与 标题 -->
         <div class="quark-modal-header">
@@ -516,10 +516,10 @@
             <span>打开资源</span>
           </div>
           <p class="quark-section-desc">
-            点击按钮唤起夸克并自动跳转。若未打开，请复制链接到浏览器自行打开。
+            点击按钮唤起夸克网盘并自动跳转。若未打开，请复制链接到浏览器自行打开。
           </p>
-          <button type="button" class="btn-quark-primary" onclick="handleOpenQuarkApp('https://pan.quark.cn/s/8176d5b34fcb')">
-            打开夸克 App
+          <button type="button" class="btn-quark-primary" onclick="handleOpenDriveApp('https://pan.quark.cn/s/8176d5b34fcb', '夸克网盘')">
+            打开夸克网盘 App
           </button>
         </div>
 
@@ -532,11 +532,11 @@
           <div class="quark-url-display-box" id="quarkUrlText" title="双击或点击复制">
             https://pan.quark.cn/s/8176d5b34fcb
           </div>
-          <button type="button" class="btn-copy-quark" onclick="copyText('https://pan.quark.cn/s/8176d5b34fcb', '夸克链接已成功复制！')">
-            复制夸克链接
+          <button type="button" class="btn-copy-quark" onclick="copyText('https://pan.quark.cn/s/8176d5b34fcb', '夸克网盘链接已成功复制！')">
+            复制夸克网盘链接
           </button>
           <p class="quark-footer-note">
-            打开 App 没反应？也可以复制夸克链接，再用 Safari、Chrome 或夸克 APP 打开。
+            打开 App 没反应？也可以复制夸克网盘链接，再用 Safari、Chrome 或夸克网盘 APP 打开。
           </p>
         </div>
 
@@ -697,24 +697,40 @@
 
   <div id="toast" style="display:none; position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:rgba(17,24,39,0.95); color:#fff; padding:10px 20px; border-radius:8px; font-size:14px; font-weight:bold; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,0.25);"></div>
   <script>
-    function handleOpenQuarkApp(url) {
+    function handleOpenDriveApp(url, brand) {
       if (!url) return;
-      // 1. 优先自动复制到剪贴板，确保万无一失
-      copyText(url, '链接已自动复制！正在尝试唤起夸克 App...');
+      brand = brand || '网盘';
+      var isBaidu = brand.indexOf('百度') !== -1;
       
-      // 2. 尝试唤起夸克网盘 App (Quark URL Scheme)
-      // 夸克移动端常见的 scheme 协议
-      var quarkScheme = 'quark://open?url=' + encodeURIComponent(url);
+      // 1. 优先自动复制到剪贴板，确保万无一失
+      copyText(url, brand + '链接已自动复制！正在尝试唤起' + brand + '...');
+      
+      // 2. 尝试唤起对应网盘 App (URL Scheme 深度链接协议)
+      var scheme = '';
+      if (isBaidu) {
+        // 百度网盘移动端 URL Scheme
+        scheme = 'baidunetdisk://';
+      } else {
+        // 夸克网盘移动端 URL Scheme
+        scheme = 'quark://open?url=' + encodeURIComponent(url);
+      }
       var startTime = Date.now();
       
-      window.location.href = quarkScheme;
+      if (scheme) {
+        window.location.href = scheme;
+      }
       
       // 3. 如果在 1.5 秒内没有离开页面，说明可能在 Twitter 内置 Webview 或未安装 App，弹窗友好提示
       setTimeout(function() {
         if (Date.now() - startTime < 2200) {
-          copyText(url, '夸克链接已复制！请切换到手机浏览器或直接打开夸克APP');
+          var tipMsg = brand + '链接已复制！请切换到手机浏览器或直接打开' + (isBaidu ? '百度网盘APP' : '夸克APP');
+          copyText(url, tipMsg);
         }
       }, 1500);
+    }
+    // 兼容可能存在的旧调用
+    function handleOpenQuarkApp(url) {
+      handleOpenDriveApp(url, '夸克网盘');
     }
 
     function copyText(text, msg) {

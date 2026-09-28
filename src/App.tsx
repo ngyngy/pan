@@ -14,6 +14,7 @@ import { ToastContainer, ToastMessage } from './components/Toast';
 import { INITIAL_RESOURCES } from './data/resources';
 import { ResourceItem, FilterState, SubSiteCategory, DriveType, MainFolderCategoryKey } from './types';
 import { getResourceHtmlLandingUrl, generateTwitterPostText } from './utils/shareUtils';
+import { syncCanonicalTag } from './utils/canonical';
 
 export default function App() {
   // Dark mode state
@@ -73,6 +74,35 @@ export default function App() {
       }
     }
   }, [resources]);
+
+  // 保持权威主域名 Canonical 规范化同步（多域名绑定专属 SEO 优化）
+  // 无论通过哪个绑定域名访问，均规范化指定 https://www.wangpan8.com/current page path
+  useEffect(() => {
+    if (selectedResource) {
+      syncCanonicalTag(`/resource/${selectedResource.id}.html`);
+      const currentUrl = new URL(window.location.href);
+      if (currentUrl.searchParams.get('r') !== selectedResource.id && currentUrl.searchParams.get('id') !== selectedResource.id) {
+        currentUrl.searchParams.set('r', selectedResource.id);
+        window.history.replaceState({}, '', currentUrl.pathname + currentUrl.search);
+      }
+    } else {
+      const currentUrl = new URL(window.location.href);
+      if (currentUrl.searchParams.has('r') || currentUrl.searchParams.has('id')) {
+        currentUrl.searchParams.delete('r');
+        currentUrl.searchParams.delete('id');
+        window.history.replaceState({}, '', currentUrl.pathname + (currentUrl.search ? currentUrl.search : ''));
+      }
+      syncCanonicalTag();
+    }
+  }, [selectedResource]);
+
+  // 监听浏览器路由与状态变化，实时校准 canonical 链接指向主域名
+  useEffect(() => {
+    syncCanonicalTag();
+    const handlePopState = () => syncCanonicalTag();
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Toast system
   const [toasts, setToasts] = useState<ToastMessage[]>([]);

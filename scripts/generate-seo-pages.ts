@@ -146,6 +146,16 @@ function renderResourceHtml(res: ResourceItem, relatedResources: ResourceItem[],
 
   const cleanName = formatCleanName(res.title.replace(/【.*?】|\[.*?\]/g, '').trim());
 
+  // 网盘渠道适配判定 (支持百度网盘、夸克网盘、UC网盘、迅雷云盘等自适应展示)
+  const isBaiduDrive = res.driveType === 'baidu' || (res.driveName && res.driveName.includes('百度'));
+  const driveBrandName = isBaiduDrive ? '百度网盘' : (res.driveName || '网盘');
+  const openAppBtnText = isBaiduDrive ? '打开百度网盘' : `打开${driveBrandName} App`;
+  const copyLinkBtnText = isBaiduDrive ? '复制百度网盘链接' : `复制${driveBrandName}链接`;
+  const linkCopiedToast = isBaiduDrive ? '百度网盘链接已成功复制！' : `${driveBrandName}链接已成功复制！`;
+  const openAppDesc = `点击按钮唤起${driveBrandName}并自动跳转。若未打开，请复制链接到浏览器自行打开。`;
+  const footerHelpNote = `打开 App 没反应？也可以复制${driveBrandName}链接，再用 Safari、Chrome 或${driveBrandName} APP 打开。`;
+  const pcRedirectText = `💻 检测到您正在使用电脑端浏览器，正在为您直达${driveBrandName}... 如未自动跳转，`;
+
   // 构造 JSON-LD 实体定义
   const jsonLdEntity = {
     '@context': 'https://schema.org',
@@ -265,7 +275,7 @@ ${JSON.stringify(jsonLdBreadcrumb, null, 2)}
   </script>
 
   <!-- 智能设备判定与重定向路由:
-       1. 电脑端 (PC/Mac/桌面设备): 毫秒级直达夸克网盘真实页面，省去中间多余点击
+       1. 电脑端 (PC/Mac/桌面设备): 毫秒级直达目标网盘（夸克/百度等）真实页面，省去中间多余点击
        2. 推特 / 𝕏 手机端及移动设备: 停留在本防封与唤起判定页，防止外部网盘被拦截，支持一键唤起与免封复制
        3. 搜索引擎蜘蛛 (Google/Baidu/Bing等): 严格保留完整页面内容与结构化数据以保障 SEO 权威索引
   -->
@@ -284,7 +294,7 @@ ${JSON.stringify(jsonLdBreadcrumb, null, 2)}
         var isNoRedirect = window.location.search.indexOf('noredirect=1') !== -1 || window.location.search.indexOf('preview=1') !== -1;
 
         // 判定规则执行：
-        // 电脑端直接跳转到夸克网盘；推特/𝕏 APP 及移动端留在本落地判定页
+        // 电脑端直接跳转到对应网盘；推特/𝕏 APP 及移动端留在本落地判定页
         if (!isMobile && !isTwitter && !isBot && !isNoRedirect) {
           var targetDriveUrl = "${escapeHtml(res.driveUrl)}";
           if (targetDriveUrl && targetDriveUrl.length > 5) {
@@ -649,12 +659,12 @@ ${JSON.stringify(jsonLdBreadcrumb, null, 2)}
 
       <!-- 电脑端直达提示 (电脑端默认已毫秒级重定向，此处作为备用防卡通道) -->
       <div id="pcRedirectNotice" style="display:none; background:#eff6ff; border:1px solid #bfdbfe; color:#1e40af; border-radius:12px; padding:12px 16px; margin-bottom:18px; font-size:14px; text-align:center;">
-        <span>💻 检测到您正在使用电脑端浏览器，正在为您直达夸克网盘... 如未自动跳转，</span>
+        <span>${pcRedirectText}</span>
         <a href="${escapeHtml(res.driveUrl)}" style="color:#2563eb; font-weight:bold; text-decoration:underline;">请点击这里直接打开</a>
       </div>
 
-      <!-- 【夸克网盘分享原生风格卡片】严格参照用户提供截图样式构建：不出现可点击链接，防误点/防推特屏蔽 -->
-      <section class="quark-app-modal" aria-label="夸克网盘分享">
+      <!-- 【网盘分享原生风格安全卡片】严格适配夸克/百度网盘等主流网盘：不出现可点击链接，防误点/防推特屏蔽 -->
+      <section class="quark-app-modal" aria-label="${escapeHtml(driveBrandName)}分享">
         <!-- 头部 Logo 与 标题 -->
         <div class="quark-modal-header">
           <div class="quark-logo-badge" aria-hidden="true">
@@ -663,7 +673,7 @@ ${JSON.stringify(jsonLdBreadcrumb, null, 2)}
               <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
             </svg>
           </div>
-          <h2 class="quark-modal-title" style="margin:0; padding:0; border:none;">${escapeHtml(res.driveName)}分享</h2>
+          <h2 class="quark-modal-title" style="margin:0; padding:0; border:none;">${escapeHtml(driveBrandName)}分享</h2>
         </div>
 
         <!-- 1. 打开资源 -->
@@ -673,10 +683,10 @@ ${JSON.stringify(jsonLdBreadcrumb, null, 2)}
             <span>打开资源</span>
           </div>
           <p class="quark-section-desc">
-            点击按钮唤起夸克并自动跳转。若未打开，请复制链接到浏览器自行打开。
+            ${openAppDesc}
           </p>
-          <button type="button" class="btn-quark-primary" onclick="handleOpenQuarkApp('${escapeHtml(res.driveUrl)}')">
-            打开夸克 App
+          <button type="button" class="btn-quark-primary" onclick="handleOpenDriveApp('${escapeHtml(res.driveUrl)}', '${escapeHtml(driveBrandName)}')">
+            ${openAppBtnText}
           </button>
         </div>
 
@@ -689,11 +699,11 @@ ${JSON.stringify(jsonLdBreadcrumb, null, 2)}
           <div class="quark-url-display-box" id="quarkUrlText" title="双击或点击复制">
             ${escapeHtml(res.driveUrl)}
           </div>
-          <button type="button" class="btn-copy-quark" onclick="copyText('${escapeHtml(res.driveUrl)}', '夸克链接已成功复制！')">
-            复制夸克链接
+          <button type="button" class="btn-copy-quark" onclick="copyText('${escapeHtml(res.driveUrl)}', '${linkCopiedToast}')">
+            ${copyLinkBtnText}
           </button>
           <p class="quark-footer-note">
-            打开 App 没反应？也可以复制夸克链接，再用 Safari、Chrome 或夸克 APP 打开。
+            ${footerHelpNote}
           </p>
         </div>
 
@@ -837,24 +847,40 @@ ${escapeHtml(res.recommendation)}
 
   <div id="toast" style="display:none; position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:rgba(17,24,39,0.95); color:#fff; padding:10px 20px; border-radius:8px; font-size:14px; font-weight:bold; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,0.25);"></div>
   <script>
-    function handleOpenQuarkApp(url) {
+    function handleOpenDriveApp(url, brand) {
       if (!url) return;
-      // 1. 优先自动复制到剪贴板，确保万无一失
-      copyText(url, '链接已自动复制！正在尝试唤起夸克 App...');
+      brand = brand || '网盘';
+      var isBaidu = brand.indexOf('百度') !== -1;
       
-      // 2. 尝试唤起夸克网盘 App (Quark URL Scheme)
-      // 夸克移动端常见的 scheme 协议
-      var quarkScheme = 'quark://open?url=' + encodeURIComponent(url);
+      // 1. 优先自动复制到剪贴板，确保万无一失
+      copyText(url, brand + '链接已自动复制！正在尝试唤起' + brand + '...');
+      
+      // 2. 尝试唤起对应网盘 App (URL Scheme 深度链接协议)
+      var scheme = '';
+      if (isBaidu) {
+        // 百度网盘移动端 URL Scheme
+        scheme = 'baidunetdisk://';
+      } else {
+        // 夸克网盘移动端 URL Scheme
+        scheme = 'quark://open?url=' + encodeURIComponent(url);
+      }
       var startTime = Date.now();
       
-      window.location.href = quarkScheme;
+      if (scheme) {
+        window.location.href = scheme;
+      }
       
       // 3. 如果在 1.5 秒内没有离开页面，说明可能在 Twitter 内置 Webview 或未安装 App，弹窗友好提示
       setTimeout(function() {
         if (Date.now() - startTime < 2200) {
-          copyText(url, '夸克链接已复制！请切换到手机浏览器或直接打开夸克APP');
+          var tipMsg = brand + '链接已复制！请切换到手机浏览器或直接打开' + (isBaidu ? '百度网盘APP' : '夸克APP');
+          copyText(url, tipMsg);
         }
       }, 1500);
+    }
+    // 兼容可能存在的旧调用
+    function handleOpenQuarkApp(url) {
+      handleOpenDriveApp(url, '夸克网盘');
     }
 
     function copyText(text, msg) {
@@ -1002,6 +1028,7 @@ function generateSitemapHtml(resources: ResourceItem[], categories: MainFolderCa
   <meta charset="UTF-8">
   <title>网站地图 (Sitemap) - 网盘吧 (www.wangpan8.com)</title>
   <meta name="robots" content="index, follow">
+  <link rel="canonical" href="${DOMAIN}/sitemap.html">
   <style>
     body { font-family: -apple-system, sans-serif; padding: 24px; max-width: 900px; margin: 0 auto; color: #333; line-height: 1.6; }
     h1 { font-size: 22px; }
