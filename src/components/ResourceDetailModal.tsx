@@ -54,6 +54,8 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
   if (!resource) return null;
 
   const isWelfareItem = resource.isWelfare || resource.mainCategoryId === 'welfare';
+  const isBaiduDrive = resource.driveType === 'baidu' || (resource.driveName && resource.driveName.includes('百度'));
+  const driveBrandName = isBaiduDrive ? '百度网盘' : (resource.driveName || '夸克网盘');
 
   // 本站专属独立落地链接 (推特防封静态页)
   const twitterSafeLandingUrl = getResourceHtmlLandingUrl(resource.id, true);
@@ -370,7 +372,7 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
                       className="flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 text-neutral-700 dark:text-neutral-200 transition-colors cursor-pointer"
                     >
                       {copiedDownloadLink ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                      <span>{copiedDownloadLink ? '已复制链接' : '复制网盘链接'}</span>
+                      <span>{copiedDownloadLink ? '已复制链接' : `复制${driveBrandName}链接`}</span>
                     </button>
                     <a
                       href={resource.driveUrl}
@@ -378,7 +380,7 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
                       rel="noreferrer"
                       className="flex items-center gap-1 px-3 py-1 text-xs font-bold rounded bg-emerald-600 hover:bg-emerald-700 text-white shadow-2xs transition-colors cursor-pointer"
                     >
-                      <span>打开网盘转存</span>
+                      <span>{isBaiduDrive ? '打开百度网盘' : `打开${driveBrandName}转存`}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   </div>
@@ -460,7 +462,9 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
                         <span className="text-[10px] px-1.5 py-0.2 rounded bg-emerald-600 text-white font-medium">防封专享</span>
                       </h4>
                       <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
-                        推特已屏蔽夸克直链！在推特发帖发此本站独立链接，用户在推特内点击可 100% 顺畅打开并转存。
+                        {isBaiduDrive
+                          ? '推特已屏蔽百度网盘直链！在推特发帖发此本站独立链接，用户在推特内点击可 100% 顺畅打开并转存。'
+                          : `推特已屏蔽${driveBrandName}直链！在推特发帖发此本站独立链接，用户在推特内点击可 100% 顺畅打开并转存。`}
                       </p>
                     </div>
                   </div>
@@ -511,7 +515,7 @@ export const ResourceDetailModal: React.FC<ResourceDetailModalProps> = ({
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between p-2 rounded-lg bg-sky-50/70 dark:bg-sky-950/30 border border-sky-100 dark:border-sky-900/60 gap-2">
                   <div className="text-xs text-neutral-600 dark:text-neutral-300 flex items-center gap-1">
                     <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                    <span>自动整合：资源标题 + 规格 + 夸克口令 + 本站独立链接 + 话题标签</span>
+                    <span>自动整合：资源标题 + 规格 + {driveBrandName}口令/提取码 + 本站独立链接 + 话题标签</span>
                   </div>
                   <button
                     onClick={handleCopyTwitterPost}
