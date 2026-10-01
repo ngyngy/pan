@@ -1,4 +1,5 @@
 import { ResourceItem } from '../types';
+import { OCTOBER_HOT_SHORT_DRAMAS } from './octoberShortDramas';
 import { FEATURED_QUARK_UPDATES } from './featuredQuarkUpdates';
 import { YIDONG_EXCLUSIVE_RESOURCES } from './yidongResources';
 import { FEATURED_EBOOKS_AND_COURSES } from './featuredEbooksAndCourses';
@@ -14,6 +15,11 @@ import { BILIBILI_PAID_COURSES } from './bilibiliCourses';
  * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航、移动云盘与经典电子书合集全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // 10月热门爆款短剧资源专区（退婚三年/暴君互换/末日餐厅等30部热门神剧永久有效）
+  // ==========================================
+  ...OCTOBER_HOT_SHORT_DRAMAS,
+
   // ==========================================
   // B站付费精品课程大合集单项资源（240+套名师系统课全部收录于 02-3 文件夹）
   // ==========================================
