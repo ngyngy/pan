@@ -5,6 +5,44 @@ import { ResourceItem } from '../types';
  * 包含官方直发推文文案与亮点说明
  */
 export const FEATURED_QUARK_UPDATES: ResourceItem[] = [
+  // 0.《一刀倾城 (1993) 4K》
+  {
+    id: 'res-quark-movie-yidao-qingcheng-1993-4k',
+    title: '《一刀倾城 (1993)》4K 超清修复典藏版 (洪金宝执导·狄龙/杨凡/关之琳/邹兆龙/赵长军主演·华语武侠诗意巅峰神作)',
+    mainCategoryId: 'video',
+    subCategoryId: 'movie',
+    subCategoryName: '电影',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源站',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '经典武侠 / 4K修复电影',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/688d65893dce',
+    extractCode: '/~c95f3bGw9p~:/',
+    quality: '4K 2160p 超清数字修复版 / 国粤双语无损音轨 / 官方中字',
+    size: '15.8 GB',
+    sizeBytes: 16965107712,
+    publishDate: '2026-10-05 12:00',
+    relativeTime: '4K重制首发',
+    views: 58200,
+    downloads: 24600,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: false,
+    tags: ['一刀倾城', '一刀倾城4K', '1993电影', '洪金宝', '狄龙', '关之琳', '王五', '谭嗣同', '大刀王五', '经典武侠', '动作电影', '4K修复', '夸克网盘', '今日最新'],
+    description: '【华语武侠永恒绝唱·4K超清数字重制】由洪金宝执导、司徒卓汉编剧，狄龙、杨凡、关之琳、邹兆龙、赵长军等领衔主演的1993年传世武侠史诗《一刀倾城》（Blade of Fury）4K超清修复典藏版重磅上线！影片以清末戊戌变法为背景，讲述大刀王五、谭嗣同、袁世凯三人从萍水相逢惺惺相惜到殊途殊归的苍凉壮烈史诗。狄龙饰演的谭嗣同慷慨就义“我自横刀向天笑，去留肝胆两昆仑”，杨凡饰演的王五义薄云天单刀赴死，洪金宝与全国武术冠军赵长军的动作设计刚猛凌厉、拳拳到肉，台词意境深远被誉为华语电影文学性巅峰。本次4K数字修复版彻底消除胶片噪点与划痕，色彩饱满通透，国粤双语音轨，极具大屏观影沉浸感！',
+    recommendation: `🎬 《一刀倾城 (1993)》4K 超清修复典藏版
+
+华语武侠电影不可逾越的诗意巅峰！“我自横刀向天笑，去留肝胆两昆仑”！狄龙、杨凡、关之琳、洪金宝倾力巨献，动作与家国情怀的双重震撼！
+
+我用夸克网盘给你分享了「一刀倾城 (1993) 4K」。
+口令：/~c95f3bGw9p~:/
+链接：https://pan.quark.cn/s/688d65893dce
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
   // 1.《影帝权臣(1)》全集完整版
   {
     id: 'res-quark-drama-yingdi-quanchen-full',
