@@ -1113,55 +1113,91 @@ Sitemap: ${DOMAIN}/sitemap.xml
 
 // 主执行入口
 async function main() {
-  console.log(`[SEO-Engine] 开始生成网盘吧独立 SEO & GEO 页面系统...`);
+  const startTime = Date.now();
+  const isForce = process.argv.includes('--force') || process.argv.includes('-f');
+  console.log(`[SEO-Engine] 开始生成网盘吧独立 SEO & GEO 页面系统... (增量模式: ${isForce ? '强制全量' : '智能增量'})`);
   console.log(`[SEO-Engine] 待处理资源总数: ${INITIAL_RESOURCES.length}`);
   console.log(`[SEO-Engine] 待处理核心分类总数: ${MAIN_FOLDERS.length}`);
 
-  // 1. 为每个资源生成独立 HTML
-  let resourceCount = 0;
-  INITIAL_RESOURCES.forEach((res, index) => {
-    // 寻找同分类下的其他推荐资源（6个）
-    const related = INITIAL_RESOURCES
-      .filter(r => r.id !== res.id && (r.mainCategoryId === res.mainCategoryId || r.subCategoryId === res.subCategoryId))
-      .slice(0, 6);
+  // 预索引分类与相关资源缓存（由 O(N^2) 优化至 O(N)，极大降低 CPU 循环耗时）
+  const categoryMap = new Map<string, MainFolderCategory>();
+  for (const f of MAIN_FOLDERS) {
+    categoryMap.set(f.id, f);
+  }
 
-    const mainCategory = MAIN_FOLDERS.find(f => f.id === res.mainCategoryId);
-    const html = renderResourceHtml(res, related, mainCategory);
-    
-    // 写入 public/resource/${res.id}.html
+  const categoryResourceMap = new Map<string, ResourceItem[]>();
+  for (const r of INITIAL_RESOURCES) {
+    const key = r.mainCategoryId || 'other';
+    let group = categoryResourceMap.get(key);
+    if (!group) {
+      group = [];
+      categoryResourceMap.set(key, group);
+    }
+    group.push(r);
+  }
+
+  // 1. 为每个资源生成独立 HTML（智能增量跳过未变更文件）
+  let writtenCount = 0;
+  let skippedCount = 0;
+
+  for (const res of INITIAL_RESOURCES) {
     const filePath = path.resolve(RESOURCE_DIR, `${res.id}.html`);
+    const fileExists = fs.existsSync(filePath);
+
+    // 如果非强制模式且文件已存在，仅在内容变化时写入
+    const catGroup = categoryResourceMap.get(res.mainCategoryId || 'other') || [];
+    const related = catGroup.filter(r => r.id !== res.id).slice(0, 6);
+    const mainCategory = categoryMap.get(res.mainCategoryId || '');
+    const html = renderResourceHtml(res, related, mainCategory);
+
+    if (!isForce && fileExists) {
+      const existing = fs.readFileSync(filePath, 'utf8');
+      if (existing === html) {
+        skippedCount++;
+        continue;
+      }
+    }
+
     fs.writeFileSync(filePath, html, 'utf8');
-    resourceCount++;
-  });
-  console.log(`[SEO-Engine]  已完成 ${resourceCount} 个独立资源 SEO/GEO 页面生成 -> public/resource/*.html`);
+    writtenCount++;
+  }
+  console.log(`[SEO-Engine] 独立落地页处理完成: 新增/更新 ${writtenCount} 篇，智能命中复用 ${skippedCount} 篇 -> public/resource/*.html`);
 
   // 2. 为每个核心分类生成分类索引 HTML
-  let categoryCount = 0;
-  MAIN_FOLDERS.forEach(cat => {
-    const catResources = INITIAL_RESOURCES.filter(r => r.mainCategoryId === cat.id);
+  let categoryUpdated = 0;
+  for (const cat of MAIN_FOLDERS) {
+    const catResources = categoryResourceMap.get(cat.id) || [];
     const html = renderCategoryHtml(cat, catResources);
     const filePath = path.resolve(CATEGORY_DIR, `${cat.id}.html`);
+    if (!isForce && fs.existsSync(filePath)) {
+      const existing = fs.readFileSync(filePath, 'utf8');
+      if (existing === html) continue;
+    }
     fs.writeFileSync(filePath, html, 'utf8');
-    categoryCount++;
-  });
-  console.log(`[SEO-Engine]  已完成 ${categoryCount} 个核心分类索引页面生成 -> public/category/*.html`);
+    categoryUpdated++;
+  }
+  console.log(`[SEO-Engine] 分类索引页处理完成: 更新 ${categoryUpdated} 篇`);
 
   // 3. 生成 sitemap.xml
   const sitemapXml = generateSitemapXml(INITIAL_RESOURCES, MAIN_FOLDERS);
   fs.writeFileSync(path.resolve(PUBLIC_DIR, 'sitemap.xml'), sitemapXml, 'utf8');
-  console.log(`[SEO-Engine]  已生成 sitemap.xml (包含 ${INITIAL_RESOURCES.length + MAIN_FOLDERS.length + 1} 个权威 URL)`);
+  console.log(`[SEO-Engine] 已生成 sitemap.xml (包含 ${INITIAL_RESOURCES.length + MAIN_FOLDERS.length + 1} 个权威 URL)`);
 
   // 4. 生成 sitemap.html
   const sitemapHtml = generateSitemapHtml(INITIAL_RESOURCES, MAIN_FOLDERS);
   fs.writeFileSync(path.resolve(PUBLIC_DIR, 'sitemap.html'), sitemapHtml, 'utf8');
-  console.log(`[SEO-Engine]  已生成 sitemap.html (HTML 版蜘蛛索引地图)`);
+  console.log(`[SEO-Engine] 已生成 sitemap.html (HTML 版蜘蛛索引地图)`);
 
-  // 5. 生成 robots.txt
-  const robotsTxt = generateRobotsTxt();
-  fs.writeFileSync(path.resolve(PUBLIC_DIR, 'robots.txt'), robotsTxt, 'utf8');
-  console.log(`[SEO-Engine]  已生成 robots.txt (对 Google, 百度, Bing, GPTBot, PerplexityBot 全面开放)`);
+  // 5. 生成 robots.txt (仅在缺失时写入)
+  const robotsPath = path.resolve(PUBLIC_DIR, 'robots.txt');
+  if (!fs.existsSync(robotsPath) || isForce) {
+    const robotsTxt = generateRobotsTxt();
+    fs.writeFileSync(robotsPath, robotsTxt, 'utf8');
+    console.log(`[SEO-Engine] 已生成 robots.txt`);
+  }
 
-  console.log(`[SEO-Engine]  SEO & GEO 全套独立系统生成完毕！`);
+  const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+  console.log(`[SEO-Engine] SEO & GEO 全套系统极速完成，耗时仅 ${elapsed} 秒！`);
 }
 
 main().catch(err => {

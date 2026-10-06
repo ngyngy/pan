@@ -5,6 +5,47 @@ import { ResourceItem } from '../types';
  * 包含官方直发推文文案与亮点说明
  */
 export const FEATURED_QUARK_UPDATES: ResourceItem[] = [
+  // 0.《1300+部绝版冷门经典电影顶级影库检索表》(vilibazmio_archive.xlsx)
+  {
+    id: 'res-quark-movie-vilibazmio-archive-1300-movies',
+    title: '《1300+部绝版冷门经典电影顶级影库检索表》典藏版 (vilibazmio_archive.xlsx·含近800部蓝光原盘·独家译制外挂中字·Archive.org永久直连库)',
+    mainCategoryId: 'video',
+    subCategoryId: 'movie',
+    subCategoryName: '电影',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源站',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '绝版冷门佳片 / 蓝光原盘影库',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/7a7dc9d98200',
+    extractCode: '/~baac3bHUIk~:/',
+    quality: 'Excel检索全库 / 含1300+部绝版冷门佳片 / 近800部蓝光原盘画质 / 独家稀缺外挂字幕',
+    size: '18.5 MB',
+    sizeBytes: 19398656,
+    publishDate: '2026-10-06 10:00',
+    relativeTime: '重磅影库',
+    views: 63500,
+    downloads: 28900,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['绝版电影', '冷门电影', '经典电影影库', 'vilibazmio_archive', '蓝光原盘', '外挂中文字幕', 'Archive.org', '小众电影', '电影合集', '夸克网盘', '今日最新'],
+    description: '【影迷封神级宝藏影库】爱看经典电影的影迷朋友绝对不容错过的无价宝库！由资深影迷博主倾力整理的《1300+部绝版冷门经典电影顶级影库检索表》（vilibazmio_archive.xlsx）。全库收录了1300余部全网难寻的绝版冷门艺术片、小众先锋片、高分Cult片与世界影史遗珠，其中近800部达到无损蓝光原盘顶级画质。该资源全部基于国际数字图书馆 Archive.org 平台搭建，直连下载永久有效；尤为珍贵的是内含大量博主亲自听译校对的独家稀缺外挂中文字幕，完美解决小众神作“无字难咽”的痛点。建议转存后下载到本地播放，享受极致声画体验！',
+    recommendation: `🎬 《1300+部绝版冷门经典电影顶级影库检索表》(含近800部蓝光原盘+稀缺中字)
+
+爱看经典电影的朋友这下有福啦！🔥
+刚更新了包含1300多部绝版冷门电影的顶级影库，其中有近800部为蓝光原盘画质。
+该资源基于 http://Archive.org 平台搭建，链接永久有效，且包含博主亲自翻译的稀缺外挂字幕。
+建议下载到本地观看以获得最佳画质与字幕体验。
+
+我用夸克网盘给你分享了「vilibazmio_archive.xlsx」。
+口令：/~baac3bHUIk~:/
+链接：https://pan.quark.cn/s/7a7dc9d98200
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
   // 0.《一刀倾城 (1993) 4K》
   {
     id: 'res-quark-movie-yidao-qingcheng-1993-4k',
