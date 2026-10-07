@@ -5,6 +5,121 @@ import { ResourceItem } from '../types';
  * 包含官方直发推文文案与亮点说明
  */
 export const FEATURED_QUARK_UPDATES: ResourceItem[] = [
+  // 1.《爱，死亡和机器人》第四季[附第1-3季全集]
+  {
+    id: 'res-quark-anime-love-death-and-robots-s4-full',
+    title: '《爱，死亡和机器人》第四季[附第1-3季全集] (Netflix成人向科幻动画短片神作·4K杜比视界·全集官方中字)',
+    mainCategoryId: 'video',
+    subCategoryId: 'anime',
+    subCategoryName: '动漫',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源站',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '科幻动画 / Netflix神作 / 杜比视界',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/1b7faea3105e',
+    quality: '4K 2160p 杜比视界 (DV) / HDR10 / 官方简繁中字 / 全1-4季完整打包',
+    size: '28.6 GB',
+    sizeBytes: 30707630080,
+    publishDate: '2026-10-06 12:00',
+    relativeTime: '重磅上新',
+    views: 72100,
+    downloads: 35800,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['爱死亡和机器人', '爱死亡和机器人第四季', '爱死机', 'Netflix', '科幻动画', '4K杜比视界', '高分美剧', '大卫芬奇', '夸克网盘', '今日最新', '1-4季全集'],
+    description: '《爱，死亡和机器人》第四季来了，前三季也一并补齐！Netflix的成人向动画短片集，一集一个故事，科幻、恐怖、黑色幽默轮着来。画风每集都不一样，从极致写实CG到怪诞手绘应有尽有；长度大多十几分钟，适合碎片时间看完再深度回味。第四季继续走这个路子：短、猛、结尾经常反转。本合集收录全1-4季完整4K原盘压制版，支持杜比视界与官方双语字幕，想重温的可以从第一季刷起，只追新的直接看第四季！',
+    recommendation: `🎬 《爱，死亡和机器人》第四季 (附前1-3季全集打包)
+
+Netflix 的成人向动画短片集，一集一个故事，科幻、恐怖、黑色幽默轮着来。画风每集都不一样，从写实到怪诞都有；长度大多十几分钟，适合碎片时间看完再回味。第四季继续走这个路子：短、猛、结尾经常反转。
+
+想重温的可以从第一季刷起，只追新的直接看第四季。
+
+链接：https://pan.quark.cn/s/1b7faea3105e
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
+
+  // 2.《中信图书出品》600本电子书
+  {
+    id: 'res-quark-books-citic-publishing-600-collection',
+    title: '《中信图书出品》600本精品电子书合集 (附完整Excel检索目录·经管商业/前沿科技/人文历史/精排EPUB+PDF【4.3GB】)',
+    mainCategoryId: 'books',
+    subCategoryId: 'ebooks',
+    subCategoryName: '经典电子书 / 社科名著',
+    subsiteId: 'tianya',
+    subsiteName: '天涯神贴与文学典籍',
+    subsiteUrl: 'http://tianya.ngy123.com',
+    category: 'tianya',
+    categoryName: '中信出版 / 商业经管 / 人文社科',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/6666b43bdd4e',
+    extractCode: '/~594f3bIVRS~:/',
+    quality: '精排EPUB / MOBI / 高清PDF · 附600本完整Excel书名/作者/分类检索目录',
+    size: '4.3 GB',
+    sizeBytes: 4617089843,
+    publishDate: '2026-10-06 12:10',
+    relativeTime: '重磅书库',
+    views: 58900,
+    downloads: 26400,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['中信图书', '中信出版社', '600本电子书', '经管商业', '前沿科技', '人类简史', '原则', '投资思维', '夸克网盘', '电子书大合集'],
+    description: '【国内顶级出版品牌精选书库】中信出版集团（中信图书）官方重磅力作600本超级豪华书单打包！涵盖《人类简史》《原则》《思考，快与慢》《基业长青》《纳瓦尔宝典》等全球顶尖商业经管、前沿科技趋势、认知心理学与人文历史经典名著。全部采用高品质精排EPUB/MOBI与矢量高清PDF双格式，特别附带完整Excel检索目录，支持快速搜索书名、作者与核心关键词，是终身学习者和阅读爱好者的终极数字图书馆！',
+    recommendation: `📚 《中信图书出品》600本电子书 (附完整目录【4.3GB】)
+
+中信出版社顶级出版经典！商业、金融、科技、社科认知神作一次性收录，附带详细目录索引，Kindle/微信读书党必藏！
+
+我用夸克网盘给你分享了「《中信图书出品》600本电子书 附完整目录【4.3GB】」。
+口令：/~594f3bIVRS~:/
+链接：https://pan.quark.cn/s/6666b43bdd4e
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
+
+  // 3. SONY 华语1000首歌曲合集flac
+  {
+    id: 'res-quark-music-sony-chinese-1000-songs-flac',
+    title: '《SONY 华语1000首歌曲合集》典藏版 (索尼音乐华语流行金曲·无损FLAC·内嵌高清封面歌词·顶级发烧母带音质)',
+    mainCategoryId: 'music',
+    subCategoryId: 'lossless',
+    subCategoryName: '无损音乐 (FLAC / APE / Hi-Res)',
+    subsiteId: 'uc',
+    subsiteName: '音乐专区',
+    subsiteUrl: 'http://uc.ngy123.com',
+    category: 'uc_nav',
+    categoryName: 'SONY华语精选 / 无损流行金曲',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/4d47c7d6c4a2',
+    extractCode: '/~e04a3bIVCT~:/',
+    quality: '无损 FLAC / 24bit Hi-Res 顶级母带音质 / 完整千首歌词与ID3封面信息',
+    size: '31.2 GB',
+    sizeBytes: 33500744908,
+    publishDate: '2026-10-06 12:20',
+    relativeTime: '发烧典藏',
+    views: 64200,
+    downloads: 31500,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['SONY华语1000首', '索尼音乐', '无损音乐', 'FLAC', '华语经典', '流行金曲', 'Hi-Res', '发烧车载音乐', '夸克网盘', '音乐合集'],
+    description: '【华语乐坛半壁江山·发烧级母带音质】由国际唱片巨头 SONY Music（索尼音乐）官方母带精选的华语流行 1000 首传世金曲终极合集！精选周杰伦、王力宏、莫文蔚、李玟、蔡依林、张信哲、庾澄庆、黄义达等数百位华语顶级巨星代表作，横跨华语流行音乐黄金年代。全套音频均为 100% 纯正无损 FLAC 格式，声场开阔、细节分毫毕现，完整分轨内嵌精准 LRC 歌词与高清唱片封面，车载无损音乐播放与高保真发烧音响设备绝配神品！',
+    recommendation: `🎵 《SONY 华语1000首歌曲合集》无损 FLAC 典藏版
+
+索尼音乐殿堂级母带精选！华语流行乐坛黄金年代 1000 首巅峰金曲全收录，无损 FLAC 极致纯净音质，发烧友与车载音乐首选！
+
+我用夸克网盘给你分享了「SONY 华语1000道歌曲合集flac」。
+口令：/~e04a3bIVCT~:/
+链接：https://pan.quark.cn/s/4d47c7d6c4a2
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
   // 0.《1300+部绝版冷门经典电影顶级影库检索表》(vilibazmio_archive.xlsx)
   {
     id: 'res-quark-movie-vilibazmio-archive-1300-movies',
