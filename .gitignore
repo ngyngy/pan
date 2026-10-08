@@ -6,3 +6,10 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Generated static SEO pages & sitemaps (generated automatically during build)
+public/resource/
+public/category/
+public/sitemap.xml
+public/sitemap.html
+
