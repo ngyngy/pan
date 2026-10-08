@@ -5,6 +5,340 @@ import { ResourceItem } from '../types';
  * 包含官方直发推文文案与亮点说明
  */
 export const FEATURED_QUARK_UPDATES: ResourceItem[] = [
+  // 1. 小游戏 两面 (zip压缩包版)
+  {
+    id: 'res-quark-game-liangmian-zip',
+    title: '《两面》独立解谜小游戏 (压缩包解压即玩·解压密码1234·绿色免安装)',
+    mainCategoryId: 'games',
+    subCategoryId: 'small_indie_masterpieces',
+    subCategoryName: '小容量高分神作',
+    subsiteId: 'youxi',
+    subsiteName: '游戏资源专区',
+    subsiteUrl: 'http://youxi.ngy123.com',
+    category: 'youxi',
+    categoryName: '独立小游戏 / 解谜休闲 / 免安装绿色版',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/9b589215e888',
+    extractCode: '1234',
+    quality: 'PC免安装绿色版 / 解压密码: 1234 / 解压后点击.exe直接运行',
+    size: '128 MB',
+    sizeBytes: 134217728,
+    publishDate: '2026-10-08 17:00',
+    relativeTime: '今日最新',
+    views: 18600,
+    downloads: 8200,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: false,
+    tags: ['小游戏', '两面', '独立游戏', '解谜小游戏', '绿色免安装', '密码1234', '夸克网盘', 'PC单机'],
+    description: '经典趣味独立小游戏《两面》（.zip压缩包版），解压密码为【1234】。下载后解压缩，直接点击文件夹内的 .exe 核心可执行文件即可快速启动游玩，无需任何复杂的安装流程。解谜机制巧妙，画风简洁明快，非常适合闲暇时光体验烧脑解谜乐趣！',
+    recommendation: `🎮 小游戏《两面》(解压即玩·密码1234)
+
+解压密码：1234
+点击内部 exe 文件直接启动游玩，绿色小巧好玩的独立解谜佳作！
+
+链接：https://pan.quark.cn/s/9b589215e888
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
+
+  // 2. 小游戏 两面 密码1234(1).exe
+  {
+    id: 'res-quark-game-liangmian-exe',
+    title: '《两面》独立小游戏单文件免解压版 (运行密码1234·双击直接游玩)',
+    mainCategoryId: 'games',
+    subCategoryId: 'small_indie_masterpieces',
+    subCategoryName: '小容量高分神作',
+    subsiteId: 'youxi',
+    subsiteName: '游戏资源专区',
+    subsiteUrl: 'http://youxi.ngy123.com',
+    category: 'youxi',
+    categoryName: '独立小游戏 / 单文件直接运行 / 免解压',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/6bfc44d997b2',
+    extractCode: '1234',
+    quality: '单文件便携EXE程序 / 运行密码: 1234 / 双击即玩',
+    size: '95 MB',
+    sizeBytes: 99614720,
+    publishDate: '2026-10-08 17:02',
+    relativeTime: '今日最新',
+    views: 14200,
+    downloads: 6100,
+    isFeatured: false,
+    isLatest: true,
+    isCollection: false,
+    tags: ['小游戏', '两面', '单文件exe', '双击即玩', '独立游戏', '密码1234', '免解压', '夸克网盘'],
+    description: '独立小游戏《两面》单文件版（exe可执行文件），运行密码为【1234】。无需借助解压软件解包，直接下载双击该 exe 文件即可即刻开始游玩，便携干净，随时随地开启游戏体验。',
+    recommendation: `🎮 小游戏《两面》单文件直接运行版 (密码1234)
+
+运行密码：1234
+无需解压，单文件 exe 双击直接启动！
+
+链接：https://pan.quark.cn/s/6bfc44d997b2
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
+
+  // 3. 高性价比人生指南
+  {
+    id: 'res-quark-book-gao-xing-jia-bi-ren-sheng-zhi-nan',
+    title: '《高性价比人生指南》全本精排电子书 (高效个人成长/决策心智模型/精排EPUB+PDF)',
+    mainCategoryId: 'books',
+    subCategoryId: 'ebooks',
+    subCategoryName: '经典电子书 / 社科名著',
+    subsiteId: 'tianya',
+    subsiteName: '天涯神贴与文学典籍',
+    subsiteUrl: 'http://tianya.ngy123.com',
+    category: 'tianya',
+    categoryName: '认知成长 / 决策模型 / 精排电子书',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/86b784623a22',
+    extractCode: '',
+    quality: '精排 EPUB + 高清 PDF / 完整全本 / 认知成长指南',
+    size: '42 MB',
+    sizeBytes: 44040192,
+    publishDate: '2026-10-08 17:05',
+    relativeTime: '今日精选',
+    views: 32600,
+    downloads: 14800,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: false,
+    tags: ['高性价比人生指南', '个人成长', '认知思维', '思维模型', '人生策略', '精排电子书', '夸克网盘'],
+    description: '《高性价比人生指南》全本精排版：帮助读者在有限的时间、精力与财务预算中，实现人生成长与生活品质的最大化。全书剖析底层认知逻辑、高效精力分配法则、理性消费观与关键决策模型，是摆脱内耗、掌握人生主动权的高清思维读物。',
+    recommendation: `📚 《高性价比人生指南》全本精排电子书
+
+用最理性的模型，过高性价比的人生！涵盖心智成长、效率跃迁与关键人生决策。
+
+链接：https://pan.quark.cn/s/86b784623a22
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
+
+  // 5. 中国318个5A级景区视频讲解+185个航拍
+  {
+    id: 'res-quark-travel-china-318-5a-scenic-spots-video-aerial',
+    title: '《中国318个5A级景区视频讲解+185个超清航拍全套素材合集》旅游纪录片/短视频剪辑必备',
+    mainCategoryId: 'video',
+    subCategoryId: 'variety_doc',
+    subCategoryName: '综艺 / 纪录片',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源站',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '地理人文 / 5A级景区全集 / 超清航拍原素材',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/a00cc9637783',
+    extractCode: '',
+    quality: '4K/1080P航拍原片 + 318个5A景区深度专业解说视频 / 剪辑素材合集',
+    size: '68.4 GB',
+    sizeBytes: 73444458496,
+    publishDate: '2026-10-08 17:10',
+    relativeTime: '重磅素材',
+    views: 56200,
+    downloads: 27900,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['5A景区', '中国5A级景区', '航拍素材', '视频讲解', '旅游纪录片', '剪辑素材', '自媒体素材', '4K航拍', '夸克网盘'],
+    description: '【全国超全地理文旅素材宝库】全面汇集全国318个5A级国家风景名胜区的专业视频讲解（含历史沿革、地质奇观与人文典故），并附赠185个精美绝伦的高空4K/1080P航拍无水印镜头！不仅是绝佳的地理纪录片合集，更是自媒体旅游博主、文案创作者、视频剪辑师必备的免实地拍摄高阶素材库！',
+    recommendation: `🎬 《中国318个5A级景区视频讲解+185个航拍素材合集》[68.4G]
+
+全国318个5A景区深度视频讲解 + 185个超震撼航拍实拍镜头！自媒体剪辑与旅游人文爱好者必藏。
+
+链接：https://pan.quark.cn/s/a00cc9637783
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
+
+  // 6. 5分钟制作一条原创视频，多平台分发玩法(2)
+  {
+    id: 'res-quark-course-5min-original-video-creation-multi-platform-v2',
+    title: '《5分钟制作一条原创视频，多平台分发玩法(第2季)》自媒体短视频批量剪辑与多平台分发变现教程',
+    mainCategoryId: 'software',
+    subCategoryId: 'design_tools',
+    subCategoryName: '各种经典教程 / 剪辑素材库',
+    subsiteId: 'xuexi',
+    subsiteName: '学习资料专区',
+    subsiteUrl: 'http://xuexi.ngy123.com',
+    category: 'xuexi',
+    categoryName: '自媒体运营 / 批量原创短视频 / 多平台分发',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/a57cdd138c39',
+    extractCode: '',
+    quality: '超清录播系统视频 + 实操脚本模板 + 矩阵分发全流程思维导图',
+    size: '5.8 GB',
+    sizeBytes: 6228099072,
+    publishDate: '2026-10-08 17:15',
+    relativeTime: '实战更新',
+    views: 39500,
+    downloads: 18200,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: false,
+    tags: ['原创视频教程', '短视频制作', '5分钟一条原创', '多平台分发', '自媒体运营', '抖音小红书', '批量剪辑', '夸克网盘'],
+    description: '《5分钟制作一条原创视频，多平台分发玩法(第2季)》手把手拆解自媒体内容矩阵高效产出全流程。包含如何快速挖掘爆款选题、模块化组合视听文案、运用模板与AI工具5分钟快速完成高质原创剪辑，并在抖音、快手、小红书、视频号等多平台一键批量分发变现的实战技巧。',
+    recommendation: `📹 《5分钟制作一条原创视频，多平台分发玩法(第2季)》
+
+自媒体高效量产与矩阵引流指南！教你从0到1掌握5分钟原创视频制作与跨平台分发变现。
+
+链接：https://pan.quark.cn/s/a57cdd138c39
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
+
+  // 7. 定投十年财务自由
+  {
+    id: 'res-quark-book-ding-tou-shi-nian-cai-wu-zi-you',
+    title: '《定投十年财务自由》银行螺丝钉经典投资理财全本精排电子书 (指数基金定投核心策略与实操指南)',
+    mainCategoryId: 'books',
+    subCategoryId: 'ebooks',
+    subCategoryName: '经典电子书 / 社科名著',
+    subsiteId: 'tianya',
+    subsiteName: '天涯神贴与文学典籍',
+    subsiteUrl: 'http://tianya.ngy123.com',
+    category: 'tianya',
+    categoryName: '财富投资 / 指数基金定投 / 财务自由',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/caa85b4b9f93',
+    extractCode: '',
+    quality: '精排 EPUB + MOBI + 矢量 PDF / 附指数基金估值与定投表格',
+    size: '36 MB',
+    sizeBytes: 37748736,
+    publishDate: '2026-10-08 17:20',
+    relativeTime: '财富必读',
+    views: 44100,
+    downloads: 21500,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: false,
+    tags: ['定投十年财务自由', '银行螺丝钉', '指数基金', '定投策略', '投资理财', '财务自由', '精排电子书', '夸克网盘'],
+    description: '雪球大V、知名指数基金投资专家“银行螺丝钉”畅销经典《定投十年财务自由》精校全本。专为普通工薪阶层量身打造的长期财富积累方法论，通过科学的低估值指数基金定投，化解投资波动焦虑，利用复利效应实现稳健增值并迈向财务自由。',
+    recommendation: `💰 《定投十年财务自由》银行螺丝钉经典投资理财全本精排书
+
+用最省心、最稳妥的指数基金定投，实现工薪族的财富跃迁！
+
+链接：https://pan.quark.cn/s/caa85b4b9f93
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
+
+  // 8. 2027国省考花生十三行测600题精讲课
+  {
+    id: 'res-quark-edu-2027-guoshengkao-huasheng-shisan-xingce-600',
+    title: '《2027国考省考公务员考试》花生十三行测600题精讲系统网课 (全套高清视频讲义+配套电子题本)',
+    mainCategoryId: 'education',
+    subCategoryId: 'kaoyan',
+    subCategoryName: '考公 / 考研资料',
+    subsiteId: 'xuexi',
+    subsiteName: '学习资料专区',
+    subsiteUrl: 'http://xx.ngy123.com',
+    category: 'xuexi',
+    categoryName: '公务员备考 / 花生十三 / 行测600题精讲',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/28323adcfb7b',
+    extractCode: '',
+    quality: '1080P超清无水印录播 + 完整PDF精讲讲义与题本 / 2027备考适用',
+    size: '16.8 GB',
+    sizeBytes: 18038862848,
+    publishDate: '2026-10-08 17:25',
+    relativeTime: '公考名师',
+    views: 51800,
+    downloads: 26300,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['花生十三', '行测600题', '国考省考', '2027公务员考试', '公考网课', '公考真题精讲', '资料分析', '夸克网盘'],
+    description: '公考界口碑名师“花生十三”力作——2027国考/省考《行测600题精讲课》全套系统视频与高清讲义题本！覆盖资料分析、判断推理、数量关系、言语理解与常识核心高频考点，花生十三独家解题思维与秒杀秒算技巧全面传授，助力考生稳步突破行测70-80分高分大关！',
+    recommendation: `📝 《2027国考省考花生十三行测600题精讲课》[16.8G]
+
+公考神级名师花生十三权威解析，行测高频600题题型全拆解，备考上岸必刷！
+
+链接：https://pan.quark.cn/s/28323adcfb7b
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
+
+  // 9. 古风传统文化PPT模板，教师教学课件素材一键套用
+  {
+    id: 'res-quark-edu-gufeng-chuantong-wenhua-ppt-moban',
+    title: '《古风传统文化精选PPT模板库》教师公开课/教学课件素材合集 (中国风/水墨/国学讲座一键套用)',
+    mainCategoryId: 'education',
+    subCategoryId: 'school',
+    subCategoryName: '中小学辅导 / 教学课件',
+    subsiteId: 'xuexi',
+    subsiteName: '学习资料专区',
+    subsiteUrl: 'http://xx.ngy123.com',
+    category: 'xuexi',
+    categoryName: '教学课件 / 教师必备 / 古风国学PPT模板',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/fac8dd93d2aa',
+    extractCode: '',
+    quality: '16:9宽屏高清PPTX格式 / 动态转场动画 / 矢量素材可编辑 / 一键直接套用',
+    size: '3.6 GB',
+    sizeBytes: 3865470566,
+    publishDate: '2026-10-08 17:30',
+    relativeTime: '教师课件',
+    views: 42100,
+    downloads: 19800,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['古风PPT模板', '传统文化PPT', '教师课件', '教学公开课', '国风水墨', '语文课件素材', 'PPT模板', '夸克网盘'],
+    description: '精选古风与传统文化主题精品PPT模板合集，专为语文教师、传统文化公开课与教学评优量身定制。涵盖水墨淡雅、大唐风华、宋韵清雅、国学讲堂等多元风格，全套16:9高品质宽屏排版，内置精美动效与结构化版式，一键替换图文即可极速出片！',
+    recommendation: `🎨 《古风传统文化精选PPT模板合集》[3.6G]
+
+中小学语文与传统文化教师课件神器！水墨中国风高颜值动态PPT，免去繁琐排版一键套用。
+
+链接：https://pan.quark.cn/s/fac8dd93d2aa
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
+
+  // 10. 林正英电影合集46部（稀有高清修复）
+  {
+    id: 'res-quark-movie-lin-zhengying-46-movies-remaster',
+    title: '《林正英经典僵尸动作电影全集46部》稀有高清修复版 (英叔捉鬼灵幻名作·国粤双语配音·珍藏未删减打包)',
+    mainCategoryId: 'video',
+    subCategoryId: 'movie',
+    subCategoryName: '电影',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源站',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '林正英全集 / 经典僵尸片 / 46部稀有修复',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/ed03c1223fc0',
+    extractCode: '',
+    quality: '1080P/4K修复超清高码率 / 国粤双语音轨 / 官方中文字幕 / 46部全集完整打包',
+    size: '78.5 GB',
+    sizeBytes: 84288077824,
+    publishDate: '2026-10-08 17:35',
+    relativeTime: '稀有典藏',
+    views: 88500,
+    downloads: 42100,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['林正英', '僵尸先生', '林正英电影合集', '九叔', '一眉道人', '驱魔警察', '经典港片', '僵尸至尊', '高清修复', '夸克网盘'],
+    description: '【一代道长林正英灵幻僵尸片终极绝响】香港著名动作巨星、僵尸片宗师“九叔”林正英传世电影作品46部全集超稀有高清重置修复珍藏版！涵盖《僵尸先生》《一眉道人》《灵幻先生》《驱魔警察》《新僵尸先生》《僵尸家族》《音乐僵尸》《鬼打鬼》等全部代表作。画质纯净清晰，保留原汁原味国粤双语中字，再现道教茅山术数与灵幻功夫的黄金港片巅峰时代！',
+    recommendation: `🎬 《林正英经典僵尸电影全集46部》稀有高清修复版 [78.5G]
+
+红绳糯米今犹在，不见当年九叔人！46部全集稀有高清修复打包，国粤双语高清重温经典！
+
+链接：https://pan.quark.cn/s/ed03c1223fc0
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
   // 0.《悬崖之上 (2021)》4K 60FPS高码典藏版
   {
     id: 'res-quark-movie-xuanya-zhishang-2021-4k-60fps',
