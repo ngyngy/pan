@@ -154,7 +154,6 @@ function renderResourceHtml(res: ResourceItem, relatedResources: ResourceItem[],
   const linkCopiedToast = isBaiduDrive ? '百度网盘链接已成功复制！' : `${driveBrandName}链接已成功复制！`;
   const openAppDesc = `点击按钮唤起${driveBrandName}并自动跳转。若未打开，请复制链接到浏览器自行打开。`;
   const footerHelpNote = `打开 App 没反应？也可以复制${driveBrandName}链接，再用 Safari、Chrome 或${driveBrandName} APP 打开。`;
-  const pcRedirectText = `💻 检测到您正在使用电脑端浏览器，正在为您直达${driveBrandName}... 如未自动跳转，`;
 
   // 构造 JSON-LD 实体定义
   const jsonLdEntity = {
@@ -274,39 +273,11 @@ ${JSON.stringify(jsonLdFaq, null, 2)}
 ${JSON.stringify(jsonLdBreadcrumb, null, 2)}
   </script>
 
-  <!-- 智能设备判定与重定向路由:
-       1. 电脑端 (PC/Mac/桌面设备): 毫秒级直达目标网盘（夸克/百度等）真实页面，省去中间多余点击
-       2. 推特 / 𝕏 手机端及移动设备: 停留在本防封与唤起判定页，防止外部网盘被拦截，支持一键唤起与免封复制
-       3. 搜索引擎蜘蛛 (Google/Baidu/Bing等): 严格保留完整页面内容与结构化数据以保障 SEO 权威索引
+  <!-- SEO 与用户访问设计说明:
+       绝不在页面加载时执行任何 JS 自动跳转/重定向 (window.location.replace/href)。
+       遵循 Google Search Console 最佳实践与反欺骗指南，确保爬虫与真实用户均完整加载本页结构化内容，
+       彻底杜绝 Search Console 报错“网页会自动重定向”，由用户自主点击按钮打开网盘或复制口令。
   -->
-  <script>
-    (function() {
-      try {
-        var ua = navigator.userAgent || '';
-        // 检测移动端设备 (手机、平板等)
-        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua) || 
-                       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-        // 检测是否在 Twitter / 𝕏 内置浏览器中
-        var isTwitter = /Twitter/i.test(ua);
-        // 检测是否为搜索引擎蜘蛛爬虫 (Googlebot, Baiduspider 等，绝不跳转，确保 SEO 收录完美)
-        var isBot = /bot|spider|crawl|slurp|googlebot|bingbot|baiduspider|bytespider|yandex|sogou|360spider/i.test(ua);
-        // 支持 ?noredirect=1 或 ?preview=1 强制留在本页调试预览
-        var isNoRedirect = window.location.search.indexOf('noredirect=1') !== -1 || window.location.search.indexOf('preview=1') !== -1;
-
-        // 判定规则执行：
-        // 电脑端直接跳转到对应网盘；推特/𝕏 APP 及移动端留在本落地判定页
-        if (!isMobile && !isTwitter && !isBot && !isNoRedirect) {
-          var targetDriveUrl = "${escapeHtml(res.driveUrl)}";
-          if (targetDriveUrl && targetDriveUrl.length > 5) {
-            if (targetDriveUrl.indexOf('http://') !== 0 && targetDriveUrl.indexOf('https://') !== 0) {
-              targetDriveUrl = 'https://' + targetDriveUrl;
-            }
-            window.location.replace(targetDriveUrl);
-          }
-        }
-      } catch (e) {}
-    })();
-  </script>
 
   <style>
     :root {
@@ -657,12 +628,6 @@ ${JSON.stringify(jsonLdBreadcrumb, null, 2)}
         </div>
       </header>
 
-      <!-- 电脑端直达提示 (电脑端默认已毫秒级重定向，此处作为备用防卡通道) -->
-      <div id="pcRedirectNotice" style="display:none; background:#eff6ff; border:1px solid #bfdbfe; color:#1e40af; border-radius:12px; padding:12px 16px; margin-bottom:18px; font-size:14px; text-align:center;">
-        <span>${pcRedirectText}</span>
-        <a href="${escapeHtml(res.driveUrl)}" style="color:#2563eb; font-weight:bold; text-decoration:underline;">请点击这里直接打开</a>
-      </div>
-
       <!-- 【网盘分享原生风格安全卡片】严格适配夸克/百度网盘等主流网盘：不出现可点击链接，防误点/防推特屏蔽 -->
       <section class="quark-app-modal" aria-label="${escapeHtml(driveBrandName)}分享">
         <!-- 头部 Logo 与 标题 -->
@@ -910,20 +875,6 @@ ${escapeHtml(res.recommendation)}
         }
       }
     }
-
-    // 智能识别客户端访问环境：电脑端备用提示
-    (function checkClientEnvironment() {
-      var ua = navigator.userAgent || '';
-      var isTwitter = /Twitter/i.test(ua);
-      var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua) || 
-                     (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      var isBot = /bot|spider|crawl|slurp|googlebot|bingbot|baiduspider|bytespider/i.test(ua);
-
-      var pcEl = document.getElementById('pcRedirectNotice');
-      if (pcEl && !isMobile && !isTwitter && !isBot) {
-        pcEl.style.display = 'block';
-      }
-    })();
   </script>
 </body>
 </html>`;
