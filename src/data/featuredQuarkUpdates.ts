@@ -5,6 +5,45 @@ import { ResourceItem } from '../types';
  * 包含官方直发推文文案与亮点说明
  */
 export const FEATURED_QUARK_UPDATES: ResourceItem[] = [
+  // 0.《悬崖之上 (2021)》4K 60FPS高码典藏版
+  {
+    id: 'res-quark-movie-xuanya-zhishang-2021-4k-60fps',
+    title: '《悬崖之上 (2021)》4K 60FPS 高码典藏版 (张艺谋执导·张译/于和伟/秦海璐/朱亚文/倪大红主演·国语中字·21.7G极清原盘压制)',
+    mainCategoryId: 'video',
+    subCategoryId: 'movie',
+    subCategoryName: '电影',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源站',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '谍战大片 / 4K 60FPS高帧率 / 张艺谋经典',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/3259b7404fbb',
+    extractCode: '/~22db3bK78T~:/',
+    quality: '4K 2160p 60FPS 高帧率高码率 / 杜比全景声 / 官方国语简繁中字 / 21.7GB收藏级画质',
+    size: '21.7 GB',
+    sizeBytes: 23299719168,
+    publishDate: '2026-10-08 12:00',
+    relativeTime: '4K高帧首发',
+    views: 48900,
+    downloads: 21300,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: false,
+    tags: ['悬崖之上', '悬崖之上4K', '张艺谋', '张译', '于和伟', '秦海璐', '朱亚文', '倪大红', '谍战电影', '4K60FPS', '高帧率电影', '夸克网盘', '今日最新'],
+    description: '【张艺谋首部谍战大片·4K 60FPS高帧率高码典藏】张艺谋导演执导，张译、于和伟、秦海璐、朱亚文、刘浩存、倪大红、李乃文等超豪华全戏骨阵容领衔主演的2021年谍战史诗巨作《悬崖之上》（Cliff Walkers）4K 60FPS高码率典藏版上线！故事背景设定在二十世纪三十年代的冰城哈尔滨，四位在苏联接受特训的共产党特工组成任务小队，执行代号为“乌特拉”的绝密营救行动。然而因叛徒出卖，他们从跳伞降落的那一刻起便已身陷敌人的天罗地网，冰雪严寒中与特务科展开步步惊心、生死搏杀的暗战对决。全片冷峻肃杀，冰天雪地的镜头语言极具张力，张译的电刑审讯与于和伟车内无声咽泪的演技令人叹为观止。本次版本采用 4K 60帧高码率原盘压制（单片容量高达 21.7GB），高帧率流畅度极高，雪花飘落、激烈枪战与暗夜追击细节分毫毕现，完美还原大银幕顶级声画震撼！',
+    recommendation: `🎬 《悬崖之上 (2021)》4K 60FPS 高码典藏版 [21.7G]
+
+张艺谋首部谍战巨制！张译、于和伟、秦海璐、朱亚文全戏骨阵容同台飙戏，冰城雪原生死搏杀！
+4K 60FPS 超高帧率高码率收藏级画质（21.7GB），画面如丝般顺滑，细节毕现！
+
+我用夸克网盘给你分享了「[悬崖之上][2021][国语中字][4K 60FPS高码][21.7G]」。
+口令：/~22db3bK78T~:/
+链接：https://pan.quark.cn/s/3259b7404fbb
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
   // 1.《爱，死亡和机器人》第四季[附第1-3季全集]
   {
     id: 'res-quark-anime-love-death-and-robots-s4-full',
