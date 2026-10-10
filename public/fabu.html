@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <title>网盘吧官方发布页 - 永久防迷路地址导航 | www.wangpan8.com</title>
+  <meta name="description" content="网盘吧官方永久发布页与防迷路指南。实时更新最新可用主域名、备用镜像站与官方交流群，建议按 Ctrl+D 收藏本页，从此找资源不失联。">
+  <meta name="keywords" content="网盘吧发布页,网盘吧最新域名,网盘吧备用地址,防迷路,网盘吧官网">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    :root {
+      --primary: #0284c7;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: #334155;
+      --success: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 36px 16px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 640px;
+      width: 100%;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(2, 132, 199, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .bookmark-alert {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(239, 68, 68, 0.1));
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .bookmark-alert-icon { font-size: 24px; }
+    .bookmark-alert-text { font-size: 13px; color: #fde68a; }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .domain-list { list-style: none; }
+    .domain-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+    .domain-item:hover {
+      border-color: #38bdf8;
+      transform: translateY(-1px);
+    }
+    .domain-item:last-child { margin-bottom: 0; }
+    .domain-info { display: flex; flex-direction: column; }
+    .domain-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    .domain-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .domain-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--success);
+      font-weight: 600;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--success);
+    }
+    .btn-visit {
+      background: #0284c7;
+      color: #fff !important;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .btn-visit:hover { background: #0369a1; }
+    .tip-box {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .tip-box li { margin-left: 20px; margin-bottom: 6px; }
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo-badge">
+        <span>🌐 永久防迷路 · 官方发布页</span>
+      </div>
+      <h1>网盘吧 (Wangpan8)</h1>
+      <p class="subtitle">极简高效的夸克 · 百度 · UC · 迅雷网盘资源搜索聚合平台</p>
+    </div>
+
+    <!-- 收藏提示 -->
+    <div class="bookmark-alert">
+      <div class="bookmark-alert-icon">⭐</div>
+      <div class="bookmark-alert-text">
+        <strong>请按键盘 Ctrl + D（手机请加入书签）收藏本发布页！</strong><br>
+        若主站遇到域名波动或微信网络屏蔽，请随时通过本发布页直达最新地址。
+      </div>
+    </div>
+
+    <!-- 官方主站地址 -->
+    <div class="card">
+      <div class="card-title">
+        <span>🚀 官方可用站点直达</span>
+      </div>
+      <ul class="domain-list">
+        <li class="domain-item">
+          <div class="domain-info">
+            <a href="https://www.wangpan8.com" class="domain-name" target="_blank">www.wangpan8.com</a>
+            <span class="domain-desc">官方推荐主站 · 全功能秒搜 · 聚合多盘</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div class="domain-status">
+              <span class="status-dot"></span>
+              <span>极速在线</span>
+            </div>
+            <a href="https://www.wangpan8.com" class="btn-visit" target="_blank">立即进入</a>
+          </div>
+        </li>
+        <li class="domain-item">
+          <div class="domain-info">
+            <a href="https://wangpan8.com" class="domain-name" target="_blank">wangpan8.com</a>
+            <span class="domain-desc">官方主域 (免 www 解析)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div class="domain-status">
+              <span class="status-dot"></span>
+              <span>正常解析</span>
+            </div>
+            <a href="https://wangpan8.com" class="btn-visit" target="_blank">立即进入</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 防封与转存使用技巧 -->
+    <div class="card">
+      <div class="card-title">
+        <span>🛡️ 微信/QQ等防封防拦截使用小贴士</span>
+      </div>
+      <ul class="tip-box">
+        <li><strong>为什么在微信/QQ中无法直接打开？</strong>：部分社交聊天软件会限制第三方云盘外链的直接调起。遇到拦截时，只需点击右上角 <strong>「···」</strong>，选择 <strong>「在默认浏览器中打开」</strong>（或 Safari / Chrome）即可顺畅转存。</li>
+        <li><strong>独立安全中转服务</strong>：本站为每一个收录的资源都自动生成了独立安全静态落地页，分享到社交平台请直接分享落地页链接，杜绝封号封链接。</li>
+        <li><strong>一键提取码机制</strong>：点击资源后，系统已自动将网盘链接或提取码复制至剪贴板，打开对应网盘客户端后会自动弹出转存确认。</li>
+      </ul>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 网盘吧 (www.wangpan8.com) 版权所有 · 资源均来自互联网公开索引</p>
+    </footer>
+  </div>
+</body>
+</html>

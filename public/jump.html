@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <title>安全转存中转站 - 网盘吧 (www.wangpan8.com)</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #38bdf8;
+        --primary-hover: #0ea5e9;
+        --bg: #0f172a;
+        --card-bg: #1e293b;
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --border: #334155;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      line-height: 1.6;
+    }
+    .jump-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      max-width: 520px;
+      width: 100%;
+      padding: 32px 24px;
+      box-shadow: 0 12px 36px -4px rgba(0,0,0,0.08);
+      text-align: center;
+      position: relative;
+    }
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(2, 132, 199, 0.1);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .desc-text {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .drive-info-box {
+      background: rgba(0, 0, 0, 0.02);
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 20px;
+      text-align: left;
+      font-size: 14px;
+    }
+    .drive-info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .drive-info-row:last-child { margin-bottom: 0; }
+    .label { color: var(--muted); font-size: 13px; }
+    .val { font-weight: 700; color: var(--text); }
+    .code-tag {
+      background: #ecfdf5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
+      padding: 2px 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .url-preview {
+      background: rgba(0,0,0,0.03);
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 13px;
+      color: var(--muted);
+      word-break: break-all;
+      margin-bottom: 20px;
+      user-select: all;
+    }
+    .btn-main {
+      display: block;
+      width: 100%;
+      background: #0284c7;
+      color: #ffffff !important;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px 20px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+      transition: all 0.2s ease;
+      margin-bottom: 12px;
+    }
+    .btn-main:hover {
+      background: #0369a1;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      display: block;
+      width: 100%;
+      background: transparent;
+      color: var(--primary) !important;
+      border: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 16px;
+    }
+    .btn-secondary:hover {
+      background: rgba(0,0,0,0.03);
+    }
+    .footer-links {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .footer-links a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    /* 微信/QQ 防拦截遮罩 */
+    .wx-tip-mask {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.94);
+      z-index: 999999;
+      color: #fff;
+      padding: 16px 20px;
+      cursor: pointer;
+    }
+    .wx-tip-arrow {
+      position: absolute;
+      top: 14px;
+      right: 24px;
+      font-size: 46px;
+      line-height: 1;
+      animation: floatArrow 1.2s infinite alternate ease-in-out;
+      color: #38bdf8;
+    }
+    @keyframes floatArrow {
+      from { transform: translateY(0); }
+      to { transform: translateY(-8px); }
+    }
+    .wx-tip-box {
+      margin-top: 64px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 18px;
+      padding: 24px 20px;
+      backdrop-filter: blur(12px);
+      text-align: left;
+    }
+    .wx-tip-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin: 0 0 10px 0;
+      color: #38bdf8;
+    }
+    .wx-tip-sub {
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 0 0 16px 0;
+      color: #e2e8f0;
+    }
+    .wx-tip-close {
+      display: inline-block;
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      font-weight: 700;
+      padding: 9px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    /* 轻提示 Toast */
+    #toast {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(17, 24, 39, 0.95);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      z-index: 9999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 微信/QQ 内置浏览器防拦截指引遮罩 -->
+  <div id="wxTipMask" class="wx-tip-mask" onclick="this.style.display='none'">
+    <div class="wx-tip-arrow" aria-hidden="true">↗</div>
+    <div class="wx-tip-box">
+      <div class="wx-tip-title">⚡ 请在手机系统浏览器中打开</div>
+      <div class="wx-tip-sub">
+        检测到您正在使用微信或QQ内置浏览器，可能会屏蔽网盘链接及App唤起。<br><br>
+        👉 请点击右上角 <strong>「···」</strong> 菜单<br>
+        👉 选择 <strong>「在默认浏览器中打开」</strong>（或 Safari / Chrome）<br>
+        即可直接一键免密转存或高速唤起网盘APP！
+      </div>
+      <button type="button" class="wx-tip-close">我知道了，继续留在本页</button>
+    </div>
+  </div>
+
+  <div class="jump-card">
+    <div class="brand-badge">
+      <span>🛡️ 网盘吧 · 独立安全防封中转</span>
+    </div>
+
+    <h1 id="resTitle">正在加载网盘资源...</h1>
+    <p class="desc-text" id="resDesc">本页面经过安全加密传输，不暴露敏感原链接，防微信/QQ/推特屏蔽拦截。</p>
+
+    <div class="drive-info-box">
+      <div class="drive-info-row">
+        <span class="label">存储网盘</span>
+        <span class="val" id="driveNameDisplay">夸克网盘</span>
+      </div>
+      <div class="drive-info-row" id="codeRow" style="display:none;">
+        <span class="label">提取密码 / 口令</span>
+        <span class="val code-tag" id="extractCodeDisplay">----</span>
+      </div>
+    </div>
+
+    <div class="url-preview" id="urlPreview">正在解析专属链接...</div>
+
+    <button type="button" class="btn-main" id="btnOpen">⚡ 一键转存 / 唤起网盘APP</button>
+    <button type="button" class="btn-secondary" id="btnCopy">📋 一键复制网盘链接与提取码</button>
+
+    <div class="footer-links">
+      <p>资源来源于网络分享 · <a href="/">访问网盘吧官网 (www.wangpan8.com)</a> · <a href="/fabu.html">永久防迷路发布页</a></p>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    // 解析 URL 参数
+    var params = new URLSearchParams(window.location.search);
+    var targetUrl = params.get('url') || params.get('u') || '';
+    var extractCode = params.get('code') || params.get('pwd') || params.get('c') || '';
+    var rawTitle = params.get('title') || params.get('t') || '精选网盘资源分享';
+    var driveName = params.get('drive') || params.get('d') || '夸克网盘';
+
+    // 默认展示
+    document.getElementById('resTitle').textContent = rawTitle;
+    document.getElementById('driveNameDisplay').textContent = driveName;
+    document.title = rawTitle + ' - 安全转存中转站 | 网盘吧';
+
+    if (extractCode) {
+      document.getElementById('codeRow').style.display = 'flex';
+      document.getElementById('extractCodeDisplay').textContent = extractCode;
+    }
+
+    if (targetUrl) {
+      document.getElementById('urlPreview').textContent = targetUrl;
+    } else {
+      document.getElementById('urlPreview').textContent = '未检测到目标链接，请通过网盘吧官方渠道进入';
+      document.getElementById('btnOpen').style.display = 'none';
+      document.getElementById('btnCopy').style.display = 'none';
+    }
+
+    // 微信与QQ环境检测
+    try {
+      var ua = navigator.userAgent || '';
+      var isWeChat = /MicroMessenger/i.test(ua);
+      var isQQ = /QQ\//i.test(ua) || /V1_AND_SQ/i.test(ua);
+      if (isWeChat || isQQ) {
+        document.getElementById('wxTipMask').style.display = 'block';
+      }
+    } catch(e) {}
+
+    // 一键复制功能
+    function copyText(str, msg) {
+      if (!str) return;
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(str).then(function() { showToast(msg); }).catch(function() { fallback(str); });
+      } else {
+        fallback(str);
+      }
+      function fallback(val) {
+        var ta = document.createElement('textarea');
+        ta.value = val;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showToast(msg); } catch(err) {}
+        document.body.removeChild(ta);
+      }
+    }
+
+    function showToast(msg) {
+      var toast = document.getElementById('toast');
+      if (toast) {
+        toast.textContent = msg || '已复制到剪贴板！';
+        toast.style.display = 'block';
+        clearTimeout(window.__tTimer);
+        window.__tTimer = setTimeout(function() { toast.style.display = 'none'; }, 2500);
+      }
+    }
+
+    // 复制按钮事件
+    document.getElementById('btnCopy').addEventListener('click', function() {
+      var textToCopy = '资源名称：' + rawTitle + '\n网盘链接：' + targetUrl;
+      if (extractCode) {
+        textToCopy += '\n提取码：' + extractCode;
+      }
+      textToCopy += '\n来源：网盘吧 (www.wangpan8.com)';
+      copyText(textToCopy, '网盘链接与提取码已成功复制！');
+    });
+
+    // 打开按钮事件
+    document.getElementById('btnOpen').addEventListener('click', function() {
+      if (!targetUrl) return;
+      
+      // 优先拷贝
+      copyText(targetUrl, '链接已复制！正在唤起网盘APP...');
+
+      var isBaidu = driveName.indexOf('百度') !== -1;
+      var scheme = '';
+      if (isBaidu) {
+        scheme = 'baidunetdisk://';
+      } else {
+        scheme = 'quark://open?url=' + encodeURIComponent(targetUrl);
+      }
+
+      var startTime = Date.now();
+      if (scheme) {
+        window.location.href = scheme;
+      }
+
+      // 若未唤起，延迟引导直接跳转或手动打开
+      setTimeout(function() {
+        if (Date.now() - startTime < 2200) {
+          window.location.href = targetUrl;
+        }
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

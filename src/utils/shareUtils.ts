@@ -97,3 +97,17 @@ export function getTwitterIntentUrl(resource: ResourceItem, preferCanonical: boo
   const tweetText = generateTwitterPostText(resource, preferCanonical);
   return `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
 }
+
+/**
+ * 获取通用独立防封中转链接（支持微信/QQ/抖音/微博/小红书等全平台防拦截防红）
+ */
+export function getUniversalAntiBanJumpUrl(resource: ResourceItem, preferCanonical: boolean = false): string {
+  const origin = getAppOrigin(preferCanonical);
+  const params = new URLSearchParams();
+  if (resource.driveUrl) params.set('url', resource.driveUrl);
+  if (resource.extractCode) params.set('code', resource.extractCode);
+  if (resource.title) params.set('title', getCleanTitle(resource.title));
+  if (resource.driveName) params.set('drive', resource.driveName);
+  return `${origin}/jump.html?${params.toString()}`;
+}
+

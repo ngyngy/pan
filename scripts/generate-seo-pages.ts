@@ -244,6 +244,7 @@ function renderResourceHtml(res: ResourceItem, relatedResources: ResourceItem[],
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
   <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(metaDesc)}">
   <meta name="keywords" content="${escapeHtml(keywords)}">
@@ -606,10 +607,108 @@ ${JSON.stringify(jsonLdBreadcrumb, null, 2)}
       padding-top: 20px;
       border-top: 1px solid var(--border);
     }
+    /* 微信/QQ 内置浏览器右上角防封指引遮罩 */
+    .wx-tip-mask {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.92);
+      z-index: 999999;
+      color: #fff;
+      padding: 16px 20px;
+      cursor: pointer;
+    }
+    .wx-tip-arrow {
+      position: absolute;
+      top: 14px;
+      right: 24px;
+      font-size: 44px;
+      line-height: 1;
+      animation: floatArrow 1.2s infinite alternate ease-in-out;
+      color: #38bdf8;
+    }
+    @keyframes floatArrow {
+      from { transform: translateY(0); }
+      to { transform: translateY(-8px); }
+    }
+    .wx-tip-box {
+      margin-top: 64px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 18px;
+      padding: 24px 20px;
+      backdrop-filter: blur(12px);
+      text-align: left;
+    }
+    .wx-tip-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin: 0 0 10px 0;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .wx-tip-sub {
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 0 0 16px 0;
+      color: #e2e8f0;
+    }
+    .wx-tip-close {
+      display: inline-block;
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      font-weight: 700;
+      padding: 9px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    /* 页面内微信QQ提示卡片 */
+    .wx-inapp-alert {
+      display: none;
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      color: #92400e;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 13px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    @media (prefers-color-scheme: dark) {
+      .wx-inapp-alert {
+        background: #451a03;
+        border-color: #78350f;
+        color: #fde68a;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- 微信/QQ 内置浏览器右上角防拦截防封指引遮罩 -->
+  <div id="wxTipMask" class="wx-tip-mask" onclick="this.style.display='none'">
+    <div class="wx-tip-arrow" aria-hidden="true">↗</div>
+    <div class="wx-tip-box">
+      <div class="wx-tip-title">⚡ 请在手机系统浏览器中打开</div>
+      <div class="wx-tip-sub">
+        检测到您正在使用微信或QQ内置浏览器，微信等应用会屏蔽第三方网盘外链和App唤起协议。<br><br>
+        👉 请点击右上角 <strong>「···」</strong> 菜单<br>
+        👉 选择 <strong>「在默认浏览器中打开」</strong>（或 Safari / 手机自带浏览器）<br>
+        即可直接一键免密转存或高速唤起网盘APP！
+      </div>
+      <button type="button" class="wx-tip-close">我知道了，留在本页</button>
+    </div>
+  </div>
+
   <div class="container">
+    <!-- 微信内嵌友好提示条 -->
+    <div id="wxInAppAlert" class="wx-inapp-alert">
+      ⚠️ <strong>微信/QQ浏览提示</strong>：若无法直接打开或唤起网盘，建议点击右上角「···」选择“在浏览器中打开”。您也可在下方直接复制网盘链接与提取码！
+    </div>
+
     <!-- 面包屑导航 -->
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="${homeUrl}">网盘吧首页</a> &gt; 
@@ -875,6 +974,19 @@ ${escapeHtml(res.recommendation)}
         }
       }
     }
+
+    // 微信与QQ环境检测 & 自动弹出防拦截右上角指引
+    try {
+      var ua = navigator.userAgent || '';
+      var isWeChat = /MicroMessenger/i.test(ua);
+      var isQQ = /QQ\//i.test(ua) || /V1_AND_SQ/i.test(ua);
+      if (isWeChat || isQQ) {
+        var mask = document.getElementById('wxTipMask');
+        if (mask) mask.style.display = 'block';
+        var alertBar = document.getElementById('wxInAppAlert');
+        if (alertBar) alertBar.style.display = 'block';
+      }
+    } catch(e) {}
   </script>
 </body>
 </html>`;
