@@ -5,6 +5,43 @@ import { ResourceItem } from '../types';
  * 包含官方直发推文文案与亮点说明
  */
 export const FEATURED_QUARK_UPDATES: ResourceItem[] = [
+  // 0. 好玩的单机传奇 伏妖纯单机破解秘境修复版
+  {
+    id: 'res-game-fuyao-chundanji-chuanqi-pojie-xiufu',
+    title: '《好玩的单机传奇：伏妖纯单机破解秘境修复版》PC电脑单机一键端解压即玩 (附单机登录器/秘境全修复/光柱满屏)',
+    mainCategoryId: 'games',
+    subCategoryId: 'pc_games',
+    subCategoryName: '各类游戏安装包 / 完整版+DLC',
+    subsiteId: 'youxi',
+    subsiteName: '游戏资源专区',
+    subsiteUrl: 'http://youxi.ngy123.com',
+    category: 'youxi',
+    categoryName: '复古传奇单机 / 伏妖纯单机 / 一键端免架设',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/3b2ebf7ef896',
+    extractCode: '/~23873bN83s~:/',
+    quality: 'PC纯单机一键运行版 / 破解秘境修复 / 爆率拉满 / 解压即玩RAR',
+    size: '4.85 GB',
+    sizeBytes: 5208000000,
+    publishDate: '2026-10-10 20:00',
+    relativeTime: '今日最新',
+    views: 49800,
+    downloads: 24600,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: false,
+    tags: ['单机传奇', '伏妖纯单机', '传奇单机版', '传奇一键端', '秘境修复版', '打宝爆神装', '免安装', '夸克网盘'],
+    description: '【真正好玩的单机传奇·散人打宝天花板】《伏妖纯单机破解秘境修复版》电脑单机珍藏一键端（.rar压缩包）。无需外网服务器、无需繁琐架设，自带极简单机启动器，解压后点击即可直接进入游戏。本版本深度修复了秘境地图进不去、掉落异常等历史暗坑，全面开放隐藏地图与高阶伏妖专属Boss。散人好混、刀刀切割、光柱满地，所有货币与终极神装均可通过单机副本打怪产出，是传奇老玩家重温激战沙巴克与热血伏妖打宝快感的经典单机神作！',
+    recommendation: `⚔️ 《伏妖纯单机破解秘境修复版》单机传奇一键端
+
+经典耐玩！秘境全面修复，无需架设解压即玩，爆率全开，重温热血打宝乐趣！
+口令：/~23873bN83s~:/
+链接：https://pan.quark.cn/s/3b2ebf7ef896
+
+更多精品资源请访问网盘吧主站：https://www.wangpan8.com`
+  },
+
   // 1. 小游戏 两面 (zip压缩包版)
   {
     id: 'res-quark-game-liangmian-zip',
