@@ -1,4 +1,5 @@
 import { ResourceItem } from '../types';
+import { NYT_TOP_TV_SERIES_32 } from './nytTopTvSeries32';
 import { CLASSIC_ROMANCE_ART_MOVIES } from './classicRomanceArtMovies';
 import { OCTOBER_HOT_SHORT_DRAMAS } from './octoberShortDramas';
 import { FEATURED_QUARK_UPDATES } from './featuredQuarkUpdates';
@@ -16,6 +17,11 @@ import { BILIBILI_PAID_COURSES } from './bilibiliCourses';
  * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航、移动云盘与经典电子书合集全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // 《纽约时报》21世纪百佳剧集（32部新增精选转存高分美剧/英剧典藏）
+  // ==========================================
+  ...NYT_TOP_TV_SERIES_32,
+
   // ==========================================
   // 10月精选世界经典高分影片合集（31部影史名作+一键打包全集典藏）
   // ==========================================
