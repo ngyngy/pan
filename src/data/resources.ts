@@ -1,5 +1,5 @@
 import { ResourceItem } from '../types';
-import { NYT_TOP_TV_SERIES_32 } from './nytTopTvSeries32';
+import { NYT_TOP_TV_SERIES_58 } from './nytTopTvSeries58';
 import { CLASSIC_ROMANCE_ART_MOVIES } from './classicRomanceArtMovies';
 import { OCTOBER_HOT_SHORT_DRAMAS } from './octoberShortDramas';
 import { FEATURED_QUARK_UPDATES } from './featuredQuarkUpdates';
@@ -18,9 +18,9 @@ import { BILIBILI_PAID_COURSES } from './bilibiliCourses';
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
   // ==========================================
-  // 《纽约时报》21世纪百佳剧集（32部新增精选转存高分美剧/英剧典藏）
+  // 《纽约时报》21世纪百佳剧集（58部精选高分美剧/英剧典藏全集）
   // ==========================================
-  ...NYT_TOP_TV_SERIES_32,
+  ...NYT_TOP_TV_SERIES_58,
 
   // ==========================================
   // 10月精选世界经典高分影片合集（31部影史名作+一键打包全集典藏）
