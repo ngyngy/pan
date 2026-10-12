@@ -5,6 +5,146 @@ import { ResourceItem } from '../types';
  * 包含都市打脸、古装逆袭、穿书反派、甜宠虐恋、神魔修仙与AI短剧等全网热榜爆款
  */
 export const OCTOBER_HOT_SHORT_DRAMAS: ResourceItem[] = [
+  // 0-1. 070007-不负如来不负卿 (75集)
+  {
+    id: 'res-drama-bufu-rulai-bufu-qing-75',
+    title: '《不负如来不负卿》全75集完整版 (070007-不负如来不负卿·古装仙凡虐恋/宿命相守/超清无删减)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '古装仙侠 / 宿命虐恋 / 爆款完结短剧',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/9f5b966d4272',
+    extractCode: '/~0cae3bP5W0~:/',
+    quality: '1080P 超清无水印 / 全75集完整版 / 官方正版片源',
+    size: '3.8 GB',
+    sizeBytes: 4080218931,
+    publishDate: '2026-10-12 12:00',
+    relativeTime: '今日最新',
+    views: 58200,
+    downloads: 31400,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['不负如来不负卿', '75集全', '古装短剧', '仙侠虐恋', '宿命之恋', '夸克网盘'],
+    description: '【全网催泪仙侠顶流短剧】《不负如来不负卿》75集超长完整版，网盘文件夹名为【070007-不负如来不负卿 (75集)】。世间安得双全法，不负如来不负卿！男主身负苍生重任与清规戒律，却在红尘中与女主结下三世难断的宿命情缘。爱意深沉而隐忍，在信仰天道与挚爱一人之间痛苦抉择。名场面频出、虐心催泪，全75集一次看个过瘾！',
+    recommendation: `🎬 《不负如来不负卿》（全75集完整版）
+世间安得两全法，不负如来不负卿！极致拉扯与虐恋宿命，催泪大爆款！
+口令：/~0cae3bP5W0~:/
+链接：https://pan.quark.cn/s/9f5b966d4272
+独立防封页：https://www.wangpan8.com/resource/res-drama-bufu-rulai-bufu-qing-75.html`
+  },
+
+  // 0-2. 034618-代妹和亲后驸马急疯了 (57集) 李家园子&穆庭予
+  {
+    id: 'res-drama-daimei-heqin-fuma-jifengle-57',
+    title: '《代妹和亲后驸马急疯了》全57集完整版 (034618-李家园子&穆庭予领衔主演·古装追妻火葬场/替嫁权谋逆袭爽剧)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '古装替嫁 / 追妻火葬场 / 权谋逆袭爽剧',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/45376f7dbb46',
+    extractCode: '/~0ebb3bP5lD~:/',
+    quality: '1080P 超清原画 / 全57集完整版 / 官方简繁中字',
+    size: '2.9 GB',
+    sizeBytes: 3113851289,
+    publishDate: '2026-10-12 12:05',
+    relativeTime: '今日最新',
+    views: 64100,
+    downloads: 36700,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['代妹和亲后驸马急疯了', '李家园子', '穆庭予', '替嫁和亲', '追妻火葬场', '57集全', '古装短剧', '夸克网盘'],
+    description: '【高能追妻火葬场爆款】《代妹和亲后驸马急疯了》全57集，网盘文件夹名为【034618-代妹和亲后驸马急疯了 (57集) 李家园子&穆庭予】。女主被家族牺牲替妹远嫁和亲塞外，曾经冷若冰霜的驸马却在红轿远去的那一刻幡然醒悟，彻底疯魔！提剑抢婚、千里奔赴，全剧剧情跌宕反转、打脸暴爽，李家园子与穆庭予神仙对手戏火花四溅！',
+    recommendation: `🎬 《代妹和亲后驸马急疯了》（全57集）
+李家园子&穆庭予领衔！替嫁和亲绝情断念，高冷驸马连夜提剑千里抢婚急疯了！
+口令：/~0ebb3bP5lD~:/
+链接：https://pan.quark.cn/s/45376f7dbb46
+独立防封页：https://www.wangpan8.com/resource/res-drama-daimei-heqin-fuma-jifengle-57.html`
+  },
+
+  // 0-3. 天女
+  {
+    id: 'res-drama-tiannu-complete-series',
+    title: '《天女》全集高清完整版 (绝美古装玄幻/神女降世天道宿命/救赎虐恋全网热搜短剧)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '古装玄幻 / 神女救赎 / 热榜爆款短剧',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/e8c07369fecc',
+    extractCode: '/~f9503bP68H~:/',
+    quality: '1080P/4K 高清原画 / 全集无删减完整版',
+    size: '2.4 GB',
+    sizeBytes: 2576980377,
+    publishDate: '2026-10-12 12:10',
+    relativeTime: '今日最新',
+    views: 49800,
+    downloads: 27500,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['天女', '古装玄幻', '神女降世', '玄幻短剧', '虐恋救赎', '全集打包', '夸克网盘'],
+    description: '【2026大热古装神话短剧】《天女》全集完整收录，网盘文件夹名为【天女】。上古神女九天降世，为护佑苍生褪去仙骨踏入滚滚红尘。天道无情却遇执着少年，两人在神魔两界的残酷倾轧中生死与共。特效华丽，女主扮相清冷出尘如画中仙，宿命感爆棚，仙侠短剧迷必刷佳作！',
+    recommendation: `🎬 《天女》（全集高清完整版）
+神女降世动凡心，苍生大义与执手一人的绝美神话！特效与颜值双重封神！
+口令：/~f9503bP68H~:/
+链接：https://pan.quark.cn/s/e8c07369fecc
+独立防封页：https://www.wangpan8.com/resource/res-drama-tiannu-complete-series.html`
+  },
+
+  // 0-4. 蝴蝶
+  {
+    id: 'res-drama-hudie-butterfly-short-drama',
+    title: '《蝴蝶》全集高清完整版 (高口碑悬疑情感短剧/宿命纠葛双向救赎/氛围感剧情天花板)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '悬疑情感 / 双向救赎 / 氛围感神作',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/ef86ace1e50b',
+    extractCode: '/~04043bP60f~:/',
+    quality: '1080P 超清画质 / 全集未删减完整版',
+    size: '2.1 GB',
+    sizeBytes: 2254857830,
+    publishDate: '2026-10-12 12:15',
+    relativeTime: '今日最新',
+    views: 52300,
+    downloads: 29100,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['蝴蝶', '悬疑短剧', '双向救赎', '情感短剧', '氛围感神作', '全集完结', '夸克网盘'],
+    description: '【高口碑情感悬疑短剧】《蝴蝶》全集高清版，网盘文件夹名为【蝴蝶】。如蝴蝶破茧般残酷而美丽的救赎之作！层层递进的悬疑主线，包裹着男女主角在暗夜中相互依偎、撕开伤疤走向光明的深情博弈。电影质感的运镜调色，台词句句直戳心窝，后劲极大！',
+    recommendation: `🎬 《蝴蝶》（全集高清完整版）
+破茧成蝶走向光明！电影级悬疑救赎短剧，剧情反转后劲极大，全网高口碑热播！
+口令：/~04043bP60f~:/
+链接：https://pan.quark.cn/s/ef86ace1e50b
+独立防封页：https://www.wangpan8.com/resource/res-drama-hudie-butterfly-short-drama.html`
+  },
+
   // 1. 退婚三年，他哭着说脸盲只认我（33集）
   {
     id: 'res-drama-2026-tuihun-sannian-33',
