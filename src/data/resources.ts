@@ -1,4 +1,5 @@
 import { ResourceItem } from '../types';
+import { OCTOBER_BATCH_11_RESOURCES } from './octoberBatch11Resources';
 import { NYT_TOP_TV_SERIES_58 } from './nytTopTvSeries58';
 import { CLASSIC_ROMANCE_ART_MOVIES } from './classicRomanceArtMovies';
 import { OCTOBER_HOT_SHORT_DRAMAS } from './octoberShortDramas';
@@ -17,6 +18,11 @@ import { BILIBILI_PAID_COURSES } from './bilibiliCourses';
  * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航、移动云盘与经典电子书合集全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // 今日重磅新添11套热门网盘资源（伪装直男/超清地图/樊登读书/MIT公开课/AI工作台等）
+  // ==========================================
+  ...OCTOBER_BATCH_11_RESOURCES,
+
   // ==========================================
   // 《纽约时报》21世纪百佳剧集（58部精选高分美剧/英剧典藏全集）
   // ==========================================
