@@ -5,6 +5,244 @@ import { ResourceItem } from '../types';
  * 包含都市打脸、古装逆袭、穿书反派、甜宠虐恋、神魔修仙与AI短剧等全网热榜爆款
  */
 export const OCTOBER_HOT_SHORT_DRAMAS: ResourceItem[] = [
+  // 0-0. 红果短剧 9 月 TOP5（+ 真人 1 部）一键打包总合集
+  {
+    id: 'res-drama-2026-hongguo-september-top5-bundle',
+    title: '《红果9月TOP5短剧打包大合集》(万妖图录传12+糯糯下山1-2季+文盲修仙3+搬空商城+东北话事人·6部全集一键转存)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '红果短剧9月榜首 / 6部爆款全集打包 / 1105集海量豪华包',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/d489b5b945a3',
+    extractCode: '',
+    quality: '1080P 高清无删减 / 6部完整全集打包 / 1105集海量典藏',
+    size: '32.8 GB',
+    sizeBytes: 35218731827,
+    publishDate: '2026-10-16 18:00',
+    relativeTime: '今日最新',
+    views: 138000,
+    downloads: 79200,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['红果短剧9月TOP5', '万妖图录传', '糯糯下山', '谁让这个文盲修仙的', '三天后穿越古代我贷款搬空商城', '东北话事人', '夸克网盘'],
+    description: '【红果短剧9月官方热榜TOP5+爆款真人短剧打包大合集】包含全网热度破亿的月度总榜冠军《万妖图录传 第十二季》（200集）、女频黑马爆款《糯糯下山，师兄们都慌了》（第一季63集 + 第二季93集）、幽默热血反套路修仙《谁让这个文盲修仙的 第三季》（121集）、超长囤货穿越神剧《三天后穿越古代，我贷款搬空商城！》（457集）、以及9月真人赛道爆款热播《东北话事人》（71集，李世鑫＆丁磊）。6部王炸剧集已全量校验完整在位，总集数超1100集，一键打包转存！',
+    recommendation: `🔥 《红果9月TOP5短剧打包大合集》（6部一键转存）
+月度总榜TOP5王炸集结！超1100集完整无删减，玄幻漫剧+萌宝修仙+末世囤货+年代热血全包揽！
+链接：https://pan.quark.cn/s/d489b5b945a3
+直出防封页：https://www.wangpan8.com/resource/res-drama-2026-hongguo-september-top5-bundle`
+  },
+
+  // 1. 万妖图录传第十二季（200 集）
+  {
+    id: 'res-drama-wanyaotuluchuan-season-12-200',
+    title: '《万妖图录传 第十二季》全200集完整版 (中晚唐玄幻漫剧/热度破1.1亿9月月度总榜第一/星宫现世云梦乡)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '玄幻漫剧 / 9月热度总榜冠军 / 万妖图录标杆',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/e150e636b4da',
+    extractCode: '',
+    quality: '1080P 超清片源 / 全200集完整版 / 官方正版',
+    size: '5.6 GB',
+    sizeBytes: 6012954214,
+    publishDate: '2026-10-16 18:05',
+    relativeTime: '今日最新',
+    views: 89600,
+    downloads: 51200,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['万妖图录传', '第十二季', '全200集', '玄幻漫剧', '红果月榜第一', '中晚唐神魔', '夸克网盘'],
+    description: '【全网热度破1.1亿·9月月度总榜第一】红果老牌玄幻漫剧标杆续作！现代社畜意外穿越至仙佛绝迹、妖魔乱世的中晚唐，觉醒逆天“万妖图录”系统，以妖魔精血为墨摹形夺取无上神通。第十二季全面开启星宫现世、初入云梦乡的波澜壮阔新篇章，打斗特效与剧情格局堪称漫剧天花板！',
+    recommendation: `🎬 《万妖图录传 第十二季》（全200集完整版）
+9月红果月度总榜冠军！热度破1.1亿，以妖魔之血摹形夺神通，星宫现世神魔大战！
+链接：https://pan.quark.cn/s/e150e636b4da
+直出防封页：https://www.wangpan8.com/resource/res-drama-wanyaotuluchuan-season-12-200`
+  },
+
+  // 2. 糯糯下山，师兄们都慌了 第二季（93 集）
+  {
+    id: 'res-drama-nuonuoxiashan-season-2-93',
+    title: '《糯糯下山，师兄们都慌了 第二季》全93集完整版 (萌宝仙侠漫剧/热度9680万女频超级黑马/软萌小师妹)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '萌宝仙侠 / 团宠护短 / 女频爆款漫剧',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/91d6ee3c4ac9',
+    extractCode: '',
+    quality: '1080P 高清原画 / 全93集完结 / 免解压在线看',
+    size: '2.65 GB',
+    sizeBytes: 2845415833,
+    publishDate: '2026-10-16 18:10',
+    relativeTime: '今日最新',
+    views: 74200,
+    downloads: 43100,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['糯糯下山师兄们都慌了', '第二季', '全93集', '萌宝仙侠', '团宠神剧', '女频黑马', '夸克网盘'],
+    description: '【全网热度9680万·9月女频超级黑马】软萌无害的小师妹糯糯带着满身神秘法宝二度下山历练！面对江湖险恶与各方阴谋，看似天真懵懂的小糯糯随手一个操作就把敌对势力搞得人仰马翻，暗中跟随的众位傲娇护短师兄更是忙得兵荒马乱。极致性格反差萌，既治愈又爆笑！',
+    recommendation: `🎬 《糯糯下山，师兄们都慌了 第二季》（全93集）
+热度9680万女频黑马！软萌小糯糯下山搞事情，全宗门师兄暗中团宠护短慌翻天！
+链接：https://pan.quark.cn/s/91d6ee3c4ac9
+直出防封页：https://www.wangpan8.com/resource/res-drama-nuonuoxiashan-season-2-93`
+  },
+
+  // 3. 糯糯下山，师兄们都慌了 第一季（63 集）
+  {
+    id: 'res-drama-nuonuoxiashan-season-1-63',
+    title: '《糯糯下山，师兄们都慌了 第一季》全63集完整版 (热度7617万长尾爆火神剧/全宗门师兄团宠护短)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '萌宝仙侠 / 团宠始祖 / 长尾爆火漫剧',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/460834454d64',
+    extractCode: '',
+    quality: '1080P 高清原画 / 全63集完结 / 官方纯净片源',
+    size: '1.85 GB',
+    sizeBytes: 1986422374,
+    publishDate: '2026-10-16 18:15',
+    relativeTime: '今日最新',
+    views: 68900,
+    downloads: 39500,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['糯糯下山师兄们都慌了', '第一季', '全63集', '团宠萌宝', '仙侠日常', '爆笑长尾', '夸克网盘'],
+    description: '【热度7617万·长尾持续火爆的团宠始祖】糯糯自小在深山仙门备受宠溺，一朝被师尊安排下山历练。高冷剑修、毒舌医仙、暴躁体修等师兄们表面傲娇，背地里却全部悄悄跟在身后保驾护航！一路啼笑皆非、险象环生却又无比温暖，是百看不厌的解压仙侠漫剧！',
+    recommendation: `🎬 《糯糯下山，师兄们都慌了 第一季》（全63集完整版）
+热度7617万经典老剧持续爆火！傲娇师兄们为护小师妹全员暗中出动，暖心又下饭！
+链接：https://pan.quark.cn/s/460834454d64
+直出防封页：https://www.wangpan8.com/resource/res-drama-nuonuoxiashan-season-1-63`
+  },
+
+  // 4. 谁让这个文盲修仙的第三季（121 集）
+  {
+    id: 'res-drama-wenmang-xiuxian-season-3-121',
+    title: '《谁让这个文盲修仙的 第三季》全121集完整版 (热度7133万男频热门异界修仙漫剧/反套路幽默热血爽剧)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '异界修仙 / 反套路搞怪 / 男频高燃漫剧',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/de284c52a628',
+    extractCode: '',
+    quality: '1080P 超清片源 / 全121集完结 / 宗门大战特效',
+    size: '3.45 GB',
+    sizeBytes: 3704400000,
+    publishDate: '2026-10-16 18:20',
+    relativeTime: '今日最新',
+    views: 71200,
+    downloads: 41800,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['谁让这个文盲修仙的', '第三季', '全121集', '修仙漫剧', '反套路搞笑', '高燃爽剧', '夸克网盘'],
+    description: '【全网热度7133万·男频反套路修仙热门】毫无文化底蕴的文盲主角一头扎进高深莫测的修真界，把晦涩的功法典籍全按字面意思甚至大白话歪解，偏偏误打误撞自创出毁天灭地的神功！第三季宗门大战特效震撼，密集的无厘头笑点碰撞拳拳到肉的硬核打斗，让人欲罢不能！',
+    recommendation: `🎬 《谁让这个文盲修仙的 第三季》（全121集）
+热度7133万爆笑修仙！字都认不全却靠歪解功法无敌于世，宗门天骄全被干懵了！
+链接：https://pan.quark.cn/s/de284c52a628
+直出防封页：https://www.wangpan8.com/resource/res-drama-wenmang-xiuxian-season-3-121`
+  },
+
+  // 5. 三天后穿越古代，我贷款搬空商城！（457 集）
+  {
+    id: 'res-drama-santian-chuanyue-bankong-shangcheng-457',
+    title: '《三天后穿越古代，我贷款搬空商城！》全457集超长完整版 (系统囤货穿越漫剧/末世古代现代神物降维打击)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '穿越囤货 / 搬空商城 / 457集大长篇爽剧',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/46778312c891',
+    extractCode: '',
+    quality: '1080P 超清片源 / 全457集大长篇完整收录',
+    size: '11.2 GB',
+    sizeBytes: 12025908428,
+    publishDate: '2026-10-16 18:25',
+    relativeTime: '今日最新',
+    views: 82500,
+    downloads: 48900,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['三天后穿越古代我贷款搬空商城', '全457集', '囤货漫剧', '搬空超市', '降维打击', '系统爽剧', '夸克网盘'],
+    description: '【457集超长囤货穿越巨制】主角提前三天收到穿越倒计时提示，果断抵押一切疯狂借贷，把整个巨型现代商超与工厂物资搬空存入无限随身空间！穿到古代荒年，别人为一口草根争得头破血流，男主直接拿出火锅牛排、抗生素与越野车降维打击！一边靠海量现代物资建立帝国，一边琢磨着怎么在古代“还网贷”，脑洞大开爽点极高！',
+    recommendation: `🎬 《三天后穿越古代，我贷款搬空商城！》（全457集超长完整版）
+狂借百亿搬空整个现代商城穿古代！无限物资降维打击，荒年称王爽翻天！
+链接：https://pan.quark.cn/s/46778312c891
+直出防封页：https://www.wangpan8.com/resource/res-drama-santian-chuanyue-bankong-shangcheng-457`
+  },
+
+  // 6. 东北话事人（71 集）李世鑫 ＆ 丁磊
+  {
+    id: 'res-drama-dongbei-huashiren-71',
+    title: '《东北话事人》全71集完整版 (李世鑫＆丁磊领衔主演·9月真人赛道大爆新作/年代创业热血传奇1080P)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '真人短剧 / 年代热血创业 / 东北江湖传奇',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/11b95b919317',
+    extractCode: '',
+    quality: '1080P 超清原画 / 全71集完整版 / 官方正版',
+    size: '2.45 GB',
+    sizeBytes: 2630667468,
+    publishDate: '2026-10-16 18:30',
+    relativeTime: '今日最新',
+    views: 65100,
+    downloads: 38200,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['东北话事人', '李世鑫', '丁磊', '全71集', '真人短剧', '年代创业', '东北江湖', '夸克网盘'],
+    description: '【9月真人短剧赛道唯一大爆黑马·24小时热度破6036万】李世鑫 & 丁磊强强联手！九十年代黑土地上的热血风云录，林海雪原狂飙追逐、大澡堂子里唇枪舌剑商业谈判、大排档拼酒论英雄。接地气的原汁原味东北幽默，配上大开大合的江湖道义与创业豪情，剧情硬核劲道，后劲极大！',
+    recommendation: `🎬 《东北话事人》（全71集完整版）
+李世鑫＆丁磊主演！9月真人赛道现象级大爆款，冰天雪地热血创业，大澡堂里定乾坤！
+链接：https://pan.quark.cn/s/11b95b919317
+直出防封页：https://www.wangpan8.com/resource/res-drama-dongbei-huashiren-71`
+  },
+
   // 0. 2026年10月红果短剧热度TOP6重磅大合集（一键打包）
   {
     id: 'res-drama-2026-hongguo-top6-collection',
