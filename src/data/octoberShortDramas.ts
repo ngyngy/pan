@@ -5,6 +5,244 @@ import { ResourceItem } from '../types';
  * 包含都市打脸、古装逆袭、穿书反派、甜宠虐恋、神魔修仙与AI短剧等全网热榜爆款
  */
 export const OCTOBER_HOT_SHORT_DRAMAS: ResourceItem[] = [
+  // 0. 2026年10月红果短剧热度TOP6重磅大合集（一键打包）
+  {
+    id: 'res-drama-2026-hongguo-top6-collection',
+    title: '《2026年10月红果短剧热度TOP6出炉重磅大合集》(大唐憨婿3/绿意萌熹/聚宝仙盆12/满院亲戚4/二嫁有喜/反向拿捏·全套超清无删减一键转存)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '红果短剧TOP6 / 10月热度总榜 / 豪华大合集打包',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/94c8093e450b',
+    extractCode: '',
+    quality: '1080P/超清无删减完整版 / 6部完整全集打包 / 978集超大容量典藏',
+    size: '25.6 GB',
+    sizeBytes: 27487790694,
+    publishDate: '2026-10-16 17:45',
+    relativeTime: '今日最新',
+    views: 115000,
+    downloads: 68400,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['红果短剧', '热度TOP6', '大唐憨婿', '绿意萌熹', '聚宝仙盆', '满院亲戚全是上古大妖', '二嫁有喜', '反向拿捏', '夸克网盘', '短剧大合集'],
+    description: '【2026年10月红果短剧官方热榜TOP6霸榜大合集·一键打包收藏】全网播放量破百亿的6大王炸剧集全部核验在位！收录：《大唐憨婿之我姐姐是太子妃 第三季》（180集）、《绿意萌熹：蛙系萌娃闹翻忧郁老爸》（118集）、《聚宝仙盆之杂灵根才是真BOSS 第十二季》（222集）、《满院亲戚全是上古大妖 第四季》（155集）、《二嫁有喜》（77集，陈政阳&王云云）、《反向拿捏：和闺蜜穿七零带着婆婆一起离》（126集）。涵盖古装逆袭、都市合家欢、修仙爽剧、玄幻护短、豪门追妻与年代暴富，近千集精彩无尿点，一次转存永久看个够！',
+    recommendation: `🔥 《2026年10月红果短剧热度TOP6出炉！》（一键打包大合集）
+官方热度总榜TOP6王炸集结！近千集完整无删减，涵盖穿越/玄幻/甜宠/年代全类型！
+链接：https://pan.quark.cn/s/94c8093e450b
+独立防封页：https://www.wangpan8.com/resource/res-drama-2026-hongguo-top6-collection.html`
+  },
+
+  // 1. 大唐憨婿之我姐姐是太子妃第三季（180集）
+  {
+    id: 'res-drama-datang-hanxu-taizifei-season-3-180',
+    title: '《大唐憨婿之我姐姐是太子妃 第三季》全180集完整版 (古装穿越/扮猪吃虎/太子妃撑腰爆笑逆袭爽剧)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '古装穿越 / 搞笑逆袭 / 大唐驸马爽剧',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/ce92909652e9',
+    extractCode: '',
+    quality: '1080P 超清完整版 / 全180集完结 / 免解压在线看',
+    size: '4.85 GB',
+    sizeBytes: 5208000000,
+    publishDate: '2026-10-16 17:00',
+    relativeTime: '今日最新',
+    views: 63200,
+    downloads: 35400,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['大唐憨婿之我姐姐是太子妃', '第三季', '全180集', '古装短剧', '扮猪吃虎', '爆笑逆袭', '夸克网盘'],
+    description: '【现象级古装爆笑逆袭神剧】第三季重磅回归！表面上是人畜无害、到处闯祸的“大唐憨婿”，实际上运筹帷幄、智多近妖。仗着亲姐姐是权倾东宫的太子妃，各路宵小权臣想要暗算，反被他扮猪吃虎狠狠拿捏！笑点极其密集，高燃打脸反转不断，180集大长篇看个过瘾！',
+    recommendation: `🎬 《大唐憨婿之我姐姐是太子妃 第三季》（全180集）
+我姐是太子妃，大唐横着走！装疯卖傻扮猪吃虎，爆笑打脸爽翻天！
+链接：https://pan.quark.cn/s/ce92909652e9
+独立防封页：https://www.wangpan8.com/resource/res-drama-datang-hanxu-taizifei-season-3-180.html`
+  },
+
+  // 2. 绿意萌熹：蛙系萌娃闹翻忧郁老爸（118集）
+  {
+    id: 'res-drama-luyi-mengxi-waxi-mengwa-118',
+    title: '《绿意萌熹：蛙系萌娃闹翻忧郁老爸》全118集完整版 (高分治愈甜暖喜剧/蛙系搞笑萌宝拯救破产老爹)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '都市喜剧 / 萌娃治愈 / 爆笑合家欢',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/60f14fdbdf55',
+    extractCode: '',
+    quality: '1080P 高清原画 / 全118集完整版 / 官方纯净片源',
+    size: '3.62 GB',
+    sizeBytes: 3887000000,
+    publishDate: '2026-10-16 17:05',
+    relativeTime: '今日最新',
+    views: 57400,
+    downloads: 32100,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['绿意萌熹', '蛙系萌娃', '都市喜剧', '治愈老爸', '全118集', '爆笑短剧', '夸克网盘'],
+    description: '【全网热榜治愈系爆笑神作】当一个每天丧气满满、被生活压弯腰的抑郁破产老爸，遇上脑回路清奇、战斗力爆表的“蛙系萌娃”，原本压抑死板的人生彻底被掀翻！古灵精怪的童真神操作频频化解成人世界的阴谋与危机，又暖又爆笑，治愈所有不开心！',
+    recommendation: `🎬 《绿意萌熹：蛙系萌娃闹翻忧郁老爸》（全118集）
+蛙系萌宝天降整顿人生！专治一切抑郁内耗，笑出腹肌又治愈泪目！
+链接：https://pan.quark.cn/s/60f14fdbdf55
+独立防封页：https://www.wangpan8.com/resource/res-drama-luyi-mengxi-waxi-mengwa-118.html`
+  },
+
+  // 3. 聚宝仙盆之杂灵根才是真BOSS第十二季（222集）
+  {
+    id: 'res-drama-jubaoxianpen-zalingen-season-12-222',
+    title: '《聚宝仙盆之杂灵根才是真BOSS 第十二季》全222集超长完整版 (玄幻修仙/聚宝仙盆复制万物/逆天屠神爽剧)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '玄幻修真 / 聚宝金手指 / 扮猪吃虎大长篇',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/ec88a06956e5',
+    extractCode: '',
+    quality: '1080P 超清片源 / 全222集完整版 / 修仙特效拉满',
+    size: '6.15 GB',
+    sizeBytes: 6603000000,
+    publishDate: '2026-10-16 17:10',
+    relativeTime: '今日最新',
+    views: 79500,
+    downloads: 46800,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['聚宝仙盆', '杂灵根才是真BOSS', '第十二季', '全222集', '玄幻修真', '逆袭爽剧', '夸克网盘'],
+    description: '【爆款玄幻修仙大长篇十二季完结】谁说杂灵根是修仙界公认的废柴？男主手握上古聚宝仙盆，灵丹妙药、绝世法宝、九品神通皆可无限复制暴击！宗门天骄与太上长老百般刁难，却不知他早已暗中积蓄毁天灭地的实力。十二季高燃大战全面引爆，爽点绝不拖泥带水！',
+    recommendation: `🎬 《聚宝仙盆之杂灵根才是真BOSS 第十二季》（全222集）
+废柴杂灵根手握聚宝盆无限复制！一路神装碾压三界，修仙爽剧天花板！
+链接：https://pan.quark.cn/s/ec88a06956e5
+独立防封页：https://www.wangpan8.com/resource/res-drama-jubaoxianpen-zalingen-season-12-222.html`
+  },
+
+  // 4. 满院亲戚全是上古大妖第四季（155集）
+  {
+    id: 'res-drama-manyuan-qinqi-shanggu-dayao-season-4-155',
+    title: '《满院亲戚全是上古大妖 第四季》全155集完整版 (都市玄幻/上古神兽全员护短/无敌爽文爆款)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '都市玄幻 / 妖兽护短 / 扮猪吃虎暴爽',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/d928bfd4a0ae',
+    extractCode: '',
+    quality: '1080P 超清无删减 / 全155集完整收录',
+    size: '4.35 GB',
+    sizeBytes: 4671000000,
+    publishDate: '2026-10-16 17:15',
+    relativeTime: '今日最新',
+    views: 68100,
+    downloads: 38900,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['满院亲戚全是上古大妖', '第四季', '全155集', '上古大妖', '都市修真', '无敌护短', '夸克网盘'],
+    description: '【全网热搜都市玄幻封神之作】男主自幼以为家里不过是贫苦农户，直到某天隐世豪门与修真宗门上门寻衅，满院子的“亲戚”随手一挥便天地变色——原来慈祥的二大爷是真龙，隔壁三叔是金翅大鹏，洗衣服的婶婶是九尾天狐！第四季全员护短狂飙，爽感加倍！',
+    recommendation: `🎬 《满院亲戚全是上古大妖 第四季》（全155集）
+惹我？问过我院里的上古神兽亲戚了吗！极致护短与无敌反杀，暴爽必追！
+链接：https://pan.quark.cn/s/d928bfd4a0ae
+独立防封页：https://www.wangpan8.com/resource/res-drama-manyuan-qinqi-shanggu-dayao-season-4-155.html`
+  },
+
+  // 5. 二嫁有喜（77集）陈政阳＆王云云
+  {
+    id: 'res-drama-erjia-youxi-chenzhengyang-wangyunyun-77',
+    title: '《二嫁有喜》全77集完整版 (陈政阳＆王云云领衔主演·二嫁豪门带球跑/真假千金双向奔赴追妻火葬场)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '豪门虐恋 / 追妻火葬场 / 带球二嫁甜宠',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/830ae92b8f32',
+    extractCode: '',
+    quality: '1080P 高清原画 / 全77集完结 / 官方正版片源',
+    size: '2.75 GB',
+    sizeBytes: 2953000000,
+    publishDate: '2026-10-16 17:20',
+    relativeTime: '今日最新',
+    views: 74600,
+    downloads: 43200,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['二嫁有喜', '陈政阳', '王云云', '全77集', '带球跑', '豪门甜宠', '追妻火葬场', '夸克网盘'],
+    description: '【陈政阳 & 王云云顶流 CP 王炸短剧】前夫无情背叛夺走一切，女主心灰意冷带孕转身，却不料阴差阳错二嫁给跺一跺脚商界震颤的顶级豪门巨鳄！男主看似冷酷霸道，实则将她与腹中宝宝宠入心尖。前夫悔入骨髓上门哀求，被总裁当场霸气碾压，高甜虐渣两不误！',
+    recommendation: `🎬 《二嫁有喜》（全77集完整版）
+陈政阳＆王云云倾情演绎！绝情前夫弃如敝履，冷面巨鳄宠妻入骨，虐渣打脸太解气！
+链接：https://pan.quark.cn/s/830ae92b8f32
+独立防封页：https://www.wangpan8.com/resource/res-drama-erjia-youxi-chenzhengyang-wangyunyun-77.html`
+  },
+
+  // 6. 反向拿捏：和闺蜜穿七零带着婆婆一起离（126集）
+  {
+    id: 'res-drama-fanxiang-nanie-chuansan-qiling-126',
+    title: '《反向拿捏：和闺蜜穿七零带着婆婆一起离》全126集完整版 (年代穿越/双女主暴打极品/拐走恶婆婆搞钱暴富爽剧)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '年代穿越 / 双闺蜜搞钱 / 爆笑反向拿捏',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/45f0999e1be4',
+    extractCode: '',
+    quality: '1080P 超清片源 / 全126集大结局 / 无删减在线看',
+    size: '3.95 GB',
+    sizeBytes: 4241000000,
+    publishDate: '2026-10-16 17:25',
+    relativeTime: '今日最新',
+    views: 65800,
+    downloads: 37900,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['反向拿捏', '和闺蜜穿七零带着婆婆一起离', '年代短剧', '穿越爽剧', '双女主', '全126集', '夸克网盘'],
+    description: '【2026最火年代穿书黑马】谁家穿书还跟渣男纠缠？好闺蜜双双穿回七十年代，不仅反手痛扁吸血渣男和小人，更是脑洞大开凭借高情商把恶婆婆策反为“最强闺蜜盟友”，直接带着婆婆一起分家离婚！三人携手利用时代先机搞副业暴富，全员搞钱爽感炸裂！',
+    recommendation: `🎬 《反向拿捏：和闺蜜穿七零带着婆婆一起离》（全126集）
+踹掉渣男搞大钱！双闺蜜带上婆婆组团致富，反向拿捏极品亲戚，笑点与爽点拉满！
+链接：https://pan.quark.cn/s/45f0999e1be4
+独立防封页：https://www.wangpan8.com/resource/res-drama-fanxiang-nanie-chuansan-qiling-126.html`
+  },
+
   // 0-1. 070007-不负如来不负卿 (75集)
   {
     id: 'res-drama-bufu-rulai-bufu-qing-75',
