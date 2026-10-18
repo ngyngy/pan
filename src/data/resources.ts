@@ -1,4 +1,5 @@
 import { ResourceItem } from '../types';
+import { OCTOBER_BATCH_7_RARE_RESOURCES } from './octoberBatch7RareResources';
 import { OCTOBER_BATCH_15_RESOURCES } from './octoberBatch15Resources';
 import { OCTOBER_BATCH_11_RESOURCES } from './octoberBatch11Resources';
 import { NYT_TOP_TV_SERIES_58 } from './nytTopTvSeries58';
@@ -19,6 +20,11 @@ import { BILIBILI_PAID_COURSES } from './bilibiliCourses';
  * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航、移动云盘与经典电子书合集全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // 今日重磅新添7套稀缺影视纪录片、绝版电子书与海量短剧大合集（70UP终章/Fauda/编号17/古代禁毁小说等）
+  // ==========================================
+  ...OCTOBER_BATCH_7_RARE_RESOURCES,
+
   // ==========================================
   // 今日重磅新添15套热门网盘资源（闲鱼副业/小说推文/AI音乐/34行业电子书/AI编程绿皮书等）
   // ==========================================
