@@ -5,6 +5,40 @@ import { ResourceItem } from '../types';
  * 包含官方直发推文文案与亮点说明
  */
 export const FEATURED_QUARK_UPDATES: ResourceItem[] = [
+  // 0-0. 《金谍行动》In the Grey (2026) 1080P 蓝光原盘REMUX
+  {
+    id: 'res-movie-in-the-grey-2026-remux',
+    title: '《金谍行动》In the Grey (2026) 1080P 蓝光原盘REMUX (盖·里奇导演硬核谍战动作巨制·亨利·卡维尔×杰克·吉伦哈尔·Dolby TrueHD 5.1无损全景音)',
+    mainCategoryId: 'video',
+    subCategoryId: 'movie',
+    subCategoryName: '电影',
+    subsiteId: 'dy',
+    subsiteName: '经典高分电影专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '院线大片 / 盖·里奇硬核谍战 / 蓝光原盘REMUX',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/f9a6df47efd0',
+    extractCode: '',
+    quality: '1080P BluRay REMUX AVC TrueHD 5.1 / 24.04 GB 纯净无损原盘 / 附全套海报与壁纸',
+    size: '24.04 GB',
+    sizeBytes: 25812423475,
+    publishDate: '2026-10-20 22:15',
+    relativeTime: '今日最新',
+    views: 65400,
+    downloads: 38900,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: false,
+    tags: ['金谍行动', 'In the Grey', '盖里奇', '亨利卡维尔', '杰克吉伦哈尔', '艾莎冈萨雷斯', '裴淳华', '谍战动作', '1080P原盘', 'REMUX', '夸克网盘'],
+    description: '鬼才名导盖·里奇（Guy Ritchie）最新硬核谍战动作巨制《金谍行动》（In the Grey / 灰烬行动 / 金牌特工）2026！由“大超”亨利·卡维尔（Henry Cavill）与杰克·吉伦哈尔（Jake Gyllenhaal）、艾莎·冈萨雷斯（Eiza González）、裴淳华（Rosamund Pike）等好莱坞全明星豪华阵容联袂主演。讲述两名特工救援专家被派往敌对地带，护送一名身陷险境的高级女谈判官安全撤离的生死冒险。动作枪战凌厉火爆、黑色幽默与反转剧情应接不暇！网盘收录 24.04 GB 顶级 1080P BluRay REMUX 无损原盘，配备 Dolby TrueHD 5.1 环绕声轨，附赠高清横版/竖版海报图，影音发烧友与动作片迷不容错过！',
+    recommendation: `🎬 《金谍行动 (2026)》1080P 蓝光原盘 REMUX
+盖·里奇执导，亨利·卡维尔×杰克·吉伦哈尔双雄谍战！24GB顶级画质+无损杜比环绕声！
+链接：https://pan.quark.cn/s/f9a6df47efd0
+直出防封页：https://www.wangpan8.com/resource/res-movie-in-the-grey-2026-remux.html`
+  },
+
   // 0. 好玩的单机传奇 伏妖纯单机破解秘境修复版
   {
     id: 'res-game-fuyao-chundanji-chuanqi-pojie-xiufu',
