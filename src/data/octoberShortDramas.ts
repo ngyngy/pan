@@ -5,6 +5,40 @@ import { ResourceItem } from '../types';
  * 包含都市打脸、古装逆袭、穿书反派、甜宠虐恋、神魔修仙与AI短剧等全网热榜爆款
  */
 export const OCTOBER_HOT_SHORT_DRAMAS: ResourceItem[] = [
+  // 0. 《算死仙 全集》
+  {
+    id: 'res-drama-suan-si-xian-complete',
+    title: '《算死仙 全集》(火爆玄幻修仙/相术推演逆天改命·铁口直断诛仙伏魔·高清无删减完整版)',
+    mainCategoryId: 'video',
+    subCategoryId: 'short_drama',
+    subCategoryName: '短剧',
+    subsiteId: 'dy',
+    subsiteName: '影视短剧资源专区',
+    subsiteUrl: 'http://dy.ngy123.com',
+    category: 'dy',
+    categoryName: '玄幻修仙神剧 / 天机相术推演 / 全集无删减',
+    driveType: 'quark',
+    driveName: '夸克网盘',
+    driveUrl: 'https://pan.quark.cn/s/6eb635c7924d',
+    extractCode: '',
+    quality: '1080P 高清原画 / 全集完整收录 / 无删减纯享版',
+    size: '4.2 GB',
+    sizeBytes: 4509715660,
+    publishDate: '2026-10-20 10:00',
+    relativeTime: '今日最新',
+    views: 86200,
+    downloads: 49500,
+    isFeatured: true,
+    isLatest: true,
+    isCollection: true,
+    tags: ['算死仙', '算死仙全集', '修仙短剧', '玄幻漫剧', '神算推演', '逆天改命', '1080P超清', '夸克网盘'],
+    description: '全网爆火反套路仙侠玄幻神剧《算死仙》全集完整版！主角精通天机卦术、命理推演与相术奇术，以凡俗命理师之身，算尽漫天仙佛神魔之死局。一卦定生死，一言破天机，凡与之为敌者皆难逃命数因果。剧情环环相扣、爽点炸裂、节奏飞快，毫无拖泥带水，修仙逆袭爽感直击天花板！高清完整无删减收录，沉浸追剧不容错过！',
+    recommendation: `🔥 《算死仙 全集》（高清无删减）
+以凡人之躯推演仙人天命，一语断生死，算天算地算神仙！节奏飞快爽点密集！
+链接：https://pan.quark.cn/s/6eb635c7924d
+直出防封页：https://www.wangpan8.com/resource/res-drama-suan-si-xian-complete.html`
+  },
+
   // 0-0. 红果短剧 9 月 TOP5（+ 真人 1 部）一键打包总合集
   {
     id: 'res-drama-2026-hongguo-september-top5-bundle',
