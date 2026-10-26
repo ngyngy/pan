@@ -1,4 +1,5 @@
 import { ResourceItem } from '../types';
+import { OCTOBER_HISTORICAL_SHORT_DRAMAS } from './octoberHistoricalShortDramas';
 import { OCTOBER_BATCH_7_MIXED_RESOURCES } from './octoberBatch7MixedResources';
 import { OCTOBER_BATCH_7_RARE_RESOURCES } from './octoberBatch7RareResources';
 import { OCTOBER_BATCH_15_RESOURCES } from './octoberBatch15Resources';
@@ -21,6 +22,11 @@ import { BILIBILI_PAID_COURSES } from './bilibiliCourses';
  * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航、移动云盘与经典电子书合集全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // 今日重磅新添10套穿越历史权谋漫剧大合集（持械入宋8/大明第一公6/烬九州22/洪武苟长生等及9部打包）
+  // ==========================================
+  ...OCTOBER_HISTORICAL_SHORT_DRAMAS,
+
   // ==========================================
   // 今日重磅新添7套精品资源（Netflix纪录片100部/坠落1-2部4K/投资避坑双语/雅思7000词/Reach教材/电脑维修及打包）
   // ==========================================
