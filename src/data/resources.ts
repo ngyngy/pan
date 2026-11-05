@@ -1,4 +1,5 @@
 import { ResourceItem } from '../types';
+import { TANGLANG_EVOLUTION_RESOURCES } from './tanglangEvolutionResources';
 import { WEEKLY_QUARK_610_RESOURCES } from './weeklyQuark610Resources';
 import { OCTOBER_HISTORICAL_SHORT_DRAMAS } from './octoberHistoricalShortDramas';
 import { OCTOBER_BATCH_7_MIXED_RESOURCES } from './octoberBatch7MixedResources';
@@ -23,6 +24,11 @@ import { BILIBILI_PAID_COURSES } from './bilibiliCourses';
  * 包含天涯神贴、中小学学习资料、影视动漫、高晓松专区、比特币文献、UC资源导航、移动云盘与经典电子书合集全套真实分享链接
  */
 export const INITIAL_RESOURCES: ResourceItem[] = [
+  // ==========================================
+  // 今日重磅新添：爆款玄幻进化漫剧《重生螳螂无限吞噬进化》（第一季/第二季/189集全集打包）
+  // ==========================================
+  ...TANGLANG_EVOLUTION_RESOURCES,
+
   // ==========================================
   // 2026-10-27 重磅更新：周览资源 610 条夸克网盘永久分享精选库
   // ==========================================
